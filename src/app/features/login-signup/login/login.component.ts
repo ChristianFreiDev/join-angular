@@ -5,7 +5,10 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-login',
   imports: [FormsModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrl: './login.component.scss',
+  host: {
+    class: 'basic-card'
+  }
 })
 export class LoginComponent {
 
