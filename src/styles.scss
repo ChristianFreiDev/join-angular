@@ -1,4 +1,4 @@
-@import "styles/colors.scss";
+@use "styles/colors.scss";
 
 * {
   margin: 0;
@@ -11,7 +11,7 @@ html {
 }
 
 body {
-  background-color: $bg-color;
+  background-color: colors.$bg;
 }
 
 .basic-card {
@@ -20,7 +20,7 @@ body {
 }
 
 .outer-container {
-    background-color: var(--color-main);
+    background-color: colors.$main;
     margin: auto;
     display: flex;
     min-height: 100vh;
@@ -30,33 +30,33 @@ body {
 .input {
     background-color: white;
     border-radius: 10px;
-    border: 1px solid $color-input-light-gray;
+    border: 1px solid colors.$input-light-gray;
     font-size: 20px;
     font-weight: 400;
     width: 100%;
 }
 
 .input:hover{
-    border: 1px solid $color-accent !important;
+    border: 1px solid colors.$accent !important;
 }
 
 .input::placeholder {
-    color: $color-input-light-gray;
+    color: colors.$input-light-gray;
     font-size: 20px;
     font-weight: 400;
 }
 
 .input:focus {
     outline: none;
-    border: 1px solid $color-accent;
+    border: 1px solid colors.$accent;
 }
 
 .input:user-invalid {
-    border: 1px solid $color-red;
+    border: 1px solid colors.$red;
 }
 
 .input:user-valid{
-    border: 1px solid $color-low;
+    border: 1px solid colors.$low;
 }
 
 .input-padding-size0 { 
@@ -91,33 +91,32 @@ body {
     gap: 4px;
 }
 
-
 .dark-btn {
     color: #FFFFFF;
-    background-color: $color-menu;
+    background-color: colors.$menu;
     font-size: 21px;
     font-weight: 700;
 }
 
 .dark-btn:hover {
-    background-color: $color-accent;
+    background-color: colors.$accent;
     box-shadow: 0px 4px 4px 0px #00000040;
 }
 
 .dark-btn:active {
-    background-color: $color-menu-active;
+    background-color: colors.$menu-active;
 }
 
 .light-btn {
     background-color: white;
-    color: $color-menu;
-    outline: 1px solid $color-menu;
+    color: colors.$menu;
+    outline: 1px solid colors.$menu;
     border: unset;
 }
 
 .light-btn:hover {
-    color: $color-accent;
-    outline: 2px solid $color-accent;
+    color: colors.$accent;
+    outline: 2px solid colors.$accent;
 }
 
 .btn-padding-size0 {
