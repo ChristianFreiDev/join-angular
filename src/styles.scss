@@ -91,30 +91,30 @@ body {
     gap: 4px;
 }
 
-.dark-btn {
+.btn-dark {
     color: #FFFFFF;
     background-color: colors.$menu;
     font-size: 21px;
     font-weight: 700;
 }
 
-.dark-btn:hover {
+.btn-dark:hover {
     background-color: colors.$accent;
     box-shadow: 0px 4px 4px 0px #00000040;
 }
 
-.dark-btn:active {
+.btn-dark:active {
     background-color: colors.$menu-active;
 }
 
-.light-btn {
+.btn-light {
     background-color: white;
     color: colors.$menu;
     outline: 1px solid colors.$menu;
     border: unset;
 }
 
-.light-btn:hover {
+.btn-light:hover {
     color: colors.$accent;
     outline: 2px solid colors.$accent;
 }
