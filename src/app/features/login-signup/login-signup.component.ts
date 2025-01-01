@@ -5,7 +5,10 @@ import { LoginComponent } from './login/login.component';
   selector: 'app-login-signup',
   imports: [LoginComponent],
   templateUrl: './login-signup.component.html',
-  styleUrl: './login-signup.component.scss'
+  styleUrl: './login-signup.component.scss',
+  host: {
+    class: 'login-signup'
+  }
 })
 export class LoginSignupComponent {
 

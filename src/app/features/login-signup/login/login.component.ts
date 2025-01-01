@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
   host: {
-    class: 'basic-card'
+    class: 'basic-card login-signup-card'
   }
 })
 export class LoginComponent {
