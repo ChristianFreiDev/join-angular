@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -12,5 +12,22 @@ import { RouterLink } from '@angular/router';
   }
 })
 export class SignupComponent {
+  formData = {
+    name: '',
+    email: '',
+    password: '',
+    passwordForConfirmation: ''
+  }
 
+  isPasswordAMatch() {
+    return this.formData.password === this.formData.passwordForConfirmation;
+  }
+
+  onSubmit(ngForm: NgForm) {
+    if (ngForm.submitted && ngForm.valid && this.isPasswordAMatch()) {
+      console.log(this.formData);
+    } else {
+      console.log('passwords do not match');
+    }
+  }
 }

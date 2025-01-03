@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -11,5 +11,14 @@ import { FormsModule } from '@angular/forms';
   }
 })
 export class LoginComponent {
+  formData = {
+    name: '',
+    password: ''
+  }
 
+  onSubmit(ngForm: NgForm) {
+    if (ngForm.submitted && ngForm.valid) {
+      console.log(this.formData);
+    }
+  }
 }

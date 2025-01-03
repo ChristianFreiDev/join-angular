@@ -2,9 +2,21 @@
   <h2 class="login-signup-headline">Log in</h2>
   <div class="login-signup-separator"></div>
 </div>
-<form>
-  <input class="input input-padding-size4" type="text" />
-  <input class="input input-padding-size4" type="password" />
+<form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+  <input
+    [(ngModel)]="formData.name"
+    name="name"
+    class="input input-padding-size4"
+    type="text"
+    minlength="3"
+  />
+  <input
+    [(ngModel)]="formData.password"
+    name="password"
+    class="input input-padding-size4"
+    type="password"
+    minlength="5"
+  />
   <div class="login-signup-btn-container">
     <button class="btn btn-dark main-button btn-padding-size4">Log in</button>
     <button class="btn btn-light main-button btn-padding-size4">
