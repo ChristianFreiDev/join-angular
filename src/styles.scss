@@ -37,10 +37,6 @@ body {
   width: 100%;
 }
 
-.input:hover {
-  border: 1px solid colors.$accent !important;
-}
-
 .input::placeholder {
   color: colors.$input-light-gray;
   font-size: 20px;
@@ -104,11 +100,6 @@ body {
   }
 }
 
-.btn-dark:hover {
-  background-color: colors.$accent;
-  box-shadow: 0px 4px 4px 0px #00000040;
-}
-
 .btn-dark:active {
   background-color: colors.$menu-active;
 }
@@ -118,12 +109,6 @@ body {
   color: colors.$menu;
   outline: 1px solid colors.$menu;
   border: unset;
-}
-
-.btn-light:hover {
-  color: colors.$accent;
-  outline: 2px solid colors.$accent;
-  box-shadow: 0px 4px 4px 0px #00000040;
 }
 
 .main-button {
@@ -159,4 +144,19 @@ body {
   min-height: 100svh;
   min-height: 100vh;
   width: 100%;
+}
+
+@media (hover: hover) {
+  .input:hover {
+    border: 1px solid colors.$accent !important;
+  }
+  .btn-dark:hover {
+    background-color: colors.$accent;
+    box-shadow: 0px 4px 4px 0px #00000040;
+  }
+  .btn-light:hover {
+    color: colors.$accent;
+    outline: 2px solid colors.$accent;
+    box-shadow: 0px 4px 4px 0px #00000040;
+  }
 }
