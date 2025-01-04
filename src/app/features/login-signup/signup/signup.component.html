@@ -2,37 +2,63 @@
   <h2 class="login-signup-headline">Sign up</h2>
   <div class="login-signup-separator"></div>
 </div>
-<form #signupForm="ngForm" (ngSubmit)="onSubmit(signupForm)">
-  <input
-    [(ngModel)]="formData.name"
-    name="name"
-    class="input input-padding-size4"
-    type="text"
-    minlength="4"
-  />
-  <input
-    [(ngModel)]="formData.email"
-    name="email"
-    class="input input-padding-size4"
-    type="email"
-    minlength="6"
-  />
-  <input
-    [(ngModel)]="formData.password"
-    name="password"
-    class="input input-padding-size4"
-    type="password"
-    minlength="8"
-  />
-  <input
-    [(ngModel)]="formData.passwordForConfirmation"
-    name="passwordForConfirmation"
-    class="input input-padding-size4"
-    type="password"
-    minlength="8"
-  />
-  <p>I accept the <a routerLink="/privacy-policy">privacy policy</a></p>
-  <div class="login-signup-btn-container">
+<form #signupForm="ngForm" (ngSubmit)="onSubmit(signupForm)" ngNativeValidate>
+  <div class="input-container">
+    <input
+      [(ngModel)]="formData.name"
+      name="name"
+      class="input input-padding-size4"
+      type="text"
+      placeholder="Name"
+      minlength="4"
+      required
+    />
+    <span class="material-symbols-rounded input-icon">person</span>
+  </div>
+  <div class="input-container mt-24">
+    <input
+      [(ngModel)]="formData.email"
+      name="email"
+      class="input input-padding-size4"
+      type="email"
+      placeholder="E-mail"
+      minlength="6"
+      required
+    />
+    <span class="material-symbols-rounded input-icon">mail</span>
+  </div>
+  <div class="input-container mt-24">
+    <input
+      [(ngModel)]="formData.password"
+      name="password"
+      class="input input-padding-size4"
+      type="password"
+      placeholder="Password"
+      minlength="8"
+      required
+    />
+    <span class="material-symbols-rounded input-icon">lock</span>
+  </div>
+  <div class="input-container mt-24">
+    <input
+      [(ngModel)]="formData.passwordForConfirmation"
+      name="passwordForConfirmation"
+      class="input input-padding-size4"
+      type="password"
+      placeholder="Confirm password"
+      minlength="8"
+      required
+    />
+    <span class="material-symbols-rounded input-icon">lock</span>
+  </div>
+  <div class="error">
+    @if (isError) { Check your email and password. Please&nbsp;try&nbsp;again. }
+    @else { &#8203; }
+  </div>
+  <p class="privacy-policy-message">
+    I accept the <a routerLink="/privacy-policy">privacy policy</a>
+  </p>
+  <div class="login-signup-btn-container mt-32">
     <button class="btn btn-dark main-button btn-padding-size4">Sign up</button>
   </div>
 </form>

@@ -2,21 +2,44 @@
   <h2 class="login-signup-headline">Log in</h2>
   <div class="login-signup-separator"></div>
 </div>
-<form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
-  <input
-    [(ngModel)]="formData.name"
-    name="name"
-    class="input input-padding-size4"
-    type="text"
-    minlength="3"
-  />
-  <input
-    [(ngModel)]="formData.password"
-    name="password"
-    class="input input-padding-size4"
-    type="password"
-    minlength="5"
-  />
+<form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" ngNativeValidate>
+  <div class="input-container">
+    <input
+      [(ngModel)]="formData.email"
+      name="email"
+      class="input input-padding-size4"
+      type="email"
+      placeholder="E-mail"
+      minlength="3"
+      required
+    />
+    <span class="material-symbols-rounded input-icon">mail</span>
+  </div>
+  <div class="input-container mt-32">
+    <input
+      [(ngModel)]="formData.password"
+      name="password"
+      class="input input-padding-size4"
+      type="password"
+      minlength="8"
+      placeholder="Password"
+      required
+    />
+    <span class="material-symbols-rounded input-icon">lock</span>
+  </div>
+  <div class="error">
+    @if (isError) { Check your email and password. Please&nbsp;try&nbsp;again. }
+    @else { &#8203; }
+  </div>
+  <div class="login-checkbox-outer-container" (click)="clickCheckbox()">
+    <div class="login-checkbox-inner-container">
+      <span class="material-symbols-rounded login-checkbox-symbol">{{
+        checkboxName()
+      }}</span>
+      <input #loginCheckbox class="login-checkbox" type="checkbox" />
+    </div>
+    <label for="login-checkbox" class="login-checkbox-label">Remember me</label>
+  </div>
   <div class="login-signup-btn-container">
     <button class="btn btn-dark main-button btn-padding-size4">Log in</button>
     <button class="btn btn-light main-button btn-padding-size4">

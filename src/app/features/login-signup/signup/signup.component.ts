@@ -19,6 +19,8 @@ export class SignupComponent {
     passwordForConfirmation: ''
   }
 
+  isError: boolean = false;
+
   isPasswordAMatch() {
     return this.formData.password === this.formData.passwordForConfirmation;
   }
@@ -29,5 +31,6 @@ export class SignupComponent {
     } else {
       console.log('passwords do not match');
     }
+    this.isError = true;
   }
 }

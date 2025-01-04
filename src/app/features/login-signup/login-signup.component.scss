@@ -1,20 +1,23 @@
 @use '../../../styles/mixins.scss';
 @use '../../../styles/colors.scss';
 
+form {
+    width: 422px;
+    max-width: 422px;
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+}
+
 .login-signup-card {
     padding: 48px 115px;
     box-shadow: 0px 0px 14px 3px #0000000A;
-    @include mixins.flex($dir: column);
+    @include mixins.flex($ai: center, $dir: column);
     gap: 32px;
     @media (max-width: 768px) {
         width: calc(100% - 32px);
         padding: 32px 16px;
     }
-}
-
-form {
-    @include mixins.flex($ai: center, $dir: column);
-    gap: 32px;
 }
 
 .login-signup-form-header {
@@ -41,19 +44,11 @@ form {
     }
 }
 
-.input {
-    width: 422px;
-    max-width: 422px;
-    @media (max-width: 768px) {
-        width: 100%;
-    }
-}
-
 .login-signup-btn-container {
-    @include mixins.flex();
+    @include mixins.flex($jc: center);
     gap: 35px;
     @media (max-width: 480px) {
-        @include mixins.flex($dir: column);
+        @include mixins.flex($ai: center, $dir: column);
         gap: 21px;
     }
 }

@@ -1,1 +1,24 @@
 @use '../login-signup.component.scss';
+@use '../../../../styles/mixins.scss';
+
+.login-checkbox-outer-container {
+    cursor: pointer;
+    margin: 12px 0 12px 36px;
+    align-self: start;
+    @include mixins.flex($ai: center);
+    gap: 8px;
+}
+
+.login-checkbox {
+    position: absolute;
+    visibility: hidden;
+}
+
+.login-checkbox-inner-container {
+    cursor: pointer;
+    @include mixins.flex($ai: center);
+}
+
+.login-checkbox-label {
+    cursor: pointer;
+}

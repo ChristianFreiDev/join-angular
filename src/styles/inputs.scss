@@ -1,0 +1,74 @@
+@use "../styles/mixins.scss";
+@use "../styles/colors.scss";
+
+.input {
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid colors.$input-light-gray;
+  font-size: 20px;
+  font-weight: 400;
+  width: 100%;
+}
+
+.input::placeholder {
+  color: colors.$input-light-gray;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.input:focus {
+  outline: none;
+  border: 1px solid colors.$accent;
+}
+
+.input:user-invalid {
+  border: 1px solid colors.$red;
+}
+
+.input:user-valid {
+  border: 1px solid colors.$low;
+}
+
+.input-container-with-error-message {
+  @include mixins.flex($dir: column);
+  gap: 8px;
+}
+
+.input-container {
+  position: relative;
+  @include mixins.flex($ai: center);
+}
+
+.input-icon {
+  color: colors.$input-icon-gray;
+  background-color: white;
+  position: absolute;
+  right: 21px;
+  z-index: 2;
+}
+
+.input-padding-size0 {
+  padding: 4px 16px;
+}
+
+.input-padding-size1 {
+  padding: 8px 16px;
+}
+
+.input-padding-size2 {
+  padding: 8.5px 21px;
+}
+
+.input-padding-size3 {
+  padding: 11px 16px;
+}
+
+.input-padding-size4 {
+  padding: 12px 21px;
+}
+
+@media (hover: hover) {
+  .input:hover {
+    border: 1px solid colors.$accent !important;
+  }
+}
