@@ -9,16 +9,6 @@
     gap: 8px;
 }
 
-.login-checkbox {
-    position: absolute;
-    visibility: hidden;
-}
-
-.login-checkbox-inner-container {
-    cursor: pointer;
-    @include mixins.flex($ai: center);
-}
-
 .login-checkbox-label {
     cursor: pointer;
 }

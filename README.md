@@ -61,4 +61,4 @@ For more information on using the Angular CLI, including detailed command refere
 
 ## Credits
 
-This project uses Google Material Symbols (<a href="https://github.com/google/material-design-icons/blob/master/LICENSE">Apache License</a>).
+This project uses Google Material Symbols (<a href="https://github.com/google/material-design-icons/blob/master/LICENSE">Apache License</a>) and Inter (<a href="https://openfontlicense.org/open-font-license-official-text/">Open Font License</a>).

@@ -10,6 +10,7 @@ form {
 }
 
 .login-signup-card {
+    position: relative;
     padding: 48px 115px;
     box-shadow: 0px 0px 14px 3px #0000000A;
     @include mixins.flex($ai: center, $dir: column);

@@ -1,4 +1,5 @@
 <div class="login-signup-form-header">
+  <a class="material-symbols-rounded back-link signup-back-link" routerLink="/login">arrow_back</a>
   <h2 class="login-signup-headline">Sign up</h2>
   <div class="login-signup-separator"></div>
 </div>
@@ -55,9 +56,17 @@
     @if (isError) { Check your email and password. Please&nbsp;try&nbsp;again. }
     @else { &#8203; }
   </div>
-  <p class="privacy-policy-message">
-    I accept the <a routerLink="/privacy-policy">privacy policy</a>
-  </p>
+    <div class="signup-checkbox-outer-container">
+      <div class="checkbox-inner-container" (click)="clickCheckbox()">
+        <span class="material-symbols-rounded login-checkbox-symbol">{{
+          checkboxSymbolName()
+        }}</span>
+        <input #privacyPolicyCheckbox class="checkbox-input" type="checkbox" required />
+      </div>
+      <div class="privacy-policy-message">
+      I accept the <a routerLink="/privacy-policy" target="_blank" class="accent-color-link">privacy policy</a>
+      </div>
+    </div>
   <div class="login-signup-btn-container mt-32">
     <button class="btn btn-dark main-button btn-padding-size4">Sign up</button>
   </div>

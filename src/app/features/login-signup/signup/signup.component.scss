@@ -1,6 +1,32 @@
-@use '../login-signup.component.scss';
+@use "../login-signup.component.scss";
+@use "../../../../styles/mixins.scss";
+@use "../../../../styles/colors.scss";
 
-.privacy-policy-message {
-    text-align: center;
-    margin-top: 16px;
+.signup-checkbox-outer-container {
+  margin-top: 16px;
+  align-self: start;
+  @include mixins.flex($jc: center, $ai: center);
+  gap: 8px;
+}
+
+.signup-back-link {
+  background-color: white;
+  top: 64px;
+  left: 48px;
+  color: colors.$accent;
+  font-size: 32px;
+  @media (max-width: 768px) {
+    top: 40px;
+    left: 40px;
+  }
+  @media (max-width: 420px) {
+    top: 16px;
+    left: 16px;
+  }
+}
+
+@media (hover: hover) {
+  .signup-back-link:hover {
+    background-color: colors.$button-hover;
+  }
 }

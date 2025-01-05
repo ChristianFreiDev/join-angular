@@ -23,7 +23,7 @@ export class LoginComponent {
 
   isCheckboxChecked = signal<boolean>(false);
 
-  checkboxName = computed(() => this.isCheckboxChecked() ? 'select_check_box' : 'check_box_outline_blank');
+  checkboxSymbolName = computed(() => this.isCheckboxChecked() ? 'select_check_box' : 'check_box_outline_blank');
 
   clickCheckbox() {
     this.loginCheckbox.nativeElement.checked = !this.loginCheckbox.nativeElement.checked;

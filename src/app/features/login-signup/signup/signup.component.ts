@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, computed, ElementRef, signal, ViewChild } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 
@@ -12,6 +12,7 @@ import { RouterLink } from '@angular/router';
   }
 })
 export class SignupComponent {
+
   formData = {
     name: '',
     email: '',
@@ -20,6 +21,17 @@ export class SignupComponent {
   }
 
   isError: boolean = false;
+
+  @ViewChild('privacyPolicyCheckbox') privacyPolicyCheckbox!: ElementRef;
+
+  isCheckboxChecked = signal<boolean>(false);
+
+  checkboxSymbolName = computed(() => this.isCheckboxChecked() ? 'select_check_box' : 'check_box_outline_blank');
+  
+  clickCheckbox() {
+    this.privacyPolicyCheckbox.nativeElement.checked = !this.privacyPolicyCheckbox.nativeElement.checked;
+    this.isCheckboxChecked.set(!this.isCheckboxChecked());
+  }
 
   isPasswordAMatch() {
     return this.formData.password === this.formData.passwordForConfirmation;
