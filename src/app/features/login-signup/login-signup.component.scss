@@ -1,6 +1,113 @@
 @use '../../../styles/mixins.scss';
 @use '../../../styles/colors.scss';
 
+:host {
+    @include mixins.flex($jc: space-between, $ai: center, $dir: column);
+}
+
+.animation-overlay {
+    position: absolute;
+    z-index: 3;
+    height: 100%;
+    width: 100%;
+    background-color: colors.$bg;
+    animation: fade-in 1s ease-in-out forwards;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 1;
+    }
+
+    99% {
+        opacity: 0;
+    }
+    
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
+
+header {
+    flex-basis: 0;
+    flex-grow: 1;
+    width: 100%;
+    min-height: 235px;
+    @media (max-width: 768px) {
+        min-height: 152px;
+    }
+}
+
+footer {
+    flex-basis: 0;
+    flex-grow: 1;
+    width: 100%;
+    @include mixins.flex($jc: center, $ai: flex-end);
+}
+
+.footer-links-container {
+    @include mixins.flex();
+    gap: 16px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-link {
+    color: colors.$medium-gray;
+    text-decoration: none;
+    padding: 8px;
+    font-size: 16px;
+    line-height: 19.2px;
+    &:hover {
+        color: colors.$accent;
+        font-weight: 700;
+    }
+}
+
+.large-join-logo {
+    top: 0;
+    left: 0;
+    position: absolute;
+    z-index: 3;
+    animation: move-to-top-left 1000ms ease-in-out forwards;
+    @media (max-width: 768px) {
+        animation: move-to-top-left-mobile 1000ms ease-in-out forwards;
+    }
+}
+
+@keyframes move-to-top-left {
+    from {
+        width: 274px;
+        height: 334.07px;
+        transform: translate(calc(50svw - 137px), calc(50svh - 177.5px));
+    }
+
+    to {
+        top: 80px;
+        left: 77px;
+        width: 100px;
+        height: 122px;
+        transform: translate(0%, 0%);
+    }
+}
+
+@keyframes move-to-top-left-mobile {
+    from {
+        width: 100px;
+        height: 122px;
+        transform: translate(calc(50svw - 50px), calc(50svh - 61px));
+    }
+
+    to {
+        top: 37px;
+        left: 38px;            
+        width: 64px;
+        height: 78px;
+        transform: translate(0%, 0%);
+    }
+}
+
 form {
     width: 422px;
     max-width: 422px;

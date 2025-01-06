@@ -30,3 +30,10 @@
     background-color: colors.$button-hover;
   }
 }
+
+
+@media (max-height: 1080px) and (min-width: 1180px) {
+	:host {
+		margin-top: -128px;
+	}
+}
