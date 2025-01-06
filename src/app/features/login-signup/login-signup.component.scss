@@ -12,9 +12,27 @@
     width: 100%;
     background-color: colors.$bg;
     animation: fade-in 1s ease-in-out forwards;
+    @media (max-width: 768px) {
+        animation: fade-in-mobile 1s ease-in-out forwards;
+    }
 }
 
 @keyframes fade-in {
+    0% {
+        opacity: 1;
+    }
+
+    99% {
+        opacity: 0;
+    }
+    
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
+
+@keyframes fade-in-mobile {
     0% {
         opacity: 1;
     }
@@ -70,9 +88,25 @@ footer {
     left: 0;
     position: absolute;
     z-index: 3;
+}
+
+.join-logo-animation {
     animation: move-to-top-left 1000ms ease-in-out forwards;
     @media (max-width: 768px) {
         animation: move-to-top-left-mobile 1000ms ease-in-out forwards;
+    }
+}
+
+.join-logo-no-animation {
+    top: 80px;
+    left: 77px;
+    width: 100px;
+    height: 122px;
+    @media (max-width: 768px) {
+        top: 37px;
+        left: 38px;
+        width: 64px;
+        height: 78px;
     }
 }
 

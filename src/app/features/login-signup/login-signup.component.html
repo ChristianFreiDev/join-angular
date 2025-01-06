@@ -1,8 +1,8 @@
-<div class="animation-overlay"></div>
 <header>
-    <img class="large-join-logo" src="/img/large-join-logo.svg" alt="large Join logo">
+    <img class="large-join-logo" [ngClass]="isLogin ? 'join-logo-animation' : 'join-logo-no-animation'" src="/img/large-join-logo.svg" alt="large Join logo">
 </header>
-@if (isLogin()) {
+@if (isLogin) {
+    <div class="animation-overlay"></div>
     <app-login></app-login>
 } @else {
     <app-signup></app-signup>
