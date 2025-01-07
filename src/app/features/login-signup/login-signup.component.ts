@@ -14,9 +14,16 @@ import { CommonModule } from '@angular/common';
   }
 })
 export class LoginSignupComponent {
+
+  hasIntroAnimationPlayed: boolean = false;
+
   constructor(private router: Router) {}
 
   get isLogin() {
     return this.router.url.includes('login');
+  }
+
+  get shouldPlayIntroAnimation() {
+    return !this.hasIntroAnimationPlayed && this.isLogin;
   }
 }
