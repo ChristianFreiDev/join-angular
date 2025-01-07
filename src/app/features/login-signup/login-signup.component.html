@@ -4,11 +4,7 @@
 <header>
     <img class="large-join-logo" [ngClass]="{'join-logo-animation': shouldPlayIntroAnimation}" src="/img/large-join-logo.svg" alt="large Join logo">
 </header>
-@if (isLogin) {
-    <app-login></app-login>
-} @else {
-    <app-signup></app-signup>
-}
+<router-outlet></router-outlet>
 <footer>
     <div class="footer-links-container">
         <div class="footer-link-container">
