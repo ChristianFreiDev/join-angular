@@ -7,6 +7,7 @@
   <div class="input-container">
     <input
       [(ngModel)]="formData.name"
+      #name="ngModel"
       name="name"
       class="input input-padding-size4"
       type="text"
@@ -19,6 +20,7 @@
   <div class="input-container mt-24">
     <input
       [(ngModel)]="formData.email"
+      #email="ngModel"
       name="email"
       class="input input-padding-size4"
       type="email"
@@ -31,6 +33,7 @@
   <div class="input-container mt-24">
     <input
       [(ngModel)]="formData.password"
+      #password="ngModel"
       name="password"
       class="input input-padding-size4"
       type="password"
@@ -43,6 +46,7 @@
   <div class="input-container mt-24">
     <input
       [(ngModel)]="formData.passwordForConfirmation"
+      #passwordForConfirmation="ngModel"
       name="passwordForConfirmation"
       class="input input-padding-size4"
       type="password"
@@ -55,6 +59,9 @@
   <div class="error">
     @if (isError) { Check your email and password. Please&nbsp;try&nbsp;again. }
     @else { &#8203; }
+    @if (!isPasswordAMatch) {
+      Passwords don't match.
+    }
   </div>
     <div class="signup-checkbox-outer-container">
       <div class="checkbox-inner-container" (click)="clickCheckbox()">

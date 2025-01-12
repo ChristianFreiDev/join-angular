@@ -1,0 +1,32 @@
+@use '../../../styles/colors.scss';
+@use '../../../styles/mixins.scss';
+
+:host {
+    height: 100%;
+    display: grid;
+    background-color: colors.$menu;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+    @media (max-width: 768px) {
+        flex-direction: row;
+    }
+}
+
+.logo {
+    width: 100px;
+    @media (max-width: 768px) {
+        display: none;
+    }
+}
+
+.navbar-links-container {
+    @include mixins.flex($dir: column);
+    gap: 15px;
+}
+
+.navbar-link {
+    @include mixins.flex($jc: center);
+    gap: 8px;
+}

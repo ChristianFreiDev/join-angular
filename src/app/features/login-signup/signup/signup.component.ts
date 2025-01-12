@@ -33,16 +33,17 @@ export class SignupComponent {
     this.isCheckboxChecked.set(!this.isCheckboxChecked());
   }
 
-  isPasswordAMatch() {
-    return this.formData.password === this.formData.passwordForConfirmation;
+  get isPasswordAMatch() {
+    if (this.formData.password.length === this.formData.passwordForConfirmation.length) {
+      return this.formData.password === this.formData.passwordForConfirmation;
+    } else {
+      return true;
+    }
   }
 
   onSubmit(ngForm: NgForm) {
-    if (ngForm.submitted && ngForm.valid && this.isPasswordAMatch()) {
+    if (ngForm.submitted && ngForm.valid && this.isPasswordAMatch) {
       console.log(this.formData);
-    } else {
-      console.log('passwords do not match');
     }
-    this.isError = true;
   }
 }

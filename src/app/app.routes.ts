@@ -2,6 +2,8 @@ import { Routes } from '@angular/router';
 import { LoginSignupComponent } from './features/login-signup/login-signup.component';
 import { LoginComponent } from './features/login-signup/login/login.component';
 import { SignupComponent } from './features/login-signup/signup/signup.component';
+import { MainComponent } from './features/main/main.component';
+import { DashboardComponent } from './features/main/dashboard/dashboard.component';
 
 export const routes: Routes = [
   {
@@ -11,6 +13,13 @@ export const routes: Routes = [
       { path: '', redirectTo: 'login', pathMatch: 'full', },
       { path: 'login', component: LoginComponent },
       { path: 'signup', component: SignupComponent },
+    ],
+  },
+  {
+    path: 'main',
+    component: MainComponent,
+    children: [
+      { path: 'dashboard', component: DashboardComponent }
     ],
   },
   { path: 'privacy-policy', redirectTo: 'login', pathMatch: 'full' },

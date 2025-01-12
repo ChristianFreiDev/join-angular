@@ -11,7 +11,7 @@ import { FormsModule, NgForm } from '@angular/forms';
   }
 })
 export class LoginComponent {
-  
+
   formData = {
     email: '',
     password: ''
@@ -33,6 +33,8 @@ export class LoginComponent {
   onSubmit(ngForm: NgForm) {
     if (ngForm.submitted && ngForm.valid) {
       console.log(this.formData);
+      ngForm.resetForm();
+    } else {
       this.isError = true;
     }
   }

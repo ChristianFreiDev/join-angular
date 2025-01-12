@@ -1,0 +1,30 @@
+:host {
+    height: 100svh;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 232px auto;
+    grid-template-rows: 96px auto;
+    grid-template-areas:
+    'navbar header'
+    'navbar main';
+    @media (max-width: 768px) {
+        grid-template-columns: auto;
+        grid-template-rows: 80px auto 80px;
+        grid-template-areas:
+        'header'
+        'main'
+        'navbar';
+    }
+}
+
+nav {
+    grid-area: navbar;
+}
+
+header {
+    grid-area: header;
+}
+
+main {
+    grid-area: main;
+}
