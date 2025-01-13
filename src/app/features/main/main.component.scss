@@ -7,7 +7,7 @@
     grid-template-areas:
     'navbar header'
     'navbar main';
-    @media (max-width: 768px) {
+    @media (max-width: 920px) {
         grid-template-columns: auto;
         grid-template-rows: 80px auto 80px;
         grid-template-areas:

@@ -1,32 +1,89 @@
-@use '../../../styles/colors.scss';
-@use '../../../styles/mixins.scss';
+@use "../../../styles/colors.scss";
+@use "../../../styles/mixins.scss";
 
 :host {
-    height: 100%;
-    display: grid;
-    background-color: colors.$menu;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    height: 100%;
-    @media (max-width: 768px) {
-        flex-direction: row;
-    }
+  height: 100%;
+  display: grid;
+  background-color: colors.$menu;
+  @include mixins.flex($jc: space-evenly, $dir: column);
+  height: 100%;
+  @media (max-width: 920px) {
+    flex-direction: row;
+  }
 }
 
-.logo {
-    width: 100px;
-    @media (max-width: 768px) {
-        display: none;
-    }
+a {
+  color: colors.$menu-font;
+  text-decoration: none;
 }
 
-.navbar-links-container {
-    @include mixins.flex($dir: column);
-    gap: 15px;
+.navbar-logo-link {
+  @include mixins.flex($jc: center, $ai: center);
 }
 
-.navbar-link {
-    @include mixins.flex($jc: center);
+.navbar-logo {
+  width: 100px;
+  @media (max-width: 920px) {
+    display: none;
+  }
+  @media (max-height: 520px) {
+    width: 80px;
+  }
+  @media (max-height: 420px) {
+    width: 60px;
+  }
+}
+
+.navbar-center-links-container {
+  @include mixins.flex($dir: column);
+  gap: 15px;
+  @media (max-width: 480px) {
+    @include mixins.flex($jc: space-between, $dir: column);
+  }
+  @media (max-height: 560px) {
     gap: 8px;
+  }
+  @media (max-height: 520px) {
+    gap: 4px;
+    margin-bottom: 5px;
+  }
+  @media (max-height: 420px) {
+    gap: 0;
+  }
+}
+
+.navbar-center-links-container a {
+  @include mixins.flex($jc: center);
+  gap: 8px;
+  height: 46px;
+  padding: 8px 56px 8px 56px;
+}
+
+.navbar-privacy-and-legal-links-container {
+  @include mixins.flex($dir: column);
+  padding: 8px 0;
+  width: 100%;
+  gap: 4px;
+}
+
+.navbar-privacy-and-legal-links-container a {
+  line-height: 19.2px;
+  font-size: 16px;
+  font-weight: 400;
+  display: flex;
+  justify-content: center;
+  padding: 8px;
+  @media (max-height: 420px) {
+    gap: 0;
+  }
+}
+
+@media (hover: hover) {
+  .navbar-center-links-container a:hover {
+    background-color: colors.$menu-hover;
+  }
+  .navbar-privacy-and-legal-links-container a:hover {
+    color: colors.$accent;
+    font-weight: 700;
+  }
 }

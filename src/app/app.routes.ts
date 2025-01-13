@@ -3,7 +3,10 @@ import { LoginSignupComponent } from './features/login-signup/login-signup.compo
 import { LoginComponent } from './features/login-signup/login/login.component';
 import { SignupComponent } from './features/login-signup/signup/signup.component';
 import { MainComponent } from './features/main/main.component';
-import { DashboardComponent } from './features/main/dashboard/dashboard.component';
+import { SummaryComponent } from './features/main/summary/summary.component';
+import { AddTaskComponent } from './features/main/add-task/add-task.component';
+import { BoardComponent } from './features/main/board/board.component';
+import { ContactsComponent } from './features/main/contacts/contacts.component';
 
 export const routes: Routes = [
   {
@@ -19,7 +22,10 @@ export const routes: Routes = [
     path: 'main',
     component: MainComponent,
     children: [
-      { path: 'dashboard', component: DashboardComponent }
+      { path: 'summary', component: SummaryComponent },
+      { path: 'add-task', component: AddTaskComponent },
+      { path: 'board', component: BoardComponent },
+      { path: 'contacts', component: ContactsComponent }
     ],
   },
   { path: 'privacy-policy', redirectTo: 'login', pathMatch: 'full' },
