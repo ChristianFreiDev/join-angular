@@ -1,0 +1,14 @@
+@use '../../../../styles/mixins.scss';
+@use '../../../../styles/colors.scss';
+
+.summary-header {
+    @include mixins.flex($ai: center);
+    gap: 30px;
+}
+
+.summary-header-separator {
+    @include mixins.flex();
+    height: 59px;
+    width: 3px;
+    background-color: colors.$accent;
+}

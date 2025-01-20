@@ -1,1 +1,16 @@
-<p>header works!</p>
+<h1>Kanban Project Management Tool</h1>
+<img class="header-logo" src="img/dark-logo.svg" alt="logo" />
+<div class="header-img-container">
+  <a routerLink="help"
+    ><span class="material-symbols-rounded header-help-icon">help</span></a>
+  <div (click)="showOrHideDropDownMenu()" class="header-user-icon">
+    <span id="first-name-inital">{{ firstNameInitial }}</span>
+    <span id="last-name-initial">{{ lastNameInitial }}</span>
+  </div>
+</div>
+<nav class="drop-down-menu">
+  <a class="header-nav-help-link" routerLink="help">Help</a>
+  <a routerLink="legal-notice">Legal Notice</a>
+  <a routerLink="privacy-policy">Privacy Policy</a>
+  <a (click)="logout()">Log out</a>
+</nav>

@@ -8,4 +8,14 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  firstNameInitial: string = 'A';
+  lastNameInitial: string = 'B';
+
+  logout() {
+    console.log('logout');
+  }
+
+  showOrHideDropDownMenu() {
+    console.log('show or hide dropdown');
+  }
 }
