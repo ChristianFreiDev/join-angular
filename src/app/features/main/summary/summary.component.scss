@@ -1,5 +1,6 @@
 @use '../../../../styles/mixins.scss';
 @use '../../../../styles/colors.scss';
+@use '../../../../styles/shadows.scss';
 
 .summary-header {
     @include mixins.flex($ai: center);
@@ -11,4 +12,44 @@
     height: 59px;
     width: 3px;
     background-color: colors.$accent;
+}
+
+.summary-container {
+    margin-top: 56px;
+    width: 560px;
+    display: grid;
+    grid-template-rows: repeat(3, 168px);
+    gap: 28px;
+    @media (max-width: 960px) {
+        margin-top: 40px;
+        gap: 18px;
+        width: 100%;
+    }
+}
+
+.summary-tile {
+    width: 100%;
+    background-color: white;
+    border-radius: 30px;
+    box-shadow: shadows.$box-shadow;
+    @include mixins.flex($jc: center, $ai: center);
+}
+
+.summary-tile-symbol-container {
+    @include mixins.flex($jc: center, $ai: center);
+    gap: 18px;
+}
+
+.summary-tile-number-and-text-container {
+    @include mixins.flex($ai: center, $dir: column);
+}
+
+.row1 {
+    @include mixins.flex();
+    gap: 32px;
+}
+
+.row3 {
+    @include mixins.flex();
+    gap: 28px;
 }
