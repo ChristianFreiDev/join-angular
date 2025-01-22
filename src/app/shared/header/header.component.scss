@@ -12,6 +12,15 @@
     position: relative;
     padding-left: paddings.$content-left;
     @include mixins.flex($jc: space-between, $ai: center);
+    @media (max-width: 1200px) {
+        padding-left: paddings.$content-left-large-tablet;
+    }
+    @media (max-width: 1024px) {
+        padding-left: paddings.$content-left-small-tablet;
+    }
+    @media (max-width: 768px) {
+        padding-left: paddings.$content-left-mobile;
+    }
 }
 
 .header-img-container {
@@ -52,6 +61,7 @@
 }
 
 .header-logo {
+    width: 32px;
     display: none;
 }
 

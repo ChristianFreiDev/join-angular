@@ -20,7 +20,7 @@
     display: grid;
     grid-template-rows: repeat(3, 168px);
     gap: 28px;
-    @media (max-width: 960px) {
+    @media (max-width: 1200px) {
         margin-top: 40px;
         gap: 18px;
         width: 100%;

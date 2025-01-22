@@ -23,10 +23,15 @@ body {
 section {
   padding-top: paddings.$content-top;
   padding-left: paddings.$content-left;
-  @media (max-width: 960px) {
+  @media (max-width: 1200px) {
     padding-top: paddings.$content-top-tablet;
-    padding-left: paddings.$content-left-tablet;
-    padding-right: paddings.$content-left-tablet;
+    padding-left: paddings.$content-left-large-tablet;
+    padding-right: paddings.$content-left-large-tablet;
+  }
+  @media (max-width: 1024px) {
+    padding-top: paddings.$content-top-tablet;
+    padding-left: paddings.$content-left-small-tablet;
+    padding-right: paddings.$content-left-small-tablet;
   }
   @media (max-width: 768px) {
     padding-top: paddings.$content-top-mobile;
