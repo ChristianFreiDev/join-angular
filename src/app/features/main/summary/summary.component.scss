@@ -49,7 +49,56 @@
     gap: 32px;
 }
 
+.row2 {
+    @include mixins.flex($jc: space-between, $ai: center);
+    gap: 61px;
+    padding: 0 65px;
+}
+
 .row3 {
     @include mixins.flex();
     gap: 28px;
+}
+
+.summary-icon {
+    height: 69px;
+    width: 69px;
+    font-size: 32px;
+    color: white;
+    background-color: colors.$menu;
+    border-radius: 50%;
+    @include mixins.flex($jc: center, $ai: center);
+}
+
+.summary-date-container {
+    @include mixins.flex($dir: column);
+    gap: 13px;
+}
+
+.row2-separator {
+    background-color: colors.$medium-gray;
+    height: 102px;
+    width: 2px;
+}
+
+.summary-number {
+    font-size: 64px;
+    line-height: 76.8px;
+    font-weight: 600;
+}
+
+.summary-text1 {
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.summary-text2 {
+    font-size: 16px;
+    line-height: 19.2px;
+}
+
+.summary-text3 {
+    font-size: 21px;
+    line-height: 25.2px;
+    font-weight: 700;
 }
