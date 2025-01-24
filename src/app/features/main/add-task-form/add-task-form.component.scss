@@ -1,0 +1,16 @@
+@use '../../../../styles/mixins.scss';
+
+:host {
+    @include mixins.flex();
+    gap: 48px;
+}
+
+.add-task-form-left {
+    @include mixins.flex($ai: center, $dir: column);
+    gap: 16px;
+}
+
+.add-task-form-right {
+    @include mixins.flex($ai: center, $dir: column);
+    gap: 24px;
+}
