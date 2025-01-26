@@ -7,6 +7,8 @@ import { SummaryComponent } from './features/main/summary/summary.component';
 import { AddTaskComponent } from './features/main/add-task/add-task.component';
 import { BoardComponent } from './features/main/board/board.component';
 import { ContactsComponent } from './features/main/contacts/contacts.component';
+import { PrivacyPolicyComponent } from './features/main/privacy-policy/privacy-policy.component';
+import { LegalNoticeComponent } from './features/main/legal-notice/legal-notice.component';
 
 export const routes: Routes = [
   {
@@ -25,9 +27,9 @@ export const routes: Routes = [
       { path: 'summary', component: SummaryComponent },
       { path: 'add-task', component: AddTaskComponent },
       { path: 'board', component: BoardComponent },
-      { path: 'contacts', component: ContactsComponent }
+      { path: 'contacts', component: ContactsComponent },
+      { path: 'privacy-policy', component: PrivacyPolicyComponent },
+      { path: 'legal-notice', component: LegalNoticeComponent }
     ],
-  },
-  { path: 'privacy-policy', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'legal-notice', redirectTo: 'signup', pathMatch: 'full' }
+  }
 ];
