@@ -3,10 +3,10 @@
 
 :host {
   height: 100%;
+  width: 100%;
   display: grid;
   background-color: colors.$menu;
   @include mixins.flex($jc: space-evenly, $dir: column);
-  height: 100%;
   @media (max-width: 920px) {
     flex-direction: row;
   }

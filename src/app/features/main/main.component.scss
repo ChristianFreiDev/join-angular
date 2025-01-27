@@ -19,9 +19,19 @@
 
 nav {
     grid-area: navbar;
+    position: fixed;
+    height: 100%;
+    width: 232px;
+    @media (max-width: 1200px) {
+        position: unset;
+        width: unset;
+    }
 }
 
 header {
+    position: fixed;
+    width: calc(100% - 232px);
+    right: 0;
     grid-area: header;
 }
 
