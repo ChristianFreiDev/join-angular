@@ -112,6 +112,26 @@ h3 {
   color: colors.$accent;
 }
 
+.input-padding-size1 { 
+  padding: 4px 16px;
+}
+
+.input-padding-size2 { 
+  padding: 8px 16px;
+}
+
+.input-padding-size3 { 
+  padding: 11px 16px;
+}
+
+.input-padding-size4 {
+  padding: 12px 21px;
+}
+
+.input-padding-size5 {
+  padding: 8.5px 21px;
+}
+
 @media (hover: hover) {
   .accent-color-link:hover {
     text-decoration: underline;

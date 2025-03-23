@@ -14,3 +14,19 @@
     @include mixins.flex($ai: center, $dir: column);
     gap: 24px;
 }
+
+.add-task-form-left, .add-task-form-right {
+    width: 440px;
+}
+
+.add-task-form-input-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+textarea {
+    padding: 18px 16px;
+    resize: vertical;
+}
