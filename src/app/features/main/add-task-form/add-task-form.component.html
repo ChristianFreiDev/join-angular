@@ -12,23 +12,28 @@
         <input type="date" id="date" class="input input-padding-size4">
     </div>
 </div>
+<div class="add-task-form-separator"></div>
 <div class="add-task-form-right">
     <div class="add-task-form-input-container">
         <label>Priority</label>
         <div class="add-task-form-buttons-container">
-            <button>Urgent</button>
-            <button>Medium</button>
-            <button>Low</button>
+            <button class="priority-btn">Urgent<span class="material-symbols-rounded priority-btn-icon">double_arrow</span></button>
+            <button class="priority-btn">Medium<span class="material-symbols-rounded priority-btn-icon">equal</span></button>
+            <button class="priority-btn">Low<span class="material-symbols-rounded priority-btn-icon">double_arrow</span></button>
         </div>
     </div>
     <div class="add-task-form-input-container">
         <label for="assigned-to">Assigned</label>
-        <select name="assigned-to" id="assigned-to" class="input input-padding-size4"></select>
+        <select name="assigned-to" id="assigned-to" class="input input-padding-size4">
+            <option value="" disabled selected hidden>Select contacts to assign</option>
+        </select>
     </div>
     <div class="add-task-form-input-container">
-        <select name="category" id="category" class="input input-padding-size4"></select>
+        <select name="category" id="category" class="input input-padding-size4">
+            <option value="" disabled selected hidden>Select task category</option>
+        </select>
     </div>
     <div class="add-task-form-input-container">
-        <input type="text" name="subtask" id="subtask" class="input input-padding-size4">
+        <input type="text" name="subtask" id="subtask" placeholder="Add new subtask" class="input input-padding-size4">
     </div>
 </div>
