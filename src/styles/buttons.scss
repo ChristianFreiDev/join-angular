@@ -76,6 +76,24 @@
   background-color: colors.$button-hover;
 }
 
+.btn-highlight {
+  animation: 1s ease-in-out btnHighlight;
+  animation-delay: 1s;
+}
+
+@keyframes btnHighlight {
+  0% {
+
+  }
+  50% {
+    color: colors.$accent;
+    outline: 2px solid colors.$accent;
+  }
+  0% {
+
+  }
+}
+
 @media (hover: hover) {
   .btn-dark:hover {
     background-color: colors.$accent;
