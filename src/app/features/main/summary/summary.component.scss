@@ -5,25 +5,52 @@
 .summary-header {
     @include mixins.flex($ai: center);
     gap: 30px;
+    @media(max-width: 768px) {
+    gap: 8px;
+    display: grid;
+    grid-template-areas:
+        'heading'
+        'subtitle'
+        'separator';
+    }
+}
+
+.summary-heading {
+    grid-area: heading;
+}
+
+.summary-subtitle {
+    grid-area: subtitle;
 }
 
 .summary-header-separator {
+    grid-area: separator;
     @include mixins.flex();
     height: 59px;
     width: 3px;
     background-color: colors.$accent;
+    @media(max-width: 768px) {
+        height: 3px;
+        width: 90px;
+        margin-top: 8px;
+    }
 }
 
 .summary-container {
     margin-top: 56px;
+    margin-bottom: 8px;
     width: 560px;
     display: grid;
     grid-template-rows: repeat(3, 168px);
     gap: 28px;
     @media (max-width: 1200px) {
         margin-top: 40px;
+        margin-bottom: 88px;
         gap: 18px;
         width: 100%;
+    }
+    @media (max-width: 768px) {
+        grid-template-rows: repeat(3, 110px);
     }
 }
 
@@ -47,17 +74,22 @@
 .row1 {
     @include mixins.flex();
     gap: 32px;
+    @media(max-width: 768px) {
+        gap: 24px;
+    }
 }
 
 .row2 {
-    @include mixins.flex($jc: space-between, $ai: center);
-    gap: 61px;
-    padding: 0 65px;
+    @include mixins.flex($jc: space-around, $ai: center);
+    padding: 0 4px;
 }
 
 .row3 {
     @include mixins.flex();
     gap: 28px;
+    @media(max-width: 768px) {
+        gap: 24px;
+    }
 }
 
 .summary-icon {
@@ -68,6 +100,11 @@
     background-color: colors.$menu;
     border-radius: 50%;
     @include mixins.flex($jc: center, $ai: center);
+    @media(max-width: 768px) {
+        height: 40px;
+        width: 40px;
+        font-size: 24px;
+    }
 }
 
 .summary-date-container {
@@ -79,26 +116,44 @@
     background-color: colors.$medium-gray;
     height: 102px;
     width: 2px;
+    @media(max-width: 768px) {
+        height: 68px;
+    }
 }
 
 .summary-number {
     font-size: 64px;
-    line-height: 76.8px;
+    line-height: 120%;
     font-weight: 600;
+    @media(max-width: 768px) {
+        font-size: 47px;
+    }
+    @media(max-width: 368px) {
+        font-size: 23px;
+    }
 }
 
 .summary-text1 {
     font-size: 20px;
-    line-height: 24px;
+    line-height: 120%;
+    @media(max-width: 768px) {
+        font-size: 14px;
+    }
 }
 
 .summary-text2 {
     font-size: 16px;
-    line-height: 19.2px;
+    line-height: 120%;
+    @media(max-width: 768px) {
+        font-size: 14px;
+    }
 }
 
 .summary-text3 {
     font-size: 21px;
-    line-height: 25.2px;
+    line-height: 120%;
     font-weight: 700;
+    @media(max-width: 768px) {
+        font-size: 16px;
+    }
 }

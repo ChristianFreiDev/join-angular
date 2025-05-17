@@ -1,13 +1,13 @@
 @use "../../../styles/colors.scss";
 @use "../../../styles/mixins.scss";
+@use "../../../styles/paddings.scss";
 
 :host {
   height: 100%;
   width: 100%;
-  display: grid;
   background-color: colors.$menu;
   @include mixins.flex($jc: space-evenly, $dir: column);
-  @media (max-width: 920px) {
+  @media (max-width: 1200px) {
     flex-direction: row;
   }
 }
@@ -19,6 +19,9 @@ a {
 
 .navbar-logo-link {
   @include mixins.flex($jc: center, $ai: center);
+  @media (max-width: 1200px) {
+    display: none;
+  }
 }
 
 .navbar-logo {
@@ -40,8 +43,21 @@ a {
 .navbar-center-links-container {
   @include mixins.flex($dir: column);
   gap: 15px;
-  @media (max-width: 480px) {
-    @include mixins.flex($jc: space-between, $dir: column);
+  @media (max-width: 1200px) {
+    gap: unset;
+    width: 100%;
+    padding-left: paddings.$content-left-large-tablet;
+    @include mixins.flex($jc: space-between, $ai: center, $dir: row);
+  }
+  @media (max-width: 1024px) {
+    padding-left: paddings.$content-left-small-tablet;
+  }
+  @media (max-width: 768px) {
+    padding: 0 paddings.$content-left-mobile;
+    @include mixins.flex($jc: space-evenly, $ai: center, $dir: row);
+  }
+  @media (max-width: 560px) {
+    @include mixins.flex($jc: space-between, $ai: center, $dir: row);
   }
   @media (max-height: 560px) {
     gap: 8px;
@@ -59,6 +75,25 @@ a {
   gap: 8px;
   height: 46px;
   padding: 8px 56px 8px 56px;
+  font-size: 16px;
+  line-height: 120%;
+  .material-symbols-rounded {
+    font-size: 25px;
+  }
+  @media (max-width: 1200px) {
+    @include mixins.flex($jc: center, $ai: center, $dir: column);
+    height: 76px;
+    width: 112px;
+    padding: 0;
+    border-radius: 16px;
+  }
+  @media (max-width: 768px) {
+    width: 80px;
+    font-size: 14px;
+    .material-symbols-rounded {
+      font-size: 20px;
+    }
+  }
 }
 
 .navbar-privacy-and-legal-links-container {
@@ -66,6 +101,14 @@ a {
   padding: 8px 0;
   width: 100%;
   gap: 4px;
+  @media (max-width: 1200px) {
+    @include mixins.flex($jc: center, $ai: flex-end, $dir: column);
+    gap: 0;
+    padding-right: 40px;
+  }
+  @media (max-width: 768px) {
+    display: none;
+  }
 }
 
 .navbar-privacy-and-legal-links-container a {

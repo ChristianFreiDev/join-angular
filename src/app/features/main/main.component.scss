@@ -23,8 +23,9 @@ nav {
     height: 100%;
     width: 232px;
     @media (max-width: 1200px) {
-        position: unset;
-        width: unset;
+        bottom: 0;
+        height: 80px;
+        width: 100%;
     }
 }
 
@@ -33,6 +34,9 @@ header {
     width: calc(100% - 232px);
     right: 0;
     grid-area: header;
+    @media (max-width: 1200px) {
+        width: 100%;
+    }
 }
 
 main {

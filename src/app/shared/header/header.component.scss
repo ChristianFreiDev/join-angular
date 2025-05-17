@@ -16,6 +16,7 @@
     @include mixins.flex($jc: space-between, $ai: center);
     @media (max-width: 1200px) {
         padding-left: paddings.$content-left-large-tablet;
+        width: 100%;
     }
     @media (max-width: 1024px) {
         padding-left: paddings.$content-left-small-tablet;
