@@ -1,0 +1,44 @@
+@use '../../../../../../styles/mixins.scss';
+@use '../../../../../../styles/shadows.scss';
+@use '../../../../../../styles/colors.scss';
+
+
+:host {
+    @include mixins.flex($dir: column);
+    width: 252px;
+    border-radius: 24px;
+    padding: 16px;
+    gap: 20px;
+    background-color: white;
+    box-shadow: shadows.$box-shadow2;
+    cursor: pointer;
+}
+
+.task-title-and-description-container {
+    @include mixins.flex($dir: column);
+    gap: 8px;
+}
+
+.task-title {
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.task-category-and-mobile-drag-arrows-container {
+    width: 100%;
+    @include mixins.flex($jc: space-between);
+}
+
+.task-category {
+    color: white;
+    border-radius: 8px;
+    padding: 4px 16px;
+}
+
+.user-story {
+    background-color: colors.$user-story;
+}
+
+.technical-task {
+    background-color: colors.$technical-task;
+}

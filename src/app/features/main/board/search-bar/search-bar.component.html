@@ -1,1 +1,1 @@
-<input type="text">
+<input #searchBar class="input" type="text" placeholder="Find task" (input)="filterTasks(searchBar.value)">

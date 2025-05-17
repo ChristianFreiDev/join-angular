@@ -1,0 +1,47 @@
+@use '../../../../styles/mixins.scss';
+
+.board-header {
+    @include mixins.flex($jc: space-between, $ai: center);
+    margin-bottom: 48px;
+    @media (max-width: 1200px) {
+         @include mixins.flex($dir: column);
+         gap: 40px;
+         margin-bottom: 24px;
+    }
+}
+
+.board-header-part1 {
+    @include mixins.flex($jc: space-between, $ai: center);
+}
+
+.board-header-part2 {
+    @include mixins.flex($jc: space-between, $ai: center);
+    gap: 32px;
+    padding-right: 88px;
+    @media (max-width: 1200px) {
+        @include mixins.flex($dir: column);
+        padding-right: unset;
+    }
+}
+
+.board-columns {
+    @include mixins.flex($jc: space-between);
+    gap: 24px;
+    @media (max-width: 1200px) {
+        @include mixins.flex($dir: column);
+        margin-bottom: 88px;
+    }
+}
+
+.btn-add-desktop {
+    @media (max-width: 1200px) {
+        display: none;
+    }
+}
+
+.btn-add-mobile {
+    display: none;
+    @media (max-width: 1200px) {
+        display: flex;
+    }
+}

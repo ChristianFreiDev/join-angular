@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { DataService } from '../../../../core/data/data.service';
 
 @Component({
   selector: 'app-search-bar',
@@ -7,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './search-bar.component.scss'
 })
 export class SearchBarComponent {
+  dataService = inject(DataService);
 
+  filterTasks(inputString: string) {
+    this.dataService.filterTasks(inputString);
+  }
 }

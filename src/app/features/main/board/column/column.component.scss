@@ -1,0 +1,24 @@
+@use '../../../../../styles/mixins.scss';
+
+:host {
+    width: 100%;
+}
+
+.add-box {
+    margin-right: 8px;
+    cursor: pointer;
+    @media (max-width: 1200px) {
+        font-size: 30px;
+    }
+}
+
+.board-column-header {
+    @include mixins.flex($jc: space-between, $ai: center);
+    margin-bottom: 15.5px;
+    width: 252px;
+}
+
+.board-tasks {
+    @include mixins.flex($dir: column);
+    gap: 16px;
+}

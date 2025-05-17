@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { DataService } from '../../../core/data/data.service';
 
 @Component({
   selector: 'app-summary',
@@ -7,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './summary.component.scss'
 })
 export class SummaryComponent {
-
+  dataService = inject(DataService);
 }

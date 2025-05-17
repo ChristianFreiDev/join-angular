@@ -15,11 +15,9 @@
   color: #ffffff;
   background-color: colors.$menu;
   font-size: 21px;
-  line-height: 25.2px;
   font-weight: 700;
   @media (max-width: 768px) {
     font-size: 16px;
-    line-height: 19.2px;
   }
 }
 
@@ -60,6 +58,10 @@
 
 .btn-padding-size4 {
   padding: 15px 24px;
+}
+
+.btn-padding-size5 {
+  padding: 8px;
 }
 
 .back-link {

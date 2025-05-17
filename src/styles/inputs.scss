@@ -80,10 +80,3 @@
   cursor: pointer;
   @include mixins.flex($jc: center, $ai: center);
 }
-
-
-@media (hover: hover) {
-  .input:hover {
-    border: 1px solid colors.$accent !important;
-  }
-}

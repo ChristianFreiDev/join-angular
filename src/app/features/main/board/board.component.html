@@ -1,2 +1,16 @@
-<h2>Board</h2>
-<app-search-bar></app-search-bar>
+<div class="board-header">
+   <div class="board-header-part1">
+     <h2>Board</h2>
+     <button class="btn btn-dark btn-padding-size5 btn-add-mobile"><span class="material-symbols-rounded">add</span></button>
+   </div>
+    <div class="board-header-part2">
+        <app-search-bar></app-search-bar>
+        <button class="btn btn-dark btn-padding-size0 btn-add-desktop">Add task <span class="material-symbols-rounded">add</span></button>
+    </div>
+</div>
+<div class="board-columns">
+    <app-column status="To do" [tasks]="tasks()"></app-column>
+    <app-column status="In progress" [tasks]="tasks()"></app-column>
+    <app-column status="Await feedback" [tasks]="tasks()"></app-column>
+    <app-column status="Done" [tasks]="tasks()"></app-column>
+</div>

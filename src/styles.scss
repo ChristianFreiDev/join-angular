@@ -10,6 +10,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Inter", sans-serif;
+  line-height: 120%;
 }
 
 html {
@@ -42,13 +43,11 @@ main {
 
 h1 {
   font-size: 20px;
-  line-height: 120%;
   font-weight: 400;
 }
 
 h2 {
   font-size: 61px;
-  line-height: 120%;
   @media (max-width: 1200px) {
     font-size: 47px;
   }
@@ -56,7 +55,6 @@ h2 {
 
 h3 {
   font-size: 27px;
-  line-height: 120%;
   @media (max-width: 1200px) {
     font-size: 20px;
   }

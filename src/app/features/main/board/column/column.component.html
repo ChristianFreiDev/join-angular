@@ -1,0 +1,15 @@
+<div class="board-column-header">
+    <h3 class="board-column-heading-desktop">{{ status }}</h3>
+    <span class="material-symbols-rounded add-box">add_box</span>
+</div>
+<div class="board-tasks">
+    @if (tasksWithStatus()) {
+        @for (task of tasks; track $index) {
+            @if (task.status === status) {
+                <app-task [taskData]="task"></app-task>
+            }
+        }
+    } @else {
+        <span>No tasks {{ status.toLowerCase() }}</span>
+    }
+</div>
