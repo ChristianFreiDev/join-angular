@@ -1,0 +1,9 @@
+@use '../../../../../styles/mixins.scss';
+@use '../../../../../styles/colors.scss';
+
+input {
+    @include mixins.flex($ai: center);
+    width: 312px;
+    height: 48px;
+    border: 1px solid colors.$medium-gray;
+}
