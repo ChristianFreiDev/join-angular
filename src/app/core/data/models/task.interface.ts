@@ -6,8 +6,8 @@ export interface Task {
     id: number
     collaborators: number[]
     dueDate: string
-    priority: string
-    category: string
+    priority: 'Urgent' | 'Medium' | 'Low'
+    category: '' | 'User Story' | 'Technical Task'
     status: string
     subtasks: Subtask[]
 }

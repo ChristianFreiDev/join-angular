@@ -1,8 +1,13 @@
+import { Dialog } from '@angular/cdk/dialog';
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
+import { TaskModalComponent } from './task-modal/task-modal.component';
 
 @Component({
   selector: 'app-task',
+  host: {
+    "(click)": "openDialog($event)"
+  },
   imports: [CommonModule],
   templateUrl: './task.component.html',
   styleUrl: './task.component.scss'
@@ -10,6 +15,7 @@ import { Component, Input } from '@angular/core';
 export class TaskComponent {
   @Input() taskData: any;
   shortTaskDescription: string = '';
+  private dialog = inject(Dialog);
 
   createTaskDescriptionPreview(taskDescription: string) {
     let result = '';
@@ -30,5 +36,11 @@ export class TaskComponent {
 
   ngOnInit() {
     this.shortTaskDescription = this.createTaskDescriptionPreview(this.taskData.description);
+  }
+
+  openDialog() {
+    this.dialog.open(TaskModalComponent, {
+      data: this.taskData,
+    });
   }
 }

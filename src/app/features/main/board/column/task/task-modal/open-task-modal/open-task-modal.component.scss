@@ -1,0 +1,38 @@
+@use '../../../../../../../../styles/mixins.scss';
+@use '../../../../../../../../styles/colors.scss';
+
+.open-task-modal-header {
+    @include mixins.flex($jc: space-between, $ai: center);
+}
+
+.open-task-heading {
+    font-size: 47px;
+    font-weight: 700;
+    @media (max-width: 1200px) {
+        font-size: 36px;
+    }
+}
+
+.open-task-modal-content {
+    @include mixins.flex($ai: flex-start, $dir: column);
+    gap: 24px;
+}
+
+.open-task-buttons-container, .open-task-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.open-task-button {
+    background-color: transparent;
+    border: unset;
+    justify-content: center;
+    cursor: pointer;
+    @media (hover: hover) {
+        &:hover {
+            color: colors.$accent;
+            font-weight: 700;
+        }
+    }
+}

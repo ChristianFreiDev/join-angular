@@ -32,6 +32,21 @@
   border: unset;
 }
 
+.btn-close {
+  @include mixins.flex($jc: center, $ai: center);
+  border: unset;
+  border-radius: 32px;
+  background-color: transparent;
+  height: 32px;
+  width: 32px;
+  cursor: pointer;
+  @media (hover: hover) {
+    &:hover {
+      background-color: colors.$light-gray;
+    }
+  }
+}
+
 .main-button {
   @media (max-width: 480px) {
     padding: unset;
@@ -62,6 +77,13 @@
 
 .btn-padding-size5 {
   padding: 8px;
+}
+
+.btn-padding-size6 {
+  padding: 16px;
+  @media (max-width: 1200px) {
+    padding: 18.5px 10px;
+  }
 }
 
 .back-link {

@@ -1,0 +1,13 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    gap: 24px;
+    @media (max-width: 1200px) {
+        gap: 16px;
+    }
+}
+
+.btn-close, .btn-ok {
+    align-self: flex-end;
+}

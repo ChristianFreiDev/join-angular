@@ -1,15 +1,15 @@
 <div class="add-task-form-left">
     <div class="add-task-form-input-container">
         <label for="title">Title<span>*</span></label>
-        <input type="text" id="title" class="input input-padding-size5">
+        <input type="text" id="title" class="input input-padding-size5" [(ngModel)]="taskData.title">
     </div>
     <div class="add-task-form-input-container">
         <label for="description">Description</label>
-        <textarea name="description" id="description" class="input"></textarea>
+        <textarea name="description" id="description" class="input" [(ngModel)]="taskData.description"></textarea>
     </div>
     <div class="add-task-form-input-container">
         <label for="date">Due date</label>
-        <input type="date" id="date" class="input input-padding-size4">
+        <input type="date" id="date" class="input input-padding-size4" [(ngModel)]="taskData.dueDate">
     </div>
 </div>
 <div class="add-task-form-separator"></div>
@@ -17,9 +17,9 @@
     <div class="add-task-form-input-container">
         <label>Priority</label>
         <div class="add-task-form-buttons-container">
-            <button class="priority-btn" (click)="clickPriorityButton('urgent')" [ngClass]="urgency == 'urgent' ? 'urgent-active' : 'urgent-inactive'">Urgent<span class="material-symbols-rounded priority-btn-icon">double_arrow</span></button>
-            <button class="priority-btn" (click)="clickPriorityButton('medium')" [ngClass]="urgency == 'medium' ? 'medium-active' : 'medium-inactive'">Medium<span class="material-symbols-rounded priority-btn-icon">equal</span></button>
-            <button class="priority-btn" (click)="clickPriorityButton('low')" [ngClass]="urgency == 'low' ? 'low-active' : 'low-inactive'">Low<span class="material-symbols-rounded priority-btn-icon">double_arrow</span></button>
+            <button class="priority-btn" (click)="clickPriorityButton('Urgent')" [ngClass]="taskData.priority == 'Urgent' ? 'urgent-active' : 'urgent-inactive'">Urgent<span class="material-symbols-rounded priority-btn-icon">double_arrow</span></button>
+            <button class="priority-btn" (click)="clickPriorityButton('Medium')" [ngClass]="taskData.priority == 'Medium' ? 'medium-active' : 'medium-inactive'">Medium<span class="material-symbols-rounded priority-btn-icon">equal</span></button>
+            <button class="priority-btn" (click)="clickPriorityButton('Low')" [ngClass]="taskData.priority == 'Low' ? 'low-active' : 'low-inactive'">Low<span class="material-symbols-rounded priority-btn-icon">double_arrow</span></button>
         </div>
     </div>
     <div class="add-task-form-input-container">
@@ -29,8 +29,10 @@
         </select>
     </div>
     <div class="add-task-form-input-container">
-        <select name="category" id="category" class="input input-padding-size4">
+        <select name="category" id="category" class="input input-padding-size4" [(ngModel)]="taskData.category">
             <option value="" disabled selected hidden>Select task category</option>
+            <option value="User Story">User Story</option>
+            <option value="Technical Task">Technical Task</option>
         </select>
     </div>
     <div class="add-task-form-input-container">

@@ -1,0 +1,35 @@
+<div class="open-task-modal-header">
+    <div class="open-task-modal-category">{{ data.category }}</div>
+    <button class="btn-close">
+        <span class="material-symbols-rounded" (click)="closeModal()">close</span>
+    </button>
+</div>
+<div class="open-task-modal-content">
+    <h2 class="open-task-heading">{{ data.title }}</h2>
+    <div class="open-task-description">{{ data.description }}</div>
+    <div class="open-task-due-date-outer-container">
+            <div>Due date:</div>
+            <div class="open-task-due-date">{{ data.dueDate }}</div>
+    </div>
+    <div class="open-task-priority-outer-container">
+            <div>Priority:</div>
+            <div class="open-task-priority">{{ data.priority }}</div>
+    </div>
+    <div class="open-task-collaborators-outer-container">
+        <div class="open-task-collaborators"></div>
+    </div>
+    <div class="open-task-subtasks-outer-container">
+        <div class="open-task-subtasks"></div>
+    </div>
+    <div class="open-task-buttons-container">
+        <button class="open-task-button" (click)="deleteTask()">
+            <span class="material-symbols-rounded">delete</span>
+            <span>Delete</span>
+        </button>
+        <div class="open-task-button-separator"></div>
+        <button class="open-task-button" (click)="editTask()">
+            <span class="material-symbols-rounded">edit</span>
+            <span>Edit</span>
+        </button>
+    </div>
+</div>

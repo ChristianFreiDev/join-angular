@@ -1,4 +1,6 @@
-export const offlineTasks = [
+import { Task } from "./models/task.interface";
+
+export const offlineTasks: Task[] = [
     {
         title: 'Implement Drag & Drop Feature',
         description: 'It must be possible to drag a task from one column (or row) to another. The user will be given feedback by slightly rotating the task once the user clicks on the task to drag it and by highlighting the area in which the task can be dropped.',

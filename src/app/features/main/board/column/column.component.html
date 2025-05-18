@@ -1,6 +1,6 @@
 <div class="board-column-header">
     <h3 class="board-column-heading-desktop">{{ status }}</h3>
-    <span class="material-symbols-rounded add-box">add_box</span>
+    <span class="material-symbols-rounded add-box" routerLink="/main/add-task" [queryParams]="{status: status}">add_box</span>
 </div>
 <div [id]="dropListId" cdkDropList [cdkDropListData]="tasks" (cdkDropListDropped)="drop($event)" class="board-tasks">
     @if (tasks.length > 0) {

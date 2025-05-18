@@ -62,10 +62,6 @@ export class DataService {
   }
 
   updateTaskStatus(id: number, status: string) {
-    if (status === undefined || id === undefined) {
-      console.log('error', status, id);
-      return;
-    } else {
       this.tasks.update((values) => {
         values.forEach((val) => {
           if (val.id === id) {
@@ -74,7 +70,6 @@ export class DataService {
         });
         return [...values];
       });
-    }
   }
 
   getTasksNotDoneWithDeadlinesInTheFuture() {

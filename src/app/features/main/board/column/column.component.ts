@@ -5,10 +5,11 @@ import { CdkDrag, CdkDragDrop, CdkDragPreview, CdkDropList } from '@angular/cdk/
 import { DropService } from '../services/drop.service';
 import { DataService } from '../../../../core/data/data.service';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-column',
-  imports: [TaskComponent, CdkDrag, CdkDropList, CommonModule, CdkDragPreview],
+  imports: [TaskComponent, CdkDrag, CdkDropList, CommonModule, CdkDragPreview, RouterLink],
   templateUrl: './column.component.html',
   styleUrl: './column.component.scss'
 })
