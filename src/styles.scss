@@ -13,6 +13,10 @@
   line-height: 120%;
 }
 
+.cdk-drag-animating {
+  transition: transform 125ms;
+}
+
 html {
   scroll-behavior: smooth;
 }

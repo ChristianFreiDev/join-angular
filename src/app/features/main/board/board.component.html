@@ -8,9 +8,9 @@
         <button class="btn btn-dark btn-padding-size0 btn-add-desktop">Add task <span class="material-symbols-rounded">add</span></button>
     </div>
 </div>
-<div class="board-columns">
-    <app-column status="To do" [tasks]="tasks()"></app-column>
-    <app-column status="In progress" [tasks]="tasks()"></app-column>
-    <app-column status="Await feedback" [tasks]="tasks()"></app-column>
-    <app-column status="Done" [tasks]="tasks()"></app-column>
+<div cdkDropListGroup class="board-columns">
+    <app-column dropListId="0" status="To do" [tasks]="tasksTodo()"></app-column>
+    <app-column dropListId="1" status="In progress" [tasks]="tasksInProgress()"></app-column>
+    <app-column dropListId="2" status="Await feedback" [tasks]="tasksAwaitingFeedback()"></app-column>
+    <app-column dropListId="3" status="Done" [tasks]="tasksDone()"></app-column>
 </div>

@@ -1,4 +1,6 @@
 @use '../../../../../styles/mixins.scss';
+@use '../../../../../styles/shadows.scss';
+@use '../../../../../styles/colors.scss';
 
 :host {
     width: 100%;
@@ -15,10 +17,37 @@
 .board-column-header {
     @include mixins.flex($jc: space-between, $ai: center);
     margin-bottom: 15.5px;
-    width: 252px;
 }
 
 .board-tasks {
     @include mixins.flex($dir: column);
     gap: 16px;
+    min-height: 252px;
+    height: 100%;
+    @media (max-width: 1200px) {
+        @include mixins.flex($dir: row);
+    }
+}
+
+.board-column-header, .board-tasks {
+    width: 252px;
+    @media (max-width: 1200px) {
+        width: 100%;
+    }
+}
+
+.cdk-drag-preview {
+    box-shadow: shadows.$box-shadow3;
+}
+
+.cdk-drop-list-dragging, .no-tasks {
+    border: 1px dashed colors.$medium-gray;
+    border-radius: 10px;
+}
+
+.no-tasks {
+    @include mixins.flex($jc: center, $ai: center);
+    height: 48px;
+    width: 252px;
+    background-color: colors.$light-gray;
 }

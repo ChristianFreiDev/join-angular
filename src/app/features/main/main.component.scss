@@ -20,6 +20,7 @@
 nav {
     grid-area: navbar;
     position: fixed;
+    z-index: 2;
     height: 100%;
     width: 232px;
     @media (max-width: 1200px) {
@@ -31,6 +32,7 @@ nav {
 
 header {
     position: fixed;
+    z-index: 2;
     width: calc(100% - 232px);
     right: 0;
     grid-area: header;
