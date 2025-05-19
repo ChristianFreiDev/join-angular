@@ -14,9 +14,16 @@
     }
 }
 
+.board-column-header, .board-tasks {
+    width: 252px;
+}
+
 .board-column-header {
     @include mixins.flex($jc: space-between, $ai: center);
     margin-bottom: 15.5px;
+    @media (max-width: 1200px) {
+        width: 100%;
+    }
 }
 
 .board-tasks {
@@ -24,15 +31,9 @@
     gap: 16px;
     min-height: 252px;
     height: 100%;
-    @media (max-width: 1200px) {
-        @include mixins.flex($dir: row);
-    }
-}
-
-.board-column-header, .board-tasks {
-    width: 252px;
-    @media (max-width: 1200px) {
+    @media (max-width: 1439px) {
         width: 100%;
+        @include mixins.flex($dir: row);
     }
 }
 

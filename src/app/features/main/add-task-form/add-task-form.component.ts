@@ -17,7 +17,7 @@ export class AddTaskFormComponent {
         title: '',
         description: '',
         id: -1,
-        collaborators: [],
+        assignees: [],
         dueDate: '',
         priority: 'Medium',
         category: '',

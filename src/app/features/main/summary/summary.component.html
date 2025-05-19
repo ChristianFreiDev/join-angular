@@ -1,62 +1,74 @@
-<div class="summary-header">
-  <h2 class="summary-heading">Join 360</h2>
-  <div class="summary-header-separator"></div>
-  <h3 class="summary-subtitle">Key Metrics at a Glance</h3>
-</div>
-<div class="summary-container">
-  <div class="row1">
-    <div class="summary-tile todo">
-      <div class="summary-tile-symbol-container">
-        <span class="material-symbols-rounded summary-icon">edit</span>
-        <div class="summary-tile-number-and-text-container">
-          <span class="summary-number">{{ dataService.numberOfTasksTodo() }}</span>
-          <span class="summary-text1">To-do</span>
+<div class="main-container">
+  <div class="summary-header">
+    <h2 class="summary-heading">Join 360</h2>
+    <div class="summary-header-separator"></div>
+    <h3 class="summary-subtitle">Key Metrics at a Glance</h3>
+  </div>
+  <div class="summary-container">
+    <div class="row1">
+      <div class="summary-tile todo">
+        <div class="summary-tile-symbol-container">
+          <span class="material-symbols-rounded summary-icon">edit</span>
+          <div class="summary-tile-number-and-text-container">
+            <span class="summary-number">{{
+              dataService.numberOfTasksTodo()
+            }}</span>
+            <span class="summary-text1">To-do</span>
+          </div>
+        </div>
+      </div>
+      <div class="summary-tile done">
+        <div class="summary-tile-symbol-container">
+          <span class="material-symbols-rounded summary-icon">check</span>
+          <div class="summary-tile-number-and-text-container">
+            <span class="summary-number">{{
+              dataService.numberOfTasksDone()
+            }}</span>
+            <span class="summary-text1">Done</span>
+          </div>
         </div>
       </div>
     </div>
-    <div class="summary-tile done">
+    <div class="summary-tile row2">
       <div class="summary-tile-symbol-container">
         <span class="material-symbols-rounded summary-icon">check</span>
         <div class="summary-tile-number-and-text-container">
-          <span class="summary-number">{{ dataService.numberOfTasksDone() }}</span>
-          <span class="summary-text1">Done</span>
+          <span class="summary-number">{{
+            dataService.numberOfUrgentTasks()
+          }}</span>
+          <span class="summary-text2">Urgent</span>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="summary-tile row2">
-    <div class="summary-tile-symbol-container">
-      <span class="material-symbols-rounded summary-icon">check</span>
-      <div class="summary-tile-number-and-text-container">
-        <span class="summary-number">{{ dataService.numberOfUrgentTasks() }}</span>
-        <span class="summary-text2">Urgent</span>
-      </div>
-    </div>
-    @if (dataService.upcomingDeadline()) {
+      @if (dataService.upcomingDeadline()) {
       <div class="row2-separator"></div>
       <div class="summary-date-container">
         <span class="summary-text3">{{ dataService.closestDeadline() }}</span>
         <span class="summary-text2">Upcoming deadline</span>
       </div>
-    }
-  </div>
-  <div class="row3">
-    <div class="summary-tile">
-      <div class="summary-tile-number-and-text-container">
-        <span class="summary-number">{{ dataService.tasks().length }}</span>
-        <span class="summary-text1">Tasks in<br />board</span>
-      </div>
+      }
     </div>
-    <div class="summary-tile">
-      <div class="summary-tile-number-and-text-container">
-        <span class="summary-number">{{ dataService.numberOfTasksInProgress() }}</span>
-        <span class="summary-text1">Tasks in<br />progress</span>
+    <div class="row3">
+      <div class="summary-tile">
+        <div class="summary-tile-number-and-text-container">
+          <span class="summary-number">{{ dataService.tasks().length }}</span>
+          <span class="summary-text1">Tasks in<br />board</span>
+        </div>
       </div>
-    </div>
-    <div class="summary-tile">
-      <div class="summary-tile-number-and-text-container">
-        <span class="summary-number">{{ dataService.numberOfTasksAwaitingFeedback() }}</span>
-        <span class="summary-text1">Awaiting<br />feedback</span>
+      <div class="summary-tile">
+        <div class="summary-tile-number-and-text-container">
+          <span class="summary-number">{{
+            dataService.numberOfTasksInProgress()
+          }}</span>
+          <span class="summary-text1">Tasks in<br />progress</span>
+        </div>
+      </div>
+      <div class="summary-tile">
+        <div class="summary-tile-number-and-text-container">
+          <span class="summary-number">{{
+            dataService.numberOfTasksAwaitingFeedback()
+          }}</span>
+          <span class="summary-text1">Awaiting<br />feedback</span>
+        </div>
       </div>
     </div>
   </div>

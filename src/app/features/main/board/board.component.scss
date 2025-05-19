@@ -27,6 +27,9 @@
 .board-columns {
     @include mixins.flex($jc: space-between);
     gap: 24px;
+    @media (max-width: 1439px) {
+        @include mixins.flex($dir: column);
+    }
     @media (max-width: 1200px) {
         @include mixins.flex($dir: column);
         margin-bottom: 88px;

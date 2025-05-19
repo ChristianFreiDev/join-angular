@@ -13,10 +13,21 @@
     </div>
     <div class="open-task-priority-outer-container">
             <div>Priority:</div>
-            <div class="open-task-priority">{{ data.priority }}</div>
+            <div class="open-task-priority">
+                <span>{{ data.priority }}</span>
+                <span class="material-symbols-rounded"
+                [class.urgent]="data.priority == 'Urgent'"
+                [class.medium]="data.priority == 'Medium'"
+                [class.low]="data.priority == 'Low'">{{ priorityIcon }}</span>
+            </div>
     </div>
-    <div class="open-task-collaborators-outer-container">
-        <div class="open-task-collaborators"></div>
+    <div class="open-task-assignees-outer-container">
+        <span>Assigned to:</span>
+        <div class="open-task-assignees">
+            @for (assignee of assignees; track assignee.id) {
+                <app-assignee-preview [assignee]="assignee"></app-assignee-preview>
+            }
+        </div>
     </div>
     <div class="open-task-subtasks-outer-container">
         <div class="open-task-subtasks"></div>

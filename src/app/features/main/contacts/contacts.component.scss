@@ -1,0 +1,81 @@
+@use '../../../../styles/mixins.scss';
+@use '../../../../styles/colors.scss';
+
+:host {
+    @include mixins.flex();
+}
+
+.contacts-left-side {
+    min-height: calc(100vh - 96px);
+    overflow-y: auto;
+    position: relative;
+    background-color: #FFFFFF;
+    width: 456px;
+    box-shadow: 4px 0px 6px 0px #00000014;
+    @media(max-width: 1200px) {
+        width: 100%;
+    }
+}
+
+.main-container {
+    @media(max-width: 1200px) {
+        display: none;
+    }
+}
+
+.add-contact-button-container {
+    z-index: 2;
+    background-color: #FFFFFF;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 101px;
+    @include mixins.flex($jc: center, $ai: center);
+}
+
+.add-contact-button {
+    @include mixins.flex($jc: center, $ai: center);
+    gap: 16px;
+    width: 352px;
+    border-radius: 10px;
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.contact-list {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin-left: 28px;
+    margin-top: 88px;
+    padding: 0 24px 32px;
+}
+
+.contacts-header {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    font-size: 27px;
+    margin-bottom: 56px;
+}
+
+.contacts-header-separator-horizontal {
+    font-size: 60px;
+    color: colors.$accent;
+}
+
+.contacts-header-separator-vertical {
+    display: none;
+    width: 90px;
+    border: 3px solid colors.$accent;
+    border-radius: 3px;
+    margin-top: 8px;
+}
+
+.contact-profile {
+    @include mixins.flex($dir: column);
+    gap: 21px;
+    padding-bottom: 21px;
+}

@@ -11,7 +11,10 @@ import { EditTaskModalComponent } from './edit-task-modal/edit-task-modal.compon
   styleUrl: './task-modal.component.scss'
 })
 export class TaskModalComponent {
-  constructor(@Inject(DIALOG_DATA) public data: Task) { }
+  clonedData!: Task;
+  constructor(@Inject(DIALOG_DATA) public data: Task) {
+    this.clonedData = { ...this.data };
+   }
 
   private dialogRef = inject(DialogRef);
 

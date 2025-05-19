@@ -18,6 +18,17 @@
     gap: 24px;
 }
 
+.open-task-due-date-outer-container, .open-task-priority-outer-container {
+    @include mixins.flex($ai: center);
+    gap: 25px;
+}
+
+.open-task-priority {
+    @include mixins.flex($jc: center, $ai: center);
+    padding: 4px 18px;
+    gap: 10px;
+}
+
 .open-task-buttons-container, .open-task-button {
     display: flex;
     align-items: center;
@@ -35,4 +46,28 @@
             font-weight: 700;
         }
     }
+}
+
+.open-task-assignees-outer-container {
+    @include mixins.flex($dir: column);
+    gap: 8px;
+}
+
+.open-task-assignees {
+    @include mixins.flex($dir: column);
+    gap: 4px;
+}
+
+.urgent {
+    color: colors.$urgent;
+    transform: rotate(-90deg);
+}
+
+.medium {
+    color: colors.$medium;
+}
+
+.low {
+    color: colors.$low;
+    transform: rotate(90deg);
 }

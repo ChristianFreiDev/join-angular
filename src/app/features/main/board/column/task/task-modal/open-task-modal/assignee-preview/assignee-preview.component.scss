@@ -1,0 +1,18 @@
+@use '../../../../../../../../../styles/mixins.scss';
+
+:host {
+    padding: 7px 16px;
+}
+
+.assignee-preview-inner-container {
+    @include mixins.flex($ai: center);
+    gap: 16px;
+}
+
+.assignee-preview-name {
+    font-size: 19px;
+    font-weight: 400;
+    @media (max-width: 1200px){
+        font-size: 16px;
+    }
+}

@@ -28,7 +28,7 @@ body {
   background-color: colors.$bg;
 }
 
-main {
+.main-container {
   padding-top: paddings.$content-top;
   padding-left: paddings.$content-left;
   @media (max-width: 1200px) {
@@ -122,6 +122,46 @@ h3 {
 .accent-color-link {
   text-decoration: none;
   color: colors.$accent;
+}
+
+
+.initial-avatar {
+    @include mixins.flex($jc: center, $ai: center);
+    color: white;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    margin-left: -8px;
+    border: 1px solid #FFFFFF;
+    font-size: 12px;
+    line-height: 14.4px;
+    font-weight: 400;
+}
+
+.initial-avatar-large {
+    margin-left: 0;
+    height: 42px;
+    min-width: 42px;
+    border: 2px solid #FFFFFF;
+}
+
+.initial-avatars-large-container {
+    margin-top: 8px;
+    max-width: 440px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.initial-avatar-very-large {
+    margin-left: 0;
+    margin-top: 67px;
+    height: 120px;
+    width: 120px;
+    border: 3px solid #FFFFFF;
+    box-shadow: 0px 0px 4px 0px hsla(0, 0%, 0%, 0.1);
+    font-size: 47px;
+    font-weight: 500;
 }
 
 @media (hover: hover) {
