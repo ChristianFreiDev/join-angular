@@ -1,0 +1,7 @@
+@use '../../../../../../../../../styles/mixins.scss';
+
+:host {
+    @include mixins.flex($ai: center);
+    gap: 16px;
+    padding: 6px 16px;
+}

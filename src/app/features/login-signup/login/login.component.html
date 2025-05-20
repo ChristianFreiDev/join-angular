@@ -31,13 +31,8 @@
     @if (isError) { Check your email and password. Please&nbsp;try&nbsp;again. }
     @else { &#8203; }
   </div>
-  <div class="login-checkbox-outer-container" (click)="clickCheckbox()">
-    <div class="checkbox-inner-container">
-      <span class="material-symbols-rounded login-checkbox-symbol">{{
-        checkboxSymbolName()
-      }}</span>
-      <input #loginCheckbox class="checkbox-input" type="checkbox" />
-    </div>
+  <div class="login-checkbox-outer-container">
+    <app-checkbox name="checkbox" [(ngModel)]="formData.checked"></app-checkbox>
     <label for="login-checkbox" class="login-checkbox-label">Remember me</label>
   </div>
   <div class="login-signup-btn-container">

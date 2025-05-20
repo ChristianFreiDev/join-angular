@@ -30,7 +30,12 @@
         </div>
     </div>
     <div class="open-task-subtasks-outer-container">
-        <div class="open-task-subtasks"></div>
+        <span>Subtasks</span>
+        <div class="open-task-subtasks">
+            @for (subtask of data.subtasks; track $index) {
+                <app-subtask [subtask]="subtask"></app-subtask>
+            }
+        </div>
     </div>
     <div class="open-task-buttons-container">
         <button class="open-task-button" (click)="deleteTask()">

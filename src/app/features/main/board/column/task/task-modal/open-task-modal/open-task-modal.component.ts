@@ -4,10 +4,11 @@ import { DialogRef } from '@angular/cdk/dialog';
 import { AssigneePreviewComponent } from './assignee-preview/assignee-preview.component';
 import { offlineContacts } from '../../../../../../../core/data/dummy-data';
 import { CommonModule } from '@angular/common';
+import { SubtaskComponent } from './subtask/subtask.component';
 
 @Component({
   selector: 'app-open-task-modal',
-  imports: [AssigneePreviewComponent, CommonModule],
+  imports: [AssigneePreviewComponent, SubtaskComponent, CommonModule],
   templateUrl: './open-task-modal.component.html',
   styleUrl: './open-task-modal.component.scss'
 })
