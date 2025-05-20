@@ -6,7 +6,7 @@
   </div>
   <div class="summary-container">
     <div class="row1">
-      <div class="summary-tile todo">
+      <div class="summary-tile todo" routerLink="/main/board">
         <div class="summary-tile-symbol-container">
           <span class="material-symbols-rounded summary-icon">edit</span>
           <div class="summary-tile-number-and-text-container">
@@ -17,7 +17,7 @@
           </div>
         </div>
       </div>
-      <div class="summary-tile done">
+      <div class="summary-tile done" routerLink="/main/board">
         <div class="summary-tile-symbol-container">
           <span class="material-symbols-rounded summary-icon">check</span>
           <div class="summary-tile-number-and-text-container">
@@ -29,9 +29,9 @@
         </div>
       </div>
     </div>
-    <div class="summary-tile row2">
+    <div class="summary-tile row2" routerLink="/main/board">
       <div class="summary-tile-symbol-container">
-        <span class="material-symbols-rounded summary-icon">check</span>
+        <span class="material-symbols-rounded summary-icon urgent-icon">double_arrow</span>
         <div class="summary-tile-number-and-text-container">
           <span class="summary-number">{{
             dataService.numberOfUrgentTasks()
@@ -48,13 +48,13 @@
       }
     </div>
     <div class="row3">
-      <div class="summary-tile">
+      <div class="summary-tile" routerLink="/main/board">
         <div class="summary-tile-number-and-text-container">
           <span class="summary-number">{{ dataService.tasks().length }}</span>
           <span class="summary-text1">Tasks in<br />board</span>
         </div>
       </div>
-      <div class="summary-tile">
+      <div class="summary-tile" routerLink="/main/board">
         <div class="summary-tile-number-and-text-container">
           <span class="summary-number">{{
             dataService.numberOfTasksInProgress()
@@ -62,7 +62,7 @@
           <span class="summary-text1">Tasks in<br />progress</span>
         </div>
       </div>
-      <div class="summary-tile">
+      <div class="summary-tile" routerLink="/main/board">
         <div class="summary-tile-number-and-text-container">
           <span class="summary-number">{{
             dataService.numberOfTasksAwaitingFeedback()

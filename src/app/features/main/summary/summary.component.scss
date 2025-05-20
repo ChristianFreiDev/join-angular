@@ -59,7 +59,22 @@
     background-color: white;
     border-radius: 30px;
     box-shadow: shadows.$box-shadow;
+    cursor: pointer;
     @include mixins.flex($jc: center, $ai: center);
+    @media (hover: hover) {
+        &:hover {
+            scale: 1.06;
+            &.row2 {
+                scale: 1.025;
+            }
+            color: colors.$bg;
+            background-color: colors.$menu;
+            .summary-icon:not(.urgent-icon) {
+                color: colors.$menu;
+                background-color: colors.$bg;
+            }
+        }
+    }
 }
 
 .summary-tile-symbol-container {
@@ -105,6 +120,11 @@
         width: 40px;
         font-size: 24px;
     }
+}
+
+.urgent-icon {
+    transform: rotate(-90deg);
+    background-color: colors.$urgent;
 }
 
 .summary-date-container {
