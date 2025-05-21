@@ -9,7 +9,15 @@
         Add new contact <span class="material-symbols-rounded">person_add</span>
       </button>
     </div>
-    <div class="contact-list"></div>
+    <div class="contact-list">
+      @for (contact of contacts(); track $index) {
+        @if (contacts()[$index - 1] && contact.name[0] !== contacts()[$index - 1].name[0] || !contacts()[$index - 1]) {
+            <div class="contacts-letter">{{ contact.name[0] }}</div>
+            <hr>
+        }
+        <app-contact [contact]="contact"></app-contact>
+      }
+    </div>
   </div>
   <div class="contacts-right-side main-container">
     <div class="contacts-header">

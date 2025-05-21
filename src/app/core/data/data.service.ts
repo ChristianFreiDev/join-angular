@@ -1,6 +1,7 @@
 import { computed, Injectable, signal } from '@angular/core';
 import { Task } from './models/task.interface';
-import { offlineTasks } from './dummy-data';
+import { offlineContacts, offlineTasks } from './dummy-data';
+import { Contact } from './models/contact.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -10,6 +11,8 @@ export class DataService {
 
   tasks = signal<Task[]>(offlineTasks);
   filteredTasks = signal<Task[]>(this.tasks());
+
+  contacts = signal<Contact[]>(offlineContacts);
 
   numberOfTasksTodo = computed(() => this.getNumberOfTasksWithStatus('To do'));
   numberOfTasksAwaitingFeedback = computed(() =>
