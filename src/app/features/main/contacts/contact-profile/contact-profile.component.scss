@@ -1,0 +1,44 @@
+@use '../../../../../styles/mixins.scss';
+@use '../../../../../styles/colors.scss';
+
+:host {
+    @include mixins.flex($dir: column);
+    gap: 21px;
+}
+
+.contact-profile-header {
+    display: flex;
+    gap: 54px;
+}
+
+.contact-profile-name {
+    font-size: 47px;
+    font-weight: 500;
+}
+
+.contact-profile-header-right {
+    @include mixins.flex($dir: column);
+    gap: 8px;
+}
+
+.contact-profile-buttons-container {
+    display: flex;
+    gap: 16px;
+}
+
+.contact-profile-information {
+    @include mixins.flex($ai: center);
+    height: 74px;
+    width: 207px;
+    font-size: 20px;
+}
+
+.contact-profile-bottom-container {
+    @include mixins.flex($dir: column);
+    gap: 22px;
+}
+
+.contact-profile-email-container, .contact-profile-phone-container {
+    @include mixins.flex($dir: column);
+    gap: 15px;
+}

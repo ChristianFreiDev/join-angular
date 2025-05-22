@@ -32,6 +32,20 @@
   border: unset;
 }
 
+.btn-transparent {
+    background-color: transparent;
+    @include mixins.flex($jc: center, $ai: center);
+    gap: 8px;
+    border: unset;
+    cursor: pointer;
+    @media (hover: hover) {
+        &:hover {
+            color: colors.$accent;
+            font-weight: 700;
+        }
+    }
+}
+
 .btn-close {
   @include mixins.flex($jc: center, $ai: center);
   border: unset;

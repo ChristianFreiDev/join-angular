@@ -88,3 +88,8 @@ hr {
     margin: 8px 0;
     border: 1px solid colors.$input-light-gray;
 }
+
+.active, .active:hover {
+    color: white;
+    background-color: colors.$menu;
+}

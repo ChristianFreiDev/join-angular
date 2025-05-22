@@ -1,0 +1,32 @@
+<div class="contact-profile-header">
+  <div
+    class="initial-avatar initial-avatar-very-very-large"
+    [ngClass]="contact()?.color"
+  >
+    {{ initials() }}
+  </div>
+  <div class="contact-profile-header-right">
+    <div class="contact-profile-name">{{ contact()?.name }}</div>
+    <div class="contact-profile-buttons-container">
+      <button class="btn-transparent">
+        <span class="material-symbols-rounded">edit</span>
+        <span>Edit</span>
+      </button>
+      <button class="btn-transparent">
+        <span class="material-symbols-rounded">delete</span>
+        <span>Delete</span>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="contact-profile-information">Contact information</div>
+<div class="contact-profile-bottom-container">
+    <div class="contact-profile-email-container">
+        <span>Email</span>
+        <a class="email" [href]="'mailto:' + contact()?.eMail">{{ contact()?.eMail }}</a>
+    </div>
+    <div class="contact-profile-phone-container">
+        <span>Phone</span>
+        <span>{{ contact()?.phone }}</span>
+    </div>
+</div>

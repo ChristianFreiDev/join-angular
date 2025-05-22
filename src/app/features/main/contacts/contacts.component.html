@@ -15,7 +15,7 @@
             <div class="contacts-letter">{{ contact.name[0] }}</div>
             <hr>
         }
-        <app-contact [contact]="contact"></app-contact>
+        <app-contact [contact]="contact" (click)="selectContact(contact)" [class.active]="this.selectedContact() === contact"></app-contact>
       }
     </div>
   </div>
@@ -26,5 +26,7 @@
       <span>Better with a team</span>
       <div class="contacts-header-separator-vertical"></div>
     </div>
-    <div class="contact-profile"></div>
+    @if (this.selectedContact() !== undefined) {
+      <app-contact-profile [contact]="selectedContact!"></app-contact-profile>
+    }
 </div>

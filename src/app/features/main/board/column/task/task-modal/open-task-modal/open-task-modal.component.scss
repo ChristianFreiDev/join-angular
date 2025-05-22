@@ -29,23 +29,10 @@
     gap: 10px;
 }
 
-.open-task-buttons-container, .open-task-button {
+.open-task-buttons-container {
     display: flex;
     align-items: center;
     gap: 8px;
-}
-
-.open-task-button {
-    background-color: transparent;
-    border: unset;
-    justify-content: center;
-    cursor: pointer;
-    @media (hover: hover) {
-        &:hover {
-            color: colors.$accent;
-            font-weight: 700;
-        }
-    }
 }
 
 .open-task-assignees-outer-container {

@@ -164,6 +164,20 @@ h3 {
     font-weight: 500;
 }
 
+.initial-avatar-very-very-large {
+    height: 120px;
+    width: 120px;
+    border: 3px solid #FFFFFF;
+    box-shadow: 0px 0px 4px 0px hsla(0, 0%, 0%, 0.1);
+    font-size: 47px;
+    font-weight: 500;
+}
+
+.email {
+    font-size: 16px;
+    color: colors.$link;
+}
+
 @media (hover: hover) {
   .accent-color-link:hover {
     text-decoration: underline;

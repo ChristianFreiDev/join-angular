@@ -9,8 +9,7 @@
     cursor: pointer;
     @media (hover: hover) {
         &:hover {
-            color: white;
-            background-color: colors.$menu;
+            background-color: colors.$main;
         }
     }
 }
@@ -22,9 +21,4 @@
 
 .contact-name {
     font-size: 20px;
-}
-
-.contact-email {
-    font-size: 16px;
-    color: colors.$link;
 }
