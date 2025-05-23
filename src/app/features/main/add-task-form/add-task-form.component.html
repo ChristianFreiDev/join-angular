@@ -37,5 +37,18 @@
     </div>
     <div class="add-task-form-input-container">
         <input type="text" name="subtask" id="subtask" placeholder="Add new subtask" class="input input-padding-size4">
+        @if (taskData.subtasks.length > 0) {
+            <ul>
+            @for (subtask of taskData.subtasks; track $index) {
+                <li>{{ subtask.title }}
+                <div class="subtask-preview-buttons">
+                    <button class="btn-transparent material-symbols-rounded">edit</button>
+                    <div class="subtask-preview-buttons-separator"></div>
+                    <button class="btn-transparent material-symbols-rounded">delete</button>
+                </div>
+                </li>
+            }
+            </ul>
+        }
     </div>
 </div>
