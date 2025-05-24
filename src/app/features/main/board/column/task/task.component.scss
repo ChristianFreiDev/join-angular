@@ -5,6 +5,7 @@
 
 :host {
     @include mixins.flex($dir: column);
+    flex-shrink: 0;
     width: 252px;
     border-radius: 24px;
     padding: 16px;

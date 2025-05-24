@@ -35,6 +35,9 @@
         width: 100%;
         @include mixins.flex($dir: row);
     }
+    @media (max-width: 1200px) {
+        overflow-x: auto;
+    }
 }
 
 .cdk-drag-preview {
