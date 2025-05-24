@@ -11,7 +11,7 @@
           <span class="material-symbols-rounded summary-icon">edit</span>
           <div class="summary-tile-number-and-text-container">
             <span class="summary-number">{{
-              dataService.numberOfTasksTodo()
+              numberOfTasksTodo()
             }}</span>
             <span class="summary-text1">To-do</span>
           </div>
@@ -22,7 +22,7 @@
           <span class="material-symbols-rounded summary-icon">check</span>
           <div class="summary-tile-number-and-text-container">
             <span class="summary-number">{{
-              dataService.numberOfTasksDone()
+              numberOfTasksDone()
             }}</span>
             <span class="summary-text1">Done</span>
           </div>
@@ -34,15 +34,15 @@
         <span class="material-symbols-rounded summary-icon urgent-icon">double_arrow</span>
         <div class="summary-tile-number-and-text-container">
           <span class="summary-number">{{
-            dataService.numberOfUrgentTasks()
+            numberOfUrgentTasks()
           }}</span>
           <span class="summary-text2">Urgent</span>
         </div>
       </div>
-      @if (dataService.upcomingDeadline()) {
+      @if (upcomingDeadline()) {
       <div class="row2-separator"></div>
       <div class="summary-date-container">
-        <span class="summary-text3">{{ dataService.closestDeadline() }}</span>
+        <span class="summary-text3">{{ closestDeadline() }}</span>
         <span class="summary-text2">Upcoming deadline</span>
       </div>
       }
@@ -57,7 +57,7 @@
       <div class="summary-tile" routerLink="/main/board">
         <div class="summary-tile-number-and-text-container">
           <span class="summary-number">{{
-            dataService.numberOfTasksInProgress()
+            numberOfTasksInProgress()
           }}</span>
           <span class="summary-text1">Tasks in<br />progress</span>
         </div>
@@ -65,7 +65,7 @@
       <div class="summary-tile" routerLink="/main/board">
         <div class="summary-tile-number-and-text-container">
           <span class="summary-number">{{
-            dataService.numberOfTasksAwaitingFeedback()
+            numberOfTasksAwaitingFeedback()
           }}</span>
           <span class="summary-text1">Awaiting<br />feedback</span>
         </div>
