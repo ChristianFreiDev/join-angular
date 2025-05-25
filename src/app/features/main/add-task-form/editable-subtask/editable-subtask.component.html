@@ -1,0 +1,16 @@
+<div class="editable-subtask-outer-container">
+    @if (!isBeingEdited) {
+    {{ subtaskTitle }}
+    } @else {
+        <input #editableTaskInput class="editable-subtask-input" type="text" [(ngModel)]="subtaskTitle">
+    }
+    <div class="editable-subtask-buttons">
+        @if (!isBeingEdited) {
+            <button class="btn-transparent material-symbols-rounded" (click)="editSubtask()">edit</button>
+        } @else {
+            <button class="btn-transparent material-symbols-rounded" (click)="saveSubtask()">check</button>
+        }
+        <div class="editable-subtask-buttons-separator"></div>
+        <button class="btn-transparent material-symbols-rounded" (click)="deleteSubtask()">delete</button>
+    </div>
+</div>

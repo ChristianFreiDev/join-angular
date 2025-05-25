@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, Input, ViewChild } from '@angular/core';
 import { Task } from '../../../../../../../core/data/models/task.interface';
 import { DialogRef } from '@angular/cdk/dialog';
 import { AddTaskFormComponent } from '../../../../../add-task-form/add-task-form.component';
@@ -11,10 +11,16 @@ import { AddTaskFormComponent } from '../../../../../add-task-form/add-task-form
 })
 export class EditTaskModalComponent {
   @Input() data!: Task;
+  @ViewChild(AddTaskFormComponent) form!: AddTaskFormComponent;
 
   private dialogRef = inject(DialogRef);
 
   closeModal() {
     this.dialogRef?.close();
+  }
+
+  submitForm() {
+    this.form.submitForm();
+    this.closeModal();
   }
 }

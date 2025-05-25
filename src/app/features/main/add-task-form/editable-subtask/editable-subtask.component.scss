@@ -1,0 +1,31 @@
+@use '../../../../../styles/mixins.scss';
+@use '../../../../../styles/colors.scss';
+
+:host {
+    margin: 12.5px 24px;
+}
+
+.editable-subtask-outer-container {
+    @include mixins.flex($jc: space-between, $ai: center);
+}
+
+.editable-subtask-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.editable-subtask-buttons-separator {
+    height: 24px;
+    border: 1px solid colors.$light-gray;
+}
+
+.editable-subtask-input {
+    background-color: transparent;
+    width: 100%;
+    border: unset;
+    font-size: 16px;
+    &:focus {
+        border: unset;
+        outline: unset;
+    }
+}

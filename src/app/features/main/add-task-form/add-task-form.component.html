@@ -24,9 +24,23 @@
     </div>
     <div class="add-task-form-input-container">
         <label for="assigned-to">Assigned</label>
-        <select name="assigned-to" id="assigned-to" class="input input-padding-size4">
-            <option value="" disabled selected hidden>Select contacts to assign</option>
-        </select>
+        <input #assigneeInput class="input input-padding-size4 add-task-user-dropdown-input" placeholder="Select contacts to assign" (input)="searchContacts(assigneeInput.value)" (focus)="isShowingContacts = true">
+        @if (isShowingContacts) {
+            <div class="add-task-user-dropdown-container">
+                <div class="task-user-dropdown add-task-user-dropdown display-none">
+                @for (assignee of dataService.filteredContacts(); track $index) {
+                    <app-assignee-option [assignee]="assignee" [isAssigned]="isAssigned(assignee)" (selectEvent)="selectContact($event)" (deselectEvent)="deselectContact($event)"></app-assignee-option>
+                }
+                </div>
+            </div>
+        }
+        @if (taskData.assigneeIds.length > 0) {
+            <div class="initial-avatars-large-container">
+                @for (assignee of assignees(); track assignee.id) {
+                    <div class="initial-avatar initial-avatar-large" [ngClass]="assignee.color">{{ getInitials(assignee.name) }}</div>
+                }
+            </div>
+        }
     </div>
     <div class="add-task-form-input-container">
         <select name="category" id="category" class="input input-padding-size4" [(ngModel)]="taskData.category">
@@ -36,17 +50,14 @@
         </select>
     </div>
     <div class="add-task-form-input-container">
-        <input type="text" name="subtask" id="subtask" placeholder="Add new subtask" class="input input-padding-size4">
+        <div class="input-container">
+            <input type="text" name="subtask" id="subtask" placeholder="Add new subtask" class="input input-padding-size4" [(ngModel)]="newSubtaskTitle">
+            <span class="material-symbols-rounded input-icon" [class.filled]="newSubtaskTitle" (click)="addSubtask()">add</span>
+        </div>
         @if (taskData.subtasks.length > 0) {
             <ul>
-            @for (subtask of taskData.subtasks; track $index) {
-                <li>{{ subtask.title }}
-                <div class="subtask-preview-buttons">
-                    <button class="btn-transparent material-symbols-rounded">edit</button>
-                    <div class="subtask-preview-buttons-separator"></div>
-                    <button class="btn-transparent material-symbols-rounded">delete</button>
-                </div>
-                </li>
+            @for (subtask of taskData.subtasks; track subtask.id) {
+                <li app-editable-subtask [subtaskTitle]="subtask.title" (saveEvent)="subtask.title = $event" (deleteEvent)="deleteSubtask($index)"></li>
             }
             </ul>
         }

@@ -1,0 +1,14 @@
+@use '../../../../../styles/mixins.scss';
+@use '../../../../../styles/colors.scss';
+
+:host {
+    @include mixins.flex($jc: space-between, $ai: center);
+    padding: 7px 32px 7px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.assignee-option-left {
+    @include mixins.flex($ai: center);
+    gap: 16px;
+}

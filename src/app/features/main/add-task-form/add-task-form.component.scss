@@ -7,6 +7,7 @@
     gap: 48px;
     @media (max-width: 1200px) {
         @include mixins.flex($dir: column);
+        gap: 16px;
         .add-task-form-separator {
             display: none;
         }
@@ -34,6 +35,9 @@
 .add-task-form-right {
     @include mixins.flex($ai: center, $dir: column);
     gap: 24px;
+    @media (max-width: 1200px) {
+        gap: 16px
+    }
 }
 
 .add-task-form-separator {
@@ -136,6 +140,7 @@ textarea {
 }
 
 .input {
+    padding-right: 48px;
     @media (max-width: 1200px) {
         font-size: 16px;
     }
@@ -145,17 +150,42 @@ ul {
     margin: 0 16px;
 }
 
-li {
-    margin: 12.5px 24px;
-    @include mixins.flex($jc: space-between);
+.input-icon {
+    background-color: transparent;
 }
 
-.subtask-preview-buttons {
-    display: flex;
-    gap: 8px;
+.filled {
+    color: black;
+    cursor: pointer;
 }
 
-.subtask-preview-buttons-separator {
-    height: 24px;
-    border: 1px solid colors.$light-gray;
+.add-task-user-dropdown-container {
+    position: relative;
+}
+
+app-assignee-option:first-child {
+    margin-top: 8px;
+}
+
+.add-task-user-dropdown-input {
+    z-index: 4;
+}
+
+.task-user-dropdown {
+    z-index: 3;
+    position: absolute;
+    @include mixins.flex($dir: column);
+    gap: 2px;
+    background-color: white;
+    margin-top: -16px;
+    box-shadow: shadows.$box-shadow6;
+    border-radius: 0px 0px 10px 10px;
+    width: 100%;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.assigned {
+    color: white;
+    background-color: colors.$menu;
 }

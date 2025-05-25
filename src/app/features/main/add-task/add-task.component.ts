@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { AddTaskFormComponent } from "../add-task-form/add-task-form.component";
 
 @Component({
@@ -8,5 +8,8 @@ import { AddTaskFormComponent } from "../add-task-form/add-task-form.component";
   styleUrl: './add-task.component.scss'
 })
 export class AddTaskComponent {
-
+  @ViewChild(AddTaskFormComponent) form!: AddTaskFormComponent;
+  resetForm() {
+    this.form.resetForm();
+  }
 }

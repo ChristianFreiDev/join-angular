@@ -1,4 +1,11 @@
 <div class="main-container">
   <h2>Add Task</h2>
   <app-add-task-form></app-add-task-form>
+  <div class="add-task-bottom">
+    <div><span>*</span>This field is required</div>
+    <div class="add-task-buttons-container">
+      <button class="btn btn-padding-size6" (click)="resetForm()">Clear <span class="material-symbols-rounded">close</span></button>
+      <button class="btn btn-dark btn-padding-size6">Create task <span class="material-symbols-rounded">check</span></button>
+    </div>
+  </div>
 </div>

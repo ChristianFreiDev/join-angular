@@ -1,3 +1,13 @@
+@use '../../../styles/mixins.scss';
+
+:host {
+    @include mixins.flex($ai: center);
+}
+
 span {
     cursor: pointer;
+}
+
+input {
+    visibility: hidden;
 }

@@ -1,10 +1,10 @@
 import { Subtask } from './subtask.interface';
 
 export interface Task {
+  id: string;
   title: string;
   description: string;
-  id: number;
-  assignees: number[];
+  assigneeIds: string[];
   dueDate: string;
   priority: 'Urgent' | 'Medium' | 'Low';
   category: '' | 'User Story' | 'Technical Task';

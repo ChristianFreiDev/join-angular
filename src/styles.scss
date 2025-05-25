@@ -29,6 +29,8 @@ body {
 }
 
 .main-container {
+  @include mixins.flex($dir: column);
+  height: 100%;
   padding-top: paddings.$content-top;
   padding-left: paddings.$content-left;
   @media (max-width: 1200px) {
@@ -176,6 +178,32 @@ h3 {
 .email {
     font-size: 16px;
     color: colors.$link;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    border: none;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background: colors.$main;
+}
+
+::-webkit-scrollbar-thumb {
+    background: colors.$menu;
+    border-radius: 10px;
+    cursor: grab;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: colors.$menu-active;
+    box-shadow: inset 0 0 5px grey;
+}
+
+::-webkit-scrollbar-thumb:active {
+    cursor: grabbing;
+    background: colors.$accent;
 }
 
 @media (hover: hover) {

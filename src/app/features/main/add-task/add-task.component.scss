@@ -1,3 +1,19 @@
+@use '../../../../styles/mixins.scss';
+@use '../../../../styles/colors.scss';
+
 h2 {
     margin-bottom: 48px;
+}
+
+.add-task-bottom {
+    @include mixins.flex($ai: flex-end);
+    gap: 520px;
+    margin-top: 24px;
+    margin-bottom: 71px;
+    flex-grow: 1;
+}
+
+.add-task-buttons-container {
+    display: flex;
+    gap: 16px;
 }

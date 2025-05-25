@@ -1,5 +1,6 @@
 import {
   Component,
+  Input,
 } from '@angular/core';
 import {
   ControlValueAccessor,
@@ -32,7 +33,7 @@ export class CheckboxComponent implements ControlValueAccessor {
     this.onTouched = fn;
   }
 
-  checked: boolean = false;
+  @Input() checked: boolean = false;
 
   writeValue(checked: boolean) {
     this.checked = checked;
