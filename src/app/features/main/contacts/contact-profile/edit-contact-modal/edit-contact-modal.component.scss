@@ -1,0 +1,38 @@
+@use '../../../../../../styles/mixins.scss';
+@use '../../../../../../styles/colors.scss';
+
+:host {
+    display: flex;
+    height: 594px;
+    width: 1212px;
+    border-radius: 30px;
+    overflow: hidden;
+    background-color: white;
+}
+
+.edit-contact-modal-left-outer {
+    @include mixins.flex($jc: center, $ai: center, $dir: column);
+    background-color: colors.$menu;
+    height: 100%;
+    padding: 0 46px;
+}
+
+.edit-contact-modal-left-inner {
+    margin-top: -66px;
+}
+
+h2 {
+    color: white;
+    margin-bottom: 16px;
+}
+
+hr {
+    width: 90px;
+    border: 1px solid colors.$accent;
+}
+
+.contact-modal-join-logo {
+    margin-bottom: 32px;
+    height: 66px;
+    align-self: flex-start;
+}
