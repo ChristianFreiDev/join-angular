@@ -1,0 +1,51 @@
+<div class="edit-contact-modal-left-outer">
+  <div class="edit-contact-modal-left-inner">
+    <img
+      src="img/large-join-logo-light.svg"
+      alt="light Join logo"
+      class="contact-modal-join-logo"
+    />
+    @if (data.isEditing) {
+        <h2>Edit contact</h2>
+    } @else {
+        <h2>Add contact</h2>
+        <h3>Tasks are better with a team!</h3>
+    }
+    <hr />
+  </div>
+</div>
+<div class="contact-modal-right-outer">
+  <div class="initial-avatar initial-avatar-very-very-large contact-modal-initial-avatar" [ngClass]="contact.color">
+    @if (data.isEditing) {
+      {{ initials }}
+    } @else {
+      <span class="material-symbols-rounded contact-modal-icon">person</span>
+    }
+  </div>
+  <form class="contact-modal-form">
+    <div class="contact-modal-form-inputs">
+      <div class="input-container">
+        <input type="text" class="input input-padding-size7" placeholder="Name" name="name" [(ngModel)]="contact.name" />
+        <span class="material-symbols-rounded input-icon">person</span>
+      </div>
+      <div class="input-container">
+        <input type="text" class="input input-padding-size7" placeholder="Email" name="email" [(ngModel)]="contact.email" />
+        <span class="material-symbols-rounded input-icon">mail</span>
+      </div>
+      <div class="input-container">
+        <input type="text" class="input input-padding-size7" placeholder="Phone" name="phone" [(ngModel)]="contact.phone" />
+        <span class="material-symbols-rounded input-icon">phone</span>
+      </div>
+    </div>
+    <div class="contact-modal-form-buttons">
+        @if (data.isEditing) {
+            <button class="btn btn-light btn-padding-size7">Delete</button>
+            <button class="btn btn-dark btn-padding-size7">Save</button>
+        } @else {
+            <button class="btn btn-light btn-padding-size7">Cancel</button>
+            <button class="btn btn-dark btn-padding-size7">Create contact</button>
+        }
+    </div>
+  </form>
+</div>
+<button class="material-symbols-rounded btn-close" (click)="closeModal()">close</button>

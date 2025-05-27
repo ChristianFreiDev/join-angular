@@ -1,0 +1,84 @@
+@use '../../../../../styles/mixins.scss';
+@use '../../../../../styles/colors.scss';
+
+:host {
+    display: flex;
+    height: 594px;
+    width: 1212px;
+    border-radius: 30px;
+    overflow: hidden;
+    background-color: white;
+    position: relative;
+}
+
+.edit-contact-modal-left-outer {
+    @include mixins.flex($jc: center, $ai: center, $dir: column);
+    background-color: colors.$menu;
+    height: 100%;
+    padding: 0 46px;
+}
+
+.edit-contact-modal-left-inner {
+    margin-top: -66px;
+}
+
+h2, h3 {
+    color: white;
+    white-space: nowrap;
+}
+
+h3 {
+    font-weight: 400;
+}
+
+hr {
+    margin-top: 16px;
+    width: 90px;
+    border: 1px solid colors.$accent;
+}
+
+.contact-modal-join-logo {
+    margin-bottom: 32px;
+    height: 66px;
+    align-self: flex-start;
+}
+
+.contact-modal-right-outer {
+    @include mixins.flex($jc: flex-end, $ai: center);
+    flex-grow: 1;
+    padding: 137px 48px 135px 97px;
+}
+
+.contact-modal-form {
+    @include mixins.flex($dir: column);
+    gap: 48px;
+}
+
+.contact-modal-form-inputs {
+    @include mixins.flex($dir: column);
+    gap: 32px;
+}
+
+.contact-modal-form-buttons {
+    display: flex;
+    gap: 25px;
+}
+
+.contact-modal-initial-avatar {
+    margin-right: 72px;
+    margin-bottom: 56px;
+}
+
+.btn-close {
+    position: absolute;
+    top: 48px;
+    right: 48px;
+}
+
+.input {
+    width: 422px;
+}
+
+.contact-modal-icon {
+    font-size: 64px;
+}

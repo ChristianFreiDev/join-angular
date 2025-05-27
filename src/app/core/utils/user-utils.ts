@@ -10,3 +10,8 @@ export function getInitials(name: string) {
         return firstName[0] + lastName[0];
     }
 }
+
+export function getUserColor() {
+    let colorNumber = Math.floor(Math.random() * 15);
+    return `user-color${colorNumber}`;
+}

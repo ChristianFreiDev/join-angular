@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core
 import { CheckboxComponent } from '../../../../shared/checkbox/checkbox.component';
 import { Contact } from '../../../../core/data/models/contact.interface';
 import { CommonModule } from '@angular/common';
-import { getInitials } from '../../../../core/utils/name-utils';
+import { getInitials } from '../../../../core/utils/user-utils';
 
 @Component({
   selector: 'app-assignee-option',

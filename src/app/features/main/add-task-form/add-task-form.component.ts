@@ -7,7 +7,7 @@ import { EditableSubtaskComponent } from './editable-subtask/editable-subtask.co
 import { AssigneeOptionComponent } from './assignee-option/assignee-option.component';
 import { Contact } from '../../../core/data/models/contact.interface';
 import { DataService } from '../../../core/data/data.service';
-import { getInitials } from '../../../core/utils/name-utils';
+import { getInitials } from '../../../core/utils/user-utils';
 
 @Component({
   selector: 'app-add-task-form',
