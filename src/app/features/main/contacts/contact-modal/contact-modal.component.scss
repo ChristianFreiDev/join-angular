@@ -9,6 +9,14 @@
     overflow: hidden;
     background-color: white;
     position: relative;
+    @media (max-width: 1212px) {
+        @include mixins.flex($dir: column);
+        height: 760px;
+        max-width: 396px;
+    }
+    @media (max-width: 396px) {
+        max-width: 100%;
+    }
 }
 
 .edit-contact-modal-left-outer {
@@ -16,10 +24,16 @@
     background-color: colors.$menu;
     height: 100%;
     padding: 0 46px;
+    @media (max-width: 1212px) {
+        padding: unset;
+    }
 }
 
 .edit-contact-modal-left-inner {
     margin-top: -66px;
+    @media (max-width: 1212px) {
+        margin-top: unset;
+    }
 }
 
 h2, h3 {
@@ -41,42 +55,72 @@ hr {
     margin-bottom: 32px;
     height: 66px;
     align-self: flex-start;
+    @media (max-width: 1212px) {
+        display: none;
+    }
 }
 
 .contact-modal-right-outer {
     @include mixins.flex($jc: flex-end, $ai: center);
     flex-grow: 1;
     padding: 137px 48px 135px 97px;
+    @media (max-width: 1212px) {
+        @include mixins.flex($dir: column, $ai: center);
+        padding: 0 16px 62px 16px;
+    }
 }
 
 .contact-modal-form {
     @include mixins.flex($dir: column);
     gap: 48px;
+    @media (max-width: 1212px) {
+        gap: 32px;
+    }
 }
 
 .contact-modal-form-inputs {
     @include mixins.flex($dir: column);
     gap: 32px;
+    @media (max-width: 1212px) {
+        gap: 24px;
+    }
 }
 
 .contact-modal-form-buttons {
     display: flex;
     gap: 25px;
+    @media (max-width: 1212px) {
+        @include mixins.flex($jc: center);
+    }
 }
 
 .contact-modal-initial-avatar {
     margin-right: 72px;
     margin-bottom: 56px;
+    @media (max-width: 1212px) {
+        margin: -60px 0 32px 0;
+    }
 }
 
 .btn-close {
     position: absolute;
     top: 48px;
     right: 48px;
+    @media (max-width: 1212px) {
+        color: white;
+        @media (hover: hover) {
+            &:hover {
+                color: black;
+            }
+        }
+    }
 }
 
 .input {
     width: 422px;
+    @media (max-width: 1212px) {
+        width: 100%;
+    }
 }
 
 .contact-modal-icon {
