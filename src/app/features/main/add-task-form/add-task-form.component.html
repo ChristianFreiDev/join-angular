@@ -1,6 +1,6 @@
 <div class="add-task-form-left">
     <div class="add-task-form-input-container">
-        <label for="title">Title<span>*</span></label>
+        <label for="title">Title<span class="red-font-color">*</span></label>
         <input type="text" id="title" class="input input-padding-size5" [(ngModel)]="taskData.title">
     </div>
     <div class="add-task-form-input-container">
@@ -8,7 +8,7 @@
         <textarea name="description" id="description" class="input" [(ngModel)]="taskData.description"></textarea>
     </div>
     <div class="add-task-form-input-container">
-        <label for="date">Due date</label>
+        <label for="date">Due date<span class="red-font-color">*</span></label>
         <input type="date" id="date" class="input input-padding-size4" [(ngModel)]="taskData.dueDate">
     </div>
 </div>
