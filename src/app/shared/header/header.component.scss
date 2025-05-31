@@ -60,12 +60,41 @@
 }
 
 .drop-down-menu {
-    display: none;
+    @include mixins.flex($dir: column);
+    position: absolute;
+    top: 96px;
+    right: 12px;
+    background-color: colors.$menu;
+    width: 150;
+    height: 158;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    padding: 10px;
+    a {
+        color: colors.$input-icon-gray;
+        text-decoration: none;
+        padding: 13.5px 19px;
+        @media (hover: hover) {
+            &:hover {
+                background-color: colors.$menu-hover;
+            }
+        }
+    }
+    @media (max-width: 768px) {
+        top: 80px
+    }
 }
 
 .header-logo {
     width: 32px;
     display: none;
+}
+
+.header-nav-help-link {
+    @media (min-width: 769px) {
+        display: none;
+    }
 }
 
 .header-logo {

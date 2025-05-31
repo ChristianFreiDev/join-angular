@@ -28,6 +28,10 @@ body {
   background-color: colors.$bg;
 }
 
+a {
+  cursor: pointer;
+}
+
 .main-container {
   @include mixins.flex($dir: column);
   height: 100%;
