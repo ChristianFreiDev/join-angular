@@ -43,3 +43,66 @@
 .technical-task {
     background-color: colors.$technical-task;
 }
+
+.task-progress-note {
+    white-space: nowrap;
+}
+
+.subtask-tooltip {
+    padding: 8px;
+    position: absolute;
+    display: none;
+    color: white;
+    background-color: #4589FF;
+    padding: 8px;
+    border-radius: 6px;
+    box-shadow: shadows.$box-shadow2;
+    top: 26px;
+    right: 0;
+    z-index: 1;
+}
+
+.task-progress-container {
+    @media (hover: hover) {
+        &:hover {
+            .subtask-tooltip {
+                display: block;
+            }
+        }
+    }
+}
+
+.task-progress-container {
+    position: relative;
+    @include mixins.flex($ai: center);
+    gap: 11px;
+    font-size: 12px;
+}
+
+.task-progress {
+    width: 128px;
+    height: 8px;
+    border: none;
+}
+
+progress::-webkit-progress-bar {
+    background-color: #F4F4F4;
+    border-radius: 8px;
+}
+
+progress::-webkit-progress-value {
+    background-color: #4589FF;
+    border-radius: 16px;
+}
+
+.initial-avatars-and-priority-container {
+    @include mixins.flex($jc: space-between, $ai: center);
+}
+
+.initial-avatars {
+    display: flex;
+    .initial-avatar:not(:first-child) {
+        margin-left: -8px;
+    }
+}
+

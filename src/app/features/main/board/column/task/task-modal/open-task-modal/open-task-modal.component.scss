@@ -54,17 +54,3 @@
     @include mixins.flex($dir: column);
     gap: 4px;
 }
-
-.urgent {
-    color: colors.$urgent;
-    transform: rotate(-90deg);
-}
-
-.medium {
-    color: colors.$medium;
-}
-
-.low {
-    color: colors.$low;
-    transform: rotate(90deg);
-}

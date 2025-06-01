@@ -16,9 +16,9 @@
             <div class="open-task-priority">
                 <span>{{ data.priority }}</span>
                 <span class="material-symbols-rounded"
-                [class.urgent]="data.priority == 'Urgent'"
-                [class.medium]="data.priority == 'Medium'"
-                [class.low]="data.priority == 'Low'">{{ priorityIcon }}</span>
+                [class.urgent-priority-icon]="data.priority == 'Urgent'"
+                [class.medium-priority-icon]="data.priority == 'Medium'"
+                [class.low-priority-icon]="data.priority == 'Low'">{{ priorityIcon }}</span>
             </div>
     </div>
     <div class="open-task-assignees-outer-container">

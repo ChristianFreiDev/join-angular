@@ -1,11 +1,43 @@
 <div class="task-category-and-mobile-drag-arrows-container">
-        <div class="task-category" [ngClass]="taskData.category === 'User Story' ? 'user-story' : 'technical-task'" >{{ taskData.category }}</div>
-        <div class="move-arrows">⇵</div>
+  <div
+    class="task-category"
+    [ngClass]="
+      taskData.category === 'User Story' ? 'user-story' : 'technical-task'
+    "
+  >
+    {{ taskData.category }}
+  </div>
+  <div class="move-arrows">⇵</div>
 </div>
 <div class="task-title-and-description-container">
-    <div class="task-title">{{ taskData.title }}</div>
-    <div class="task-description">{{ shortTaskDescription }}</div>
+  <div class="task-title">{{ taskData.title }}</div>
+  <div class="task-description">{{ shortTaskDescription }}</div>
 </div>
+@if (amountOfSubtasks > 0) {
+<div class="task-progress-container">
+  <progress class="task-progress" max="100" [value]="progressValue"></progress>
+  <span class="task-progress-note"
+    >{{ amountOfDoneSubtasks }}/{{ amountOfSubtasks }} subtasks</span
+  >
+  <span class="subtask-tooltip"
+    >{{ amountOfDoneSubtasks }} of {{ amountOfSubtasks }} subtasks
+    completed</span
+  >
+</div>
+}
 <div class="initial-avatars-and-priority-container">
-    <div id="initial-avatars"></div>
+  <div class="initial-avatars">
+    @for (assignee of assignees; track $index) {
+    <span class="initial-avatar" [ngClass]="assignee.color">{{
+      assignee.initials
+    }}</span>
+    }
+  </div>
+  <span
+    class="task-priority material-symbols-rounded"
+    [class.urgent-priority-icon]="taskData.priority == 'Urgent'"
+    [class.medium-priority-icon]="taskData.priority == 'Medium'"
+    [class.low-priority-icon]="taskData.priority == 'Low'"
+    >{{ priorityIcon }}</span
+  >
 </div>

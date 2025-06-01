@@ -1,6 +1,6 @@
 import { Component, inject, Inject } from '@angular/core';
 import { Task } from '../../../../../../core/data/models/task.interface';
-import {DIALOG_DATA, DialogRef} from '@angular/cdk/dialog';
+import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import { OpenTaskModalComponent } from './open-task-modal/open-task-modal.component';
 import { EditTaskModalComponent } from './edit-task-modal/edit-task-modal.component';
 

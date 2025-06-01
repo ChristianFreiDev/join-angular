@@ -1,5 +1,5 @@
 <button class="btn-close">
         <span class="material-symbols-rounded" (click)="closeModal()">close</span>
 </button>
-<app-add-task-form [taskData]="data"></app-add-task-form>
-<button class="btn btn-dark btn-ok btn-padding-size6" (closeEvent)="closeModal()" (click)="submitForm()">OK <span class="material-symbols-rounded">check</span></button>
+<app-add-task-form [taskData]="data" (closeEvent)="closeModal()"></app-add-task-form>
+<button class="btn btn-dark btn-ok btn-padding-size6" (click)="submitForm()">OK <span class="material-symbols-rounded">check</span></button>
