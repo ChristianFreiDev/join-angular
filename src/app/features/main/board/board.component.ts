@@ -20,7 +20,7 @@ export class BoardComponent {
   tasksAwaitingFeedback = computed(() => this.tasks().filter(task => task.status === 'Await feedback'));
   tasksDone = computed(() => this.tasks().filter(task => task.status === 'Done'));
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.dataService.filterTasks('');
   }
 }

@@ -1,6 +1,7 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, inject, Signal } from '@angular/core';
 import { DataService } from '../../../core/data/data.service';
 import { RouterLink } from '@angular/router';
+import { Task } from '../../../core/data/models/task.interface';
 
 @Component({
   selector: 'app-summary',
@@ -11,21 +12,21 @@ import { RouterLink } from '@angular/router';
 export class SummaryComponent {
   dataService = inject(DataService);
 
-  numberOfTasksTodo = computed(() => this.getNumberOfTasksWithStatus('To do'));
-  numberOfTasksAwaitingFeedback = computed(() =>
+  numberOfTasksTodo: Signal<number> = computed(() => this.getNumberOfTasksWithStatus('To do'));
+  numberOfTasksAwaitingFeedback: Signal<number> = computed(() =>
     this.getNumberOfTasksWithStatus('Await feedback')
   );
-  numberOfTasksInProgress = computed(() =>
+  numberOfTasksInProgress: Signal<number> = computed(() =>
     this.getNumberOfTasksWithStatus('In progress')
   );
-  numberOfTasksDone = computed(() => this.getNumberOfTasksWithStatus('Done'));
-  numberOfUrgentTasks = computed(
+  numberOfTasksDone: Signal<number> = computed(() => this.getNumberOfTasksWithStatus('Done'));
+  numberOfUrgentTasks: Signal<number> = computed(
     () =>
       this.dataService.tasks().filter((task) => task.priority === 'Urgent')
         .length
   );
 
-  getTasksNotDoneWithDeadlinesInTheFuture() {
+  getTasksNotDoneWithDeadlinesInTheFuture(): Task[] {
     return this.dataService
       .tasks()
       .filter(
@@ -33,11 +34,11 @@ export class SummaryComponent {
       );
   }
 
-  upcomingDeadline = computed(
+  upcomingDeadline: Signal<boolean> = computed(
     () => this.getTasksNotDoneWithDeadlinesInTheFuture().length > 0
   );
 
-  closestDeadline = computed(() => {
+  closestDeadline: Signal<string> = computed(() => {
     let filteredTasks = this.getTasksNotDoneWithDeadlinesInTheFuture();
     if (filteredTasks.length > 0) {
       let dueDate = filteredTasks.sort(
@@ -53,7 +54,7 @@ export class SummaryComponent {
     }
   });
 
-  getNumberOfTasksWithStatus(status: string) {
+  getNumberOfTasksWithStatus(status: string): number {
     return this.dataService.tasks().filter((task) => task.status === status)
       .length;
   }

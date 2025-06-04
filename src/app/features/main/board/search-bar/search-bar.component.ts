@@ -10,7 +10,7 @@ import { DataService } from '../../../../core/data/data.service';
 export class SearchBarComponent {
   dataService = inject(DataService);
 
-  filterTasks(inputString: string) {
+  filterTasks(inputString: string): void {
     this.dataService.filterTasks(inputString);
   }
 }

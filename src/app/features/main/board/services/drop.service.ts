@@ -9,7 +9,7 @@ import { DataService } from '../../../../core/data/data.service';
 export class DropService {
   dataService = inject(DataService);
 
-  drop(event: CdkDragDrop<Task[]>) {
+  drop(event: CdkDragDrop<Task[]>): void {
     let containerIdText = event.container.id;
     let containerId = +containerIdText.substring(containerIdText.length - 1);
     let statuses = ['To do', 'In progress', 'Await feedback', 'Done'];

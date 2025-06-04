@@ -21,7 +21,7 @@ export class ColumnComponent {
   @Input() tasks: Task[] = [];
   rotate = false;
 
-  drop(event: CdkDragDrop<Task[]>) {
+  drop(event: CdkDragDrop<Task[]>): void {
     this.dropService.drop(event);
     console.log(this.dataService.tasks());
   }

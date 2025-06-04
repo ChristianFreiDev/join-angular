@@ -1,4 +1,4 @@
-export function getInitials(name: string) {
+export function getInitials(name: string): string {
     let names = name.split(' ', 2);
     let firstName = names[0];
     if (name === '') {
@@ -11,7 +11,7 @@ export function getInitials(name: string) {
     }
 }
 
-export function getUserColor() {
+export function getUserColor(): string {
     let colorNumber = Math.floor(Math.random() * 15);
     return `user-color${colorNumber}`;
 }

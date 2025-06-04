@@ -35,16 +35,16 @@ export class CheckboxComponent implements ControlValueAccessor {
 
   @Input() checked: boolean = false;
 
-  writeValue(checked: boolean) {
+  writeValue(checked: boolean): void {
     this.checked = checked;
   }
 
-  clickCheckbox() {
+  clickCheckbox(): void {
     this.checked = !this.checked;
     this.onChange(this.checked);
   }
 
-  get checkboxSymbolName() {
+  get checkboxSymbolName(): 'select_check_box' | 'check_box_outline_blank' {
     return this.checked ? 'select_check_box' : 'check_box_outline_blank';
   }
 }

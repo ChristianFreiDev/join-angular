@@ -18,11 +18,11 @@ export class ContactsComponent {
   contacts: Signal<Contact[]> = this.dataService.contacts;
   selectedContact = signal<Contact | undefined>(undefined);
 
-  selectContact(contact: Contact) {
+  selectContact(contact: Contact): void {
     this.selectedContact.set(contact);
   }
 
-  addContact() {
+  addContact(): void {
     this.dialog.open(ContactModalComponent, {
       data: {
         isEditing: false,

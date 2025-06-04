@@ -15,7 +15,7 @@ export class ContactProfileComponent {
   dialog = inject(Dialog);
   @Input() contact!: Signal<Contact | undefined>;
 
-  initials = computed(() => {
+  initials: Signal<string> = computed(() => {
     const name = this.contact()?.name;
     if (name) {
       return getInitials(name);
@@ -24,7 +24,7 @@ export class ContactProfileComponent {
     }
   });
 
-  editContact() {
+  editContact(): void {
     this.dialog.open(ContactModalComponent, {
       data: {
         contact: this.contact(),
