@@ -1,4 +1,11 @@
-import { inject, Injectable, OnDestroy, OnInit, signal, WritableSignal } from '@angular/core';
+import {
+  inject,
+  Injectable,
+  OnDestroy,
+  OnInit,
+  signal,
+  WritableSignal,
+} from '@angular/core';
 import { Task } from './models/task.interface';
 import { offlineContacts, offlineTasks } from './dummy-data';
 import { Contact } from './models/contact.interface';
@@ -7,10 +14,12 @@ import {
   collection,
   deleteDoc,
   doc,
+  DocumentData,
   Firestore,
   onSnapshot,
   Unsubscribe,
   updateDoc,
+  WithFieldValue,
 } from '@angular/fire/firestore';
 
 @Injectable({
@@ -32,7 +41,10 @@ export class DataService implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.unsubTasks = this.subFirebaseCollection<Task>('tasks', this.tasks);
-    this.unsubContacts = this.subFirebaseCollection<Contact>('contacts', this.contacts);
+    this.unsubContacts = this.subFirebaseCollection<Contact>(
+      'contacts',
+      this.contacts
+    );
   }
 
   ngOnDestroy(): void {
@@ -40,16 +52,22 @@ export class DataService implements OnInit, OnDestroy {
     this.unsubContacts();
   }
 
-  subFirebaseCollection<Type>(coll: string, arraySignal: WritableSignal<Type[]>): Unsubscribe {
+  subFirebaseCollection<Type>(
+    coll: string,
+    arraySignal: WritableSignal<Type[]>
+  ): Unsubscribe {
     return onSnapshot(collection(this.db, coll), (querySnapshot) => {
       const items: Type[] = querySnapshot.docs.map((doc) => doc.data() as Type);
       arraySignal.set(items);
     });
   }
 
-  async addTask(task: Task): Promise<string | undefined> {
+  async addItem(
+    item: WithFieldValue<DocumentData>,
+    coll: string
+  ): Promise<string | undefined> {
     try {
-      const docRef = await addDoc(collection(this.db, 'tasks'), task);
+      const docRef = await addDoc(collection(this.db, coll), item);
       return docRef.id;
     } catch (error) {
       console.error(error);
@@ -57,20 +75,44 @@ export class DataService implements OnInit, OnDestroy {
     }
   }
 
-  async updateTask(taskData: any, taskId: string): Promise<void> {
+  async updateItem(data: any, coll: string, id: string): Promise<void> {
     try {
-      return await updateDoc(doc(this.db, 'tasks', taskId), taskData);
+      return await updateDoc(doc(this.db, coll, id), data);
     } catch (error) {
       console.error(error);
     }
   }
 
-  async deleteTask(taskId: string): Promise<void> {
+  async deleteItem(coll: string, id: string): Promise<void> {
     try {
-      return await deleteDoc(doc(this.db, 'tasks', taskId));
+      return await deleteDoc(doc(this.db, coll, id));
     } catch (error) {
       console.error(error);
     }
+  }
+
+  async addTask(task: Task): Promise<string | undefined> {
+    return await this.addItem(task, 'tasks');
+  }
+
+  async addContact(contact: Contact): Promise<string | undefined> {
+    return await this.addItem(contact, 'contacts');
+  }
+
+  async updateTask(taskData: any, taskId: string): Promise<void> {
+    return await this.updateItem(taskData, 'tasks', taskId);
+  }
+
+  async updateContact(contactData: any, taskId: string): Promise<void> {
+    return await this.updateItem(contactData, 'contacts', taskId);
+  }
+
+  async deleteTask(taskId: string): Promise<void> {
+    return await this.deleteItem('tasks', taskId);
+  }
+
+  async deleteContact(contactId: string): Promise<void> {
+    return await this.deleteItem('contacts', contactId);
   }
 
   filterTasks(inputValue: string): void {
