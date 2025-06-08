@@ -3,7 +3,7 @@
   <h2 class="login-signup-headline">Sign up</h2>
   <div class="login-signup-separator"></div>
 </div>
-<form #signupForm="ngForm" (ngSubmit)="onSubmit(signupForm)" ngNativeValidate>
+<form #signupForm="ngForm" (ngSubmit)="onSubmit(signupForm)">
   <div class="input-container">
     <input
       [(ngModel)]="formData.name"
@@ -57,24 +57,22 @@
     <span class="material-symbols-rounded input-icon">lock</span>
   </div>
   <div class="error">
-    @if (isError) { Check your email and password. Please&nbsp;try&nbsp;again. }
+    @if (hasSignInFailed) { Check your email and password. Please&nbsp;try&nbsp;again. }
     @else { &#8203; }
     @if (!isPasswordAMatch) {
       Passwords don't match.
     }
   </div>
     <div class="signup-checkbox-outer-container">
-      <div class="checkbox-inner-container" (click)="clickCheckbox()">
-        <span class="material-symbols-rounded login-checkbox-symbol">{{
-          checkboxSymbolName()
-        }}</span>
-        <input #privacyPolicyCheckbox class="checkbox-input" type="checkbox" required />
-      </div>
+      <app-checkbox name="checkbox" type="checkbox" [(ngModel)]="formData.checked" [required]="true"></app-checkbox>
       <div class="privacy-policy-message">
       I accept the <a routerLink="/privacy-policy" target="_blank" class="accent-color-link">privacy policy</a>
       </div>
     </div>
+    <div class="error checkbox-error">
+        @if (showCheckboxError) { The checkbox has not been checked. }
+    </div>
   <div class="login-signup-btn-container mt-32">
-    <button class="btn btn-dark main-button btn-padding-size4">Sign up</button>
+    <button class="btn btn-dark main-button btn-padding-size4" [disabled]="isFormDisabled">Sign up</button>
   </div>
 </form>

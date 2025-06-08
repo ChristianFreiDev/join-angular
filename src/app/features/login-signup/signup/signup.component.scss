@@ -25,6 +25,10 @@
   }
 }
 
+.checkbox-error {
+  text-align: center;
+}
+
 @media (hover: hover) {
   .signup-back-link:hover {
     background-color: colors.$button-hover;

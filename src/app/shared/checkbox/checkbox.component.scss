@@ -1,7 +1,7 @@
 @use '../../../styles/mixins.scss';
 
 :host {
-    @include mixins.flex($ai: center);
+    @include mixins.flex($jc: center, $ai: center);
 }
 
 span {
@@ -9,5 +9,7 @@ span {
 }
 
 input {
-    visibility: hidden;
+    color: transparent;
+    background-color: transparent;
+    border-color: transparent;
 }

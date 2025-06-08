@@ -34,6 +34,7 @@ export class CheckboxComponent implements ControlValueAccessor {
   }
 
   @Input() checked: boolean = false;
+  @Input() required: boolean = false;
 
   writeValue(checked: boolean): void {
     this.checked = checked;

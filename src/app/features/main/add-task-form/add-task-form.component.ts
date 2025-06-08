@@ -32,6 +32,7 @@ export class AddTaskFormComponent {
   };
 
   @Input() taskData: Task = { ...this.emptyTask };
+  @Input() isEditing: boolean = false;
 
   newSubtaskTitle: string = '';
 
@@ -96,5 +97,10 @@ export class AddTaskFormComponent {
 
   submitForm() {
     console.log(this.taskData);
+    if (this.isEditing) {
+      this.dataService.updateTask(this.taskData, this.taskData.id);
+    } else {
+      this.dataService.addTask(this.taskData);
+    }
   }
 }

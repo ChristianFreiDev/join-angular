@@ -17,7 +17,7 @@ export class DropService {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
-      this.dataService.updateTaskStatus(currentTaskId, statuses[containerId]);
+      this.dataService.updateTask({ status: statuses[containerId] }, currentTaskId);
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,

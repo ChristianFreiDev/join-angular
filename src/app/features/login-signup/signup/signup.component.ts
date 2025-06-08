@@ -1,10 +1,12 @@
-import { Component, computed, ElementRef, signal, ViewChild } from '@angular/core';
+import { Component, computed, ElementRef, inject, signal, ViewChild } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../../core/auth/auth.service';
+import { CheckboxComponent } from '../../../shared/checkbox/checkbox.component';
 
 @Component({
   selector: 'app-signup',
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, RouterLink, CheckboxComponent],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss',
   host: {
@@ -13,37 +15,48 @@ import { RouterLink } from '@angular/router';
 })
 export class SignupComponent {
 
+  authService = inject(AuthService);
+  router = inject(Router);
+
   formData = {
     name: '',
     email: '',
     password: '',
-    passwordForConfirmation: ''
+    passwordForConfirmation: '',
+    checked: false
   }
 
-  isError: boolean = false;
+  isFormDisabled: boolean = false;
+  hasSignInFailed: boolean = false;
 
   @ViewChild('privacyPolicyCheckbox') privacyPolicyCheckbox!: ElementRef;
-
-  isCheckboxChecked = signal<boolean>(false);
-
-  checkboxSymbolName = computed(() => this.isCheckboxChecked() ? 'select_check_box' : 'check_box_outline_blank');
-  
-  clickCheckbox() {
-    this.privacyPolicyCheckbox.nativeElement.checked = !this.privacyPolicyCheckbox.nativeElement.checked;
-    this.isCheckboxChecked.set(!this.isCheckboxChecked());
-  }
+  @ViewChild('signupForm') signupForm!: HTMLFormElement;
 
   get isPasswordAMatch() {
-    if (this.formData.password.length === this.formData.passwordForConfirmation.length) {
+    if (this.formData.passwordForConfirmation.length >= 8) {
       return this.formData.password === this.formData.passwordForConfirmation;
     } else {
       return true;
     }
   }
 
-  onSubmit(ngForm: NgForm) {
-    if (ngForm.submitted && ngForm.valid && this.isPasswordAMatch) {
-      console.log(this.formData);
+  get showCheckboxError() {
+    if (this.signupForm) {
+      return this.signupForm['submitted'] && !this.formData.checked;
+    } else {
+      return false;
+    }
+  }
+
+  async onSubmit(ngForm: NgForm) {
+    if (ngForm.submitted && ngForm.valid && this.isPasswordAMatch && !this.isFormDisabled && this.formData.checked) {
+      this.isFormDisabled = true;
+      try {
+        await this.authService.createUser(this.formData.email, this.formData.password);
+      } catch (error) {
+        this.hasSignInFailed = true;
+        this.isFormDisabled = false;
+      }
     }
   }
 }

@@ -32,7 +32,7 @@
     @else { &#8203; }
   </div>
   <div class="login-checkbox-outer-container">
-    <app-checkbox name="checkbox" [(ngModel)]="formData.checked"></app-checkbox>
+    <app-checkbox name="checkbox" [(ngModel)]="formData.checked" (ngModelChange)="rememberMe($event)"></app-checkbox>
     <label for="login-checkbox" class="login-checkbox-label">Remember me</label>
   </div>
   <div class="login-signup-btn-container">

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CheckboxComponent } from '../../../shared/checkbox/checkbox.component';
+import { AuthService } from '../../../core/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +14,9 @@ import { CheckboxComponent } from '../../../shared/checkbox/checkbox.component';
 })
 export class LoginComponent {
 
+  // private environmentInjector = inject(EnvironmentInjector);
+  private authService = inject(AuthService);
+
   formData = {
     email: '',
     password: '',
@@ -21,12 +25,23 @@ export class LoginComponent {
 
   isError: boolean = false;
 
-  onSubmit(ngForm: NgForm) {
+  async onSubmit(ngForm: NgForm) {
     if (ngForm.submitted && ngForm.valid) {
-      console.log(this.formData);
-      ngForm.resetForm();
+      try {
+        // runInInjectionContext(this.environmentInjector, async () => {
+        //   const authService = inject(AuthService);
+        //   await authService.signIn(this.formData.email, this.formData.password);
+        // })
+        await this.authService.signIn(this.formData.email, this.formData.password);
+      } catch (error) {
+        this.isError = true;
+      }
     } else {
       this.isError = true;
     }
+  }
+
+  rememberMe(shouldRemember: boolean) {
+    this.authService.rememberMe(shouldRemember);
   }
 }
