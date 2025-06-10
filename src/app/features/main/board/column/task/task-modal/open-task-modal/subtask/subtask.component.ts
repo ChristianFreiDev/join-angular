@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { CheckboxComponent } from '../../../../../../../../shared/checkbox/checkbox.component';
 import { FormsModule } from '@angular/forms';
+import { DataService } from '../../../../../../../../core/data/data.service';
 
 @Component({
   selector: 'app-subtask',
@@ -10,9 +11,11 @@ import { FormsModule } from '@angular/forms';
 })
 export class SubtaskComponent {
   @Input() subtask!: any;
+  @Input() taskId!: string;
+  dataService = inject(DataService);
 
   selectOrDeselectSubtask() {
-    this.subtask.done = !this.subtask.done;
+    this.dataService.selectOrDeselectSubtask(this.taskId, this.subtask.id)
   }
 }
 

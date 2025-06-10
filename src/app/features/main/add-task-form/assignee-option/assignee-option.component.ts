@@ -23,11 +23,14 @@ export class AssigneeOptionComponent {
 
   initials: string = 'G';
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.initials = getInitials(this.assignee.name);
   }
 
-  toggleAssignment() {
+  /**
+   * This method selects or deselect a contact in the list of assignee options.
+   */
+  toggleAssignment(): void {
     this.isAssigned = !this.isAssigned;
     if (this.isAssigned) {
       this.selectEvent.emit(this.assignee.id);

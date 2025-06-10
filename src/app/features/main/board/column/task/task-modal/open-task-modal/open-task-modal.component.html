@@ -33,7 +33,7 @@
         <span>Subtasks</span>
         <div class="open-task-subtasks">
             @for (subtask of data.subtasks; track $index) {
-                <app-subtask [subtask]="subtask"></app-subtask>
+                <app-subtask [subtask]="subtask" [taskId]="data.id"></app-subtask>
             }
         </div>
     </div>

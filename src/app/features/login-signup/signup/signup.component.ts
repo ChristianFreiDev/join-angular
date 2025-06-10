@@ -1,4 +1,9 @@
-import { Component, computed, ElementRef, inject, signal, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  inject,
+  ViewChild,
+} from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/auth/auth.service';
@@ -10,11 +15,10 @@ import { CheckboxComponent } from '../../../shared/checkbox/checkbox.component';
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss',
   host: {
-    class: 'basic-card login-signup-card'
-  }
+    class: 'basic-card login-signup-card',
+  },
 })
 export class SignupComponent {
-
   authService = inject(AuthService);
   router = inject(Router);
 
@@ -23,8 +27,8 @@ export class SignupComponent {
     email: '',
     password: '',
     passwordForConfirmation: '',
-    checked: false
-  }
+    checked: false,
+  };
 
   isFormDisabled: boolean = false;
   hasSignInFailed: boolean = false;
@@ -32,6 +36,9 @@ export class SignupComponent {
   @ViewChild('privacyPolicyCheckbox') privacyPolicyCheckbox!: ElementRef;
   @ViewChild('signupForm') signupForm!: HTMLFormElement;
 
+  /**
+   * This getter determines whether the two entered passwords match.
+   */
   get isPasswordAMatch() {
     if (this.formData.passwordForConfirmation.length >= 8) {
       return this.formData.password === this.formData.passwordForConfirmation;
@@ -40,6 +47,9 @@ export class SignupComponent {
     }
   }
 
+  /**
+   * This getter shows a checkbox error when necessary.
+   */
   get showCheckboxError() {
     if (this.signupForm) {
       return this.signupForm['submitted'] && !this.formData.checked;
@@ -48,11 +58,23 @@ export class SignupComponent {
     }
   }
 
-  async onSubmit(ngForm: NgForm) {
-    if (ngForm.submitted && ngForm.valid && this.isPasswordAMatch && !this.isFormDisabled && this.formData.checked) {
+  /**
+   * This method submits the form or displays an error message.
+   */
+  async onSubmit(ngForm: NgForm): Promise<void> {
+    if (
+      ngForm.submitted &&
+      ngForm.valid &&
+      this.isPasswordAMatch &&
+      !this.isFormDisabled &&
+      this.formData.checked
+    ) {
       this.isFormDisabled = true;
       try {
-        await this.authService.createUser(this.formData.email, this.formData.password);
+        await this.authService.createUser(
+          this.formData.email,
+          this.formData.password
+        );
       } catch (error) {
         this.hasSignInFailed = true;
         this.isFormDisabled = false;

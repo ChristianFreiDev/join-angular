@@ -11,24 +11,28 @@ import { getInitials } from '../../../core/utils/user-utils';
 
 @Component({
   selector: 'app-add-task-form',
-  imports: [CommonModule, FormsModule, EditableSubtaskComponent, AssigneeOptionComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    EditableSubtaskComponent,
+    AssigneeOptionComponent,
+  ],
   templateUrl: './add-task-form.component.html',
-  styleUrl: './add-task-form.component.scss'
+  styleUrl: './add-task-form.component.scss',
 })
 export class AddTaskFormComponent {
   dataService = inject(DataService);
-  constructor(private route: ActivatedRoute) {}
 
   emptyTask: Task = {
-        title: '',
-        description: '',
-        id: '',
-        assigneeIds: [],
-        dueDate: '',
-        priority: 'Medium',
-        category: '',
-        status: 'To do',
-        subtasks: []
+    title: '',
+    description: '',
+    id: '',
+    assigneeIds: [],
+    dueDate: '',
+    priority: 'Medium',
+    category: '',
+    status: 'To do',
+    subtasks: [],
   };
 
   @Input() taskData: Task = { ...this.emptyTask };
@@ -38,65 +42,99 @@ export class AddTaskFormComponent {
 
   isShowingContacts: boolean = false;
 
-  assignees = computed(() => this.dataService.contacts().filter((contact: Contact) => this.taskData.assigneeIds.includes(contact.id)));
-  
-  clickPriorityButton(buttonName: 'Urgent' | 'Medium' | 'Low') {
-    this.taskData.priority = buttonName;
-    console.log(this.taskData);
+  assignees = computed(() =>
+    this.dataService
+      .contacts()
+      .filter((contact: Contact) =>
+        this.taskData.assigneeIds.includes(contact.id)
+      )
+  );
+
+  constructor(private route: ActivatedRoute) {}
+
+  ngOnInit(): void {
+    this.route.queryParams.subscribe((params) => {
+      const status = params['status'];
+      if (status) {
+        this.taskData.status = status;
+      }
+    });
   }
 
-  ngOnInit() {
-    this.route.queryParams
-      .subscribe(params => {
-        const status = params['status'];
-        if (status) {
-          this.taskData.status = status;
-        }
-      });
+  /**
+   * This method changes the priority when a priority button is clicked.
+   */
+  clickPriorityButton(buttonName: 'Urgent' | 'Medium' | 'Low'): void {
+    this.taskData.priority = buttonName;
   }
 
   getInitials = getInitials;
 
-  resetForm() {
+  /**
+   * This method sets the form data.
+   */
+  resetForm(): void {
     this.taskData = { ...this.emptyTask };
   }
 
-  isAssigned(contact: Contact) {
+  /**
+   * This method determines whether a contact is included in the list of assignees.
+   */
+  isAssigned(contact: Contact): boolean {
     return this.taskData.assigneeIds.includes(contact.id);
   }
 
-  addSubtask() {
-   if (this.newSubtaskTitle !== '') {
-     this.taskData.subtasks.push({
-      id: self.crypto.randomUUID(),
-      title: this.newSubtaskTitle,
-      done: false
-    });
-    this.newSubtaskTitle = '';
-   }
+  /**
+   * This method adds a subtask with a random ID.
+   */
+  addSubtask(): void {
+    if (this.newSubtaskTitle !== '') {
+      this.taskData.subtasks.push({
+        id: self.crypto.randomUUID(),
+        title: this.newSubtaskTitle,
+        done: false,
+      });
+      this.newSubtaskTitle = '';
+    }
   }
 
-  deleteSubtask(index: number) {
+  /**
+   * This method deletes a subtask.
+   */
+  deleteSubtask(index: number): void {
     this.taskData.subtasks.splice(index, 1);
   }
 
-  searchContacts(inputValue: string) {
-    this.dataService.filterContacts(inputValue);
+  /**
+   * This method sets the input value for filtering the contacts.
+   */
+  searchContacts(inputValue: string): void {
+    this.dataService.contactFilterInputValue.set(inputValue);
   }
 
-  selectContact(id: string) {
+  /**
+   * This method selects a contact by adding its ID to the list of assignee IDs.
+   */
+  selectContact(id: string): void {
     this.taskData.assigneeIds.push(id);
   }
 
-  deselectContact(id: string) {
-    const index = this.taskData.assigneeIds.findIndex(assigneeId => assigneeId === id);
+  /**
+   * This method deselects a contact by removing its ID from the list of assignee IDs.
+   */
+  deselectContact(id: string): void {
+    const index = this.taskData.assigneeIds.findIndex(
+      (assigneeId) => assigneeId === id
+    );
     if (index !== -1) {
       this.taskData.assigneeIds.splice(index, 1);
     }
   }
 
-  submitForm() {
-    console.log(this.taskData);
+  /**
+   * This method submits the form by updating or adding a task depending on whether an existing task is being edited or not.
+   */
+  submitForm(): void {
     if (this.isEditing) {
       this.dataService.updateTask(this.taskData, this.taskData.id);
     } else {

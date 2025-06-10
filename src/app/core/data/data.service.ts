@@ -1,4 +1,5 @@
 import {
+  computed,
   EnvironmentInjector,
   inject,
   Injectable,
@@ -18,6 +19,7 @@ import {
   DocumentData,
   Firestore,
   onSnapshot,
+  setDoc,
   Unsubscribe,
   updateDoc,
   WithFieldValue,
@@ -34,12 +36,15 @@ export class DataService implements OnDestroy {
   unsubContacts!: Unsubscribe;
 
   tasks = signal<Task[]>(offlineTasks);
-  filteredTasks = signal<Task[]>(this.tasks());
-
+  taskFilterInputValue = signal<string>('');
+  filteredTasks = computed(() => this.filterTasks(this.taskFilterInputValue()));
   contacts = signal<Contact[]>(offlineContacts);
-  filteredContacts = signal<Contact[]>(this.contacts());
+  contactFilterInputValue = signal<string>('');
+  filteredContacts = computed(() => this.filterContacts(this.contactFilterInputValue()));
+  selectedContact = signal<Contact | undefined>(undefined);
 
   constructor() {
+    // this.addDummyData();
     this.unsubTasks = this.subFirebaseCollection<Task>('tasks', this.tasks);
     this.unsubContacts = this.subFirebaseCollection<Contact>(
       'contacts',
@@ -52,7 +57,19 @@ export class DataService implements OnDestroy {
   }
 
   /**
-   * This function unsubscribes from the tasks and the contacts if the subscriptions exist.
+   * This method adds dummy data to the database.
+   */
+  addDummyData(): void {
+    this.tasks().forEach((task) => {
+      this.addTask(task);
+    });
+    this.contacts().forEach((contact) => {
+      this.addContact(contact);
+    });
+  }
+
+  /**
+   * This method unsubscribes from the tasks and the contacts if the subscriptions exist.
    */
   unsub(): void {
     if (this.unsubTasks) {
@@ -64,7 +81,7 @@ export class DataService implements OnDestroy {
   }
 
   /**
-   * This function subscribes to a collection of a certain type and stores the results in a signal.
+   * This method subscribes to a collection of a certain type and stores the results in a signal.
    */
   subFirebaseCollection<Type>(
     coll: string,
@@ -85,18 +102,26 @@ export class DataService implements OnDestroy {
   }
 
   /**
-   * This function adds an item to a certain collection.
+   * This method adds an item to a certain collection.
    */
   async addItem(
     item: WithFieldValue<DocumentData>,
     coll: string
   ): Promise<string | undefined> {
     try {
-      const docRef = await runInInjectionContext(
-        this.environmentInjector,
-        async () => await addDoc(collection(this.db, coll), item)
-      );
-      return docRef.id;
+      if (item['id']) {
+        await runInInjectionContext(
+          this.environmentInjector,
+          async () => await setDoc(doc(this.db, coll, item['id']), item)
+        );
+        return item['id'];
+      } else {
+        const docRef = await runInInjectionContext(
+          this.environmentInjector,
+          async () => await addDoc(collection(this.db, coll), item)
+        );
+        return docRef.id;
+      }
     } catch (error) {
       console.error(error);
       return undefined;
@@ -104,7 +129,7 @@ export class DataService implements OnDestroy {
   }
 
   /**
-   * This function changes an item with a certain id in a certain collection.
+   * This method changes an item with a certain id in a certain collection.
    */
   async updateItem(data: any, coll: string, id: string): Promise<void> {
     try {
@@ -118,7 +143,7 @@ export class DataService implements OnDestroy {
   }
 
   /**
-   * This function removes an item with a certain id from a certain collection.
+   * This method removes an item with a certain id from a certain collection.
    */
   async deleteItem(coll: string, id: string): Promise<void> {
     try {
@@ -132,81 +157,117 @@ export class DataService implements OnDestroy {
   }
 
   /**
-   * This function adds a task to the tasks collection.
+   * This method adds a task to the tasks collection.
    */
   async addTask(task: Task): Promise<string | undefined> {
     return await this.addItem(task, 'tasks');
   }
 
   /**
-   * This function adds a contact to the contacts collection.
+   * This method adds a contact to the contacts collection.
    */
   async addContact(contact: Contact): Promise<string | undefined> {
     return await this.addItem(contact, 'contacts');
   }
 
   /**
-   * This function changes a task with a certain id based on some data.
+   * This method changes a task with a certain id based on some data.
    */
   async updateTask(taskData: any, taskId: string): Promise<void> {
     return await this.updateItem(taskData, 'tasks', taskId);
   }
 
   /**
-   * This function changes a contact with a certain id based on some data.
+   * This method selects or deselects a subtask.
    */
-  async updateContact(contactData: any, taskId: string): Promise<void> {
-    return await this.updateItem(contactData, 'contacts', taskId);
+  async selectOrDeselectSubtask(taskId: string, subtaskId: string): Promise<void> {
+    const task = this.tasks().find((task) => task.id === taskId);
+    if (task) {
+      const subtask = task.subtasks.find((subtask) => subtask.id === subtaskId);
+      if (subtask) {
+        subtask.done = !subtask.done;
+      }
+      return await this.updateTask(task, taskId);
+    }
   }
 
   /**
-   * This function removes a task with a certain id.
+   * This method changes a contact with a certain id based on some data.
+   */
+  async updateContact(contactData: any, contactId: string): Promise<void> {
+    return await this.updateItem(contactData, 'contacts', contactId);
+  }
+
+  /**
+   * This method removes a task with a certain id.
    */
   async deleteTask(taskId: string): Promise<void> {
     return await this.deleteItem('tasks', taskId);
   }
 
   /**
-   * This function removes a contact with a certain id.
+   * This method removes a contact from all tasks.
+   */
+  async deleteContactFromAllTasks(contactId: string): Promise<void> {
+    try {
+      this.tasks().forEach((task) => {
+        const index = task.assigneeIds.indexOf(contactId);
+        if (index !== -1) {
+          task.assigneeIds.splice(index, 1);
+        }
+        this.updateTask(task, task.id);
+      });
+    } catch (error) {
+      console.error(error);
+      return Promise.reject('Contact could not be deleted from all tasks.');
+    }
+  }
+
+  /**
+   * This method removes a contact with a certain id.
    */
   async deleteContact(contactId: string): Promise<void> {
-    return await this.deleteItem('contacts', contactId);
+    try {
+      const result = await this.deleteItem('contacts', contactId);
+      await this.deleteContactFromAllTasks(contactId);
+      this.selectedContact.set(undefined);
+      return result;
+    } catch (error) {
+      console.error(error);
+      return Promise.reject('Contact could not be deleted.');
+    }
   }
 
   /**
-   * This function filters the tasks based on some input string.
+   * This method filters the tasks based on some input string.
    */
-  filterTasks(inputValue: string): void {
+  filterTasks(inputValue: string): Task[] {
     if (inputValue === '') {
-      this.filteredTasks.set(this.tasks());
+      return this.tasks();
     } else {
-      this.filteredTasks.set(
-        this.tasks().filter(
-          (task) =>
-            task.title.toLowerCase().includes(inputValue.toLowerCase()) ||
-            task.description.toLowerCase().includes(inputValue.toLowerCase())
-        )
+      return this.tasks().filter(
+        (task) =>
+          task.title.toLowerCase().includes(inputValue.toLowerCase()) ||
+          task.description.toLowerCase().includes(inputValue.toLowerCase())
       );
     }
   }
 
   /**
-   * This function filters the contacts based on some input string.
+   * This method filters the contacts based on some input string.
    */
-  filterContacts(inputValue: string): void {
+  filterContacts(inputValue: string): Contact[] {
     if (inputValue === '') {
-      this.filteredContacts.set(this.contacts());
+      return this.contacts();
     } else {
-      this.filteredContacts.set(
-        this.contacts().filter((contact) =>
-          contact.name.toLowerCase().includes(inputValue.toLowerCase())
-        )
+      return this.contacts().filter((contact) =>
+        contact.name.toLowerCase().includes(inputValue.toLowerCase())
       );
     }
   }
 
   /**
-   * This function returns all contacts that match the assignee IDs.
+   * This method returns all contacts that match the assignee IDs.
    */
   getAssignees(assigneeIds: string[]): Contact[] {
     return this.contacts().filter((item: Contact) =>

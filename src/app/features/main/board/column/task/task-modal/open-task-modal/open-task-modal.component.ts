@@ -28,19 +28,33 @@ export class OpenTaskModalComponent {
 
   private dialogRef = inject(DialogRef);
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.assignees = this.dataService.getAssignees(this.data.assigneeIds);
   }
 
-  deleteTask() {
+  /**
+   * This method deletes a task.
+   */
+  async deleteTask(): Promise<void> {
+    try {
+      await this.dataService.deleteTask(this.data.id);
+      this.dialogRef?.close();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  /**
+   * This method closes the modal.
+   */
+  closeModal(): void {
     this.dialogRef?.close();
   }
 
-  closeModal() {
-    this.dialogRef?.close();
-  }
-
-  editTask() {
+  /**
+   * This method starts the editing process for a task.
+   */
+  editTask(): void {
     this.editTaskEvent.emit(true);
   }
 }

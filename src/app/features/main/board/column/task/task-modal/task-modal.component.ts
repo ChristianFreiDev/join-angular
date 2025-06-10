@@ -8,23 +8,40 @@ import { EditTaskModalComponent } from './edit-task-modal/edit-task-modal.compon
   selector: 'app-task-modal',
   imports: [OpenTaskModalComponent, EditTaskModalComponent],
   templateUrl: './task-modal.component.html',
-  styleUrl: './task-modal.component.scss'
+  styleUrl: './task-modal.component.scss',
 })
 export class TaskModalComponent {
   clonedData!: Task;
-  constructor(@Inject(DIALOG_DATA) public data: Task) {
-    this.clonedData = { ...this.data };
-   }
 
   private dialogRef = inject(DialogRef);
 
   isBeingEdited = false;
 
-  closeModal() {
+  constructor(@Inject(DIALOG_DATA) public data: Task) {
+    this.cloneData();
+  }
+
+  /**
+   * This method clones the task data so that the data is only changed in the database when clicking "OK" to confirm after editing a task.
+   * Only selecting or deselecting a subtask is immediate (desired behavior).
+   */
+  cloneData(): void {
+    this.clonedData = { ...this.data };
+    this.clonedData.assigneeIds = [...this.data.assigneeIds];
+    this.clonedData.subtasks = [...this.data.subtasks];
+  }
+
+  /**
+   * This method closes the modal.
+   */
+  closeModal(): void {
     this.dialogRef?.close();
   }
 
-  editTask() {
+  /**
+   * This method starts the editing process for a task.
+   */
+  editTask(): void {
     this.isBeingEdited = true;
   }
 }

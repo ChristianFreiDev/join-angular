@@ -29,28 +29,11 @@ export class TaskComponent {
     if (this.taskData.priority === 'Medium') {
       return 'equal';
     } else {
-      return 'double_arrow'
+      return 'double_arrow';
     }
   }
 
-  createTaskDescriptionPreview(taskDescription: string) {
-    let result = '';
-    for (let i = 0; i < taskDescription.length; i++) {
-      let character = taskDescription[i];
-      if ((character === ' ' && i > 35) || i > 55) {
-        if (taskDescription.length > i) {
-          return result + '...';
-        } else {
-          return result;
-        }
-      } else {
-        result += character;
-      }
-    }
-    return result;
-  }
-
-  ngOnInit() {
+  ngOnChanges(): void {
     this.assignees = this.dataService
       .getAssignees(this.taskData.assigneeIds)
       .map((assignee) => {
@@ -67,7 +50,30 @@ export class TaskComponent {
       (this.amountOfDoneSubtasks / this.taskData.subtasks.length) * 100;
   }
 
-  openDialog() {
+  /**
+   * This method creates a short preview of the task description.
+   */
+  createTaskDescriptionPreview(taskDescription: string): string {
+    let result = '';
+    for (let i = 0; i < taskDescription.length; i++) {
+      let character = taskDescription[i];
+      if ((character === ' ' && i > 35) || i > 55) {
+        if (taskDescription.length > i) {
+          return result + '...';
+        } else {
+          return result;
+        }
+      } else {
+        result += character;
+      }
+    }
+    return result;
+  }
+
+  /**
+   * This method opens a dialog.
+   */
+  openDialog(): void {
     this.dialog.open(TaskModalComponent, {
       data: this.taskData,
     });

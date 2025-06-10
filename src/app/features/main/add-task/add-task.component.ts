@@ -10,11 +10,17 @@ import { AddTaskFormComponent } from "../add-task-form/add-task-form.component";
 export class AddTaskComponent {
   @ViewChild(AddTaskFormComponent) form!: AddTaskFormComponent;
 
-  resetForm() {
+  /**
+   * This method resets the form by calling the appropriate method in the child component.
+   */
+  resetForm(): void {
     this.form.resetForm();
   }
 
-  submitForm() {
+  /**
+   * This method submits the form by calling the appropriate method in the child component.
+   */
+  submitForm(): void {
     this.form.submitForm();
   }
 }

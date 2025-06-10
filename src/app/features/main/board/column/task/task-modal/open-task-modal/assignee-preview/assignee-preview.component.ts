@@ -13,7 +13,7 @@ export class AssigneePreviewComponent {
   @Input() assignee!: Contact;
   initials: string = 'G';
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.initials = getInitials(this.assignee.name);
   }
 }

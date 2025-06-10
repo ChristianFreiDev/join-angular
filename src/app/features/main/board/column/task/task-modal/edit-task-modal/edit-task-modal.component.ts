@@ -7,7 +7,7 @@ import { AddTaskFormComponent } from '../../../../../add-task-form/add-task-form
   selector: 'app-edit-task-modal',
   imports: [AddTaskFormComponent],
   templateUrl: './edit-task-modal.component.html',
-  styleUrl: './edit-task-modal.component.scss'
+  styleUrl: './edit-task-modal.component.scss',
 })
 export class EditTaskModalComponent {
   @Input() data!: Task;
@@ -15,11 +15,17 @@ export class EditTaskModalComponent {
 
   private dialogRef = inject(DialogRef);
 
-  closeModal() {
+  /**
+   * This method closes the modal.
+   */
+  closeModal(): void {
     this.dialogRef?.close();
   }
 
-  submitForm() {
+  /**
+   * This method submits the form and closes the modal.
+   */
+  submitForm(): void {
     this.form.submitForm();
     this.closeModal();
   }

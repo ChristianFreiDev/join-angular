@@ -22,7 +22,7 @@
       <span class="material-symbols-rounded contact-modal-icon">person</span>
     }
   </div>
-  <form class="contact-modal-form">
+  <form #contactModalForm="ngForm" class="contact-modal-form" (ngSubmit)="saveContact(contactModalForm)">
     <div class="contact-modal-form-inputs">
       <div class="input-container">
         <input type="text" class="input input-padding-size7" placeholder="Name" name="name" [(ngModel)]="contact.name" />
@@ -39,11 +39,11 @@
     </div>
     <div class="contact-modal-form-buttons">
         @if (data.isEditing) {
-            <button class="btn btn-light btn-padding-size7">Delete</button>
-            <button class="btn btn-dark btn-padding-size7">Save</button>
+            <button type="button" class="btn btn-light btn-padding-size7" (click)="deleteContact()" [disabled]="isFormDisabled">Delete</button>
+            <button class="btn btn-dark btn-padding-size7" [disabled]="isFormDisabled">Save</button>
         } @else {
-            <button class="btn btn-light btn-padding-size7">Cancel</button>
-            <button class="btn btn-dark btn-padding-size7">Create contact</button>
+            <button class="btn btn-light btn-padding-size7" [disabled]="isFormDisabled">Cancel</button>
+            <button class="btn btn-dark btn-padding-size7" [disabled]="isFormDisabled">Create contact</button>
         }
     </div>
   </form>

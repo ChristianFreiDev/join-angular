@@ -4,6 +4,7 @@ import { Contact } from '../../../../core/data/models/contact.interface';
 import { CommonModule } from '@angular/common';
 import { Dialog } from '@angular/cdk/dialog';
 import { ContactModalComponent } from '../contact-modal/contact-modal.component';
+import { DataService } from '../../../../core/data/data.service';
 
 @Component({
   selector: 'app-contact-profile',
@@ -13,6 +14,7 @@ import { ContactModalComponent } from '../contact-modal/contact-modal.component'
 })
 export class ContactProfileComponent {
   dialog = inject(Dialog);
+  dataService = inject(DataService);
   @Input() contact!: Signal<Contact | undefined>;
 
   initials: Signal<string> = computed(() => {
@@ -24,6 +26,9 @@ export class ContactProfileComponent {
     }
   });
 
+  /**
+   * This method opens a dialog for editing a contact.
+   */
   editContact(): void {
     this.dialog.open(ContactModalComponent, {
       data: {
@@ -31,5 +36,15 @@ export class ContactProfileComponent {
         isEditing: true,
       },
     });
+  }
+
+  /**
+   * This method removes a contact.
+   */
+  deleteContact(): void {
+    const contact = this.contact();
+    if (contact) {
+      this.dataService.deleteContact(contact.id);
+    }
   }
 }

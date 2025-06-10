@@ -1,4 +1,4 @@
-import { Component, inject, signal, Signal } from '@angular/core';
+import { Component, inject, Signal } from '@angular/core';
 import { DataService } from '../../../core/data/data.service';
 import { Contact } from '../../../core/data/models/contact.interface';
 import { ContactComponent } from './contact/contact.component';
@@ -16,12 +16,18 @@ export class ContactsComponent {
   dataService = inject(DataService);
   dialog = inject(Dialog);
   contacts: Signal<Contact[]> = this.dataService.contacts;
-  selectedContact = signal<Contact | undefined>(undefined);
+  selectedContact = this.dataService.selectedContact;
 
-  selectContact(contact: Contact): void {
-    this.selectedContact.set(contact);
+  /**
+   * This method selects or deselects (when passing in "undefined" as a parameter) a contact.
+   */
+  selectContact(contact: Contact | undefined): void {
+    this.dataService.selectedContact.set(contact);
   }
 
+  /**
+   * This method adds a contact.
+   */
   addContact(): void {
     this.dialog.open(ContactModalComponent, {
       data: {

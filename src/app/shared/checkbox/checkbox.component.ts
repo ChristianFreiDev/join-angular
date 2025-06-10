@@ -1,7 +1,4 @@
-import {
-  Component,
-  Input,
-} from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {
   ControlValueAccessor,
   FormsModule,
@@ -19,11 +16,14 @@ import {
       multi: true,
       useExisting: CheckboxComponent,
     },
-  ]
+  ],
 })
 export class CheckboxComponent implements ControlValueAccessor {
   onChange: any = () => {};
   onTouched: any = () => {};
+
+  @Input() checked: boolean = false;
+  @Input() required: boolean = false;
 
   registerOnChange(fn: any): void {
     this.onChange = fn;
@@ -33,18 +33,21 @@ export class CheckboxComponent implements ControlValueAccessor {
     this.onTouched = fn;
   }
 
-  @Input() checked: boolean = false;
-  @Input() required: boolean = false;
-
   writeValue(checked: boolean): void {
     this.checked = checked;
   }
 
+  /**
+   * This getter returns the intials of a contact name.
+   */
   clickCheckbox(): void {
     this.checked = !this.checked;
     this.onChange(this.checked);
   }
 
+  /**
+   * This getter returns appropriate string for the name of the checkbox symbol.
+   */
   get checkboxSymbolName(): 'select_check_box' | 'check_box_outline_blank' {
     return this.checked ? 'select_check_box' : 'check_box_outline_blank';
   }

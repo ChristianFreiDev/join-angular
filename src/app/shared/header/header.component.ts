@@ -7,10 +7,9 @@ import { DataService } from '../../core/data/data.service';
   selector: 'app-header',
   imports: [RouterLink],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+  styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-
   dataService = inject(DataService);
   authService = inject(AuthService);
 
@@ -18,12 +17,18 @@ export class HeaderComponent {
   lastNameInitial: string = 'B';
   isDropDownMenuOpen: boolean = false;
 
-  logOut() {
+  /**
+   * This method logs out the user.
+   */
+  logOut(): void {
     this.dataService.unsub();
     this.authService.logOut();
   }
 
-  showOrHideDropDownMenu() {
+  /**
+   * This method toggles the dropdown menu.
+   */
+  showOrHideDropDownMenu(): void {
     this.isDropDownMenuOpen = !this.isDropDownMenuOpen;
   }
 }

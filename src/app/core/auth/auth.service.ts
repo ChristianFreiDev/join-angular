@@ -32,9 +32,9 @@ export class AuthService {
   }
 
   /**
-   * This function sets the persistence based on whether the user wants to be remembered or not.
+   * This method sets the persistence based on whether the user wants to be remembered or not.
    */
-  rememberMe(shouldRemember: boolean) {
+  rememberMe(shouldRemember: boolean): void {
     if (shouldRemember) {
       this.auth.setPersistence(browserLocalPersistence);
     } else {
@@ -43,7 +43,7 @@ export class AuthService {
   }
 
   /**
-   * This function signs in a user.
+   * This method signs in a user.
    * runInInjectionContext is used to prevent a Firebase warning.
    */
   async signIn(email: string, password: string): Promise<void> {
@@ -59,7 +59,7 @@ export class AuthService {
   }
 
   /**
-   * This function creates a new user.
+   * This method creates a new user.
    * runInInjectionContext is used to prevent a Firebase warning.
    */
   async createUser(email: string, password: string): Promise<UserCredential> {
@@ -76,7 +76,7 @@ export class AuthService {
   }
 
   /**
-   * This function monitors the auth state and performs the appropriate actions when a user signs in or out.
+   * This method monitors the auth state and performs the appropriate actions when a user signs in or out.
    */
   async monitorAuthState(): Promise<void> {
     onAuthStateChanged(this.auth, (user) => {
@@ -91,8 +91,8 @@ export class AuthService {
   }
 
   /**
-   * This function signs out a user.
-   * All Firebase subscriptions must be unsubscribed before calling this function because an active subscription without auth will trigger an error.
+   * This method signs out a user.
+   * All Firebase subscriptions must be unsubscribed before calling this method because an active subscription without auth will trigger an error.
    * runInInjectionContext is used to prevent a Firebase warning.
    */
   async logOut(): Promise<void> {

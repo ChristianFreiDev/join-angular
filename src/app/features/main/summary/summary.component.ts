@@ -12,27 +12,27 @@ import { Task } from '../../../core/data/models/task.interface';
 export class SummaryComponent {
   dataService = inject(DataService);
 
-  numberOfTasksTodo: Signal<number> = computed(() => this.getNumberOfTasksWithStatus('To do'));
+  numberOfTasksTodo: Signal<number> = computed(() =>
+    this.getNumberOfTasksWithStatus('To do')
+  );
+
   numberOfTasksAwaitingFeedback: Signal<number> = computed(() =>
     this.getNumberOfTasksWithStatus('Await feedback')
   );
+
   numberOfTasksInProgress: Signal<number> = computed(() =>
     this.getNumberOfTasksWithStatus('In progress')
   );
-  numberOfTasksDone: Signal<number> = computed(() => this.getNumberOfTasksWithStatus('Done'));
+
+  numberOfTasksDone: Signal<number> = computed(() =>
+    this.getNumberOfTasksWithStatus('Done')
+  );
+
   numberOfUrgentTasks: Signal<number> = computed(
     () =>
       this.dataService.tasks().filter((task) => task.priority === 'Urgent')
         .length
   );
-
-  getTasksNotDoneWithDeadlinesInTheFuture(): Task[] {
-    return this.dataService
-      .tasks()
-      .filter(
-        (task) => task.status !== 'Done' && new Date() < new Date(task.dueDate)
-      );
-  }
 
   upcomingDeadline: Signal<boolean> = computed(
     () => this.getTasksNotDoneWithDeadlinesInTheFuture().length > 0
@@ -54,6 +54,20 @@ export class SummaryComponent {
     }
   });
 
+  /**
+   * This method returns the tasks that are not done yet and have a deadline in the future.
+   */
+  getTasksNotDoneWithDeadlinesInTheFuture(): Task[] {
+    return this.dataService
+      .tasks()
+      .filter(
+        (task) => task.status !== 'Done' && new Date() < new Date(task.dueDate)
+      );
+  }
+
+  /**
+   * This method returns the number of tasks with a certain status.
+   */
   getNumberOfTasksWithStatus(status: string): number {
     return this.dataService.tasks().filter((task) => task.status === status)
       .length;

@@ -36,8 +36,8 @@
     <label for="login-checkbox" class="login-checkbox-label">Remember me</label>
   </div>
   <div class="login-signup-btn-container">
-    <button class="btn btn-dark main-button btn-padding-size4">Log in</button>
-    <button class="btn btn-light main-button btn-padding-size4 btn-highlight">
+    <button class="btn btn-dark main-button btn-padding-size4" [disabled]="isFormDisabled">Log in</button>
+    <button class="btn btn-light main-button btn-padding-size4 btn-highlight" [disabled]="isFormDisabled">
       Guest Login
     </button>
   </div>
