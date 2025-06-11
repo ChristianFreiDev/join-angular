@@ -16,6 +16,9 @@ import {
   UserCredential,
 } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { DataService } from '../data/data.service';
+import { Contact } from '../data/models/contact.interface';
+import { getUserColor } from '../utils/user-utils';
 
 @Injectable({
   providedIn: 'root',
@@ -23,6 +26,7 @@ import { Router } from '@angular/router';
 export class AuthService {
   private auth = inject(Auth);
   private router = inject(Router);
+  private dataService = inject(DataService);
   private environmentInjector = inject(EnvironmentInjector);
   currentUserUid = signal<string | undefined>(undefined);
 
@@ -59,16 +63,26 @@ export class AuthService {
   }
 
   /**
-   * This method creates a new user.
+   * This method creates a new user and also adds the user to the list of contacts.
    * runInInjectionContext is used to prevent a Firebase warning.
    */
-  async createUser(email: string, password: string): Promise<UserCredential> {
+  async createUser(
+    name: string,
+    email: string,
+    password: string
+  ): Promise<void> {
     try {
-      return await runInInjectionContext(
+      const userCredential = await runInInjectionContext(
         this.environmentInjector,
         async () =>
           await createUserWithEmailAndPassword(this.auth, email, password)
       );
+      await this.dataService.addContact({
+        id: userCredential.user.uid,
+        name: name,
+        color: getUserColor(),
+        email: email,
+      });
     } catch (error) {
       console.error(error);
       return Promise.reject('User creation failed.');
@@ -85,7 +99,7 @@ export class AuthService {
         this.router.navigateByUrl('main/summary');
       } else {
         this.currentUserUid.set(undefined);
-        this.router.navigateByUrl('login');
+        // this.router.navigateByUrl('login');
       }
     });
   }

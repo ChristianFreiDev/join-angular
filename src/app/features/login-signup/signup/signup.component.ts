@@ -72,6 +72,7 @@ export class SignupComponent {
       this.isFormDisabled = true;
       try {
         await this.authService.createUser(
+          this.formData.name,
           this.formData.email,
           this.formData.password
         );
