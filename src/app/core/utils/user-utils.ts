@@ -1,5 +1,5 @@
 /**
- * This method returns all contacts that match the assignee IDs.
+ * This function returns all contacts that match the assignee IDs.
  */
 export function getInitials(name: string): string {
   let names = name.split(' ', 2);
