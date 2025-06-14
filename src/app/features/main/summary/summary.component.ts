@@ -54,6 +54,10 @@ export class SummaryComponent {
     }
   });
 
+  constructor() {
+    this.dataService.initSubscriptionsIfNecessary();
+  }
+
   /**
    * This method returns the tasks that are not done yet and have a deadline in the future.
    */

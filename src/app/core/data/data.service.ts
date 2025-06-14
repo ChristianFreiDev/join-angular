@@ -32,24 +32,34 @@ export class DataService implements OnDestroy {
   db = inject(Firestore);
   environmentInjector = inject(EnvironmentInjector);
 
-  unsubTasks!: Unsubscribe;
-  unsubContacts!: Unsubscribe;
+  unsubTasks: Unsubscribe | undefined;
+  unsubContacts: Unsubscribe | undefined;
 
-  tasks = signal<Task[]>(offlineTasks);
+  tasks = signal<Task[]>([]);
   taskFilterInputValue = signal<string>('');
   filteredTasks = computed(() => this.filterTasks(this.taskFilterInputValue()));
   contacts = signal<Contact[]>(offlineContacts);
   contactFilterInputValue = signal<string>('');
-  filteredContacts = computed(() => this.filterContacts(this.contactFilterInputValue()));
+  filteredContacts = computed(() =>
+    this.filterContacts(this.contactFilterInputValue())
+  );
   selectedContact = signal<Contact | undefined>(undefined);
 
   constructor() {
     // this.addDummyData();
-    this.unsubTasks = this.subFirebaseCollection<Task>('tasks', this.tasks);
-    this.unsubContacts = this.subFirebaseCollection<Contact>(
-      'contacts',
-      this.contacts
-    );
+  }
+
+  initSubscriptionsIfNecessary() {
+    if (this.unsubTasks === undefined) {
+      this.unsubTasks = this.subFirebaseCollection<Task>('tasks', this.tasks);
+      console.log('subbing tasks');
+    }
+    if (this.unsubContacts === undefined) {
+      this.unsubContacts = this.subFirebaseCollection<Contact>(
+        'contacts',
+        this.contacts
+      );
+    }
   }
 
   ngOnDestroy(): void {
@@ -74,9 +84,11 @@ export class DataService implements OnDestroy {
   unsub(): void {
     if (this.unsubTasks) {
       this.unsubTasks();
+      this.unsubTasks = undefined;
     }
     if (this.unsubContacts) {
       this.unsubContacts();
+      this.unsubContacts = undefined;
     }
   }
 
@@ -87,17 +99,19 @@ export class DataService implements OnDestroy {
     coll: string,
     arraySignal: WritableSignal<Type[]>
   ): Unsubscribe {
-    return onSnapshot(collection(this.db, coll), (querySnapshot) => {
-      try {
-        const items: Type[] = querySnapshot.docs.map((doc) => {
-          const item = doc.data();
-          item['id'] = doc.id;
-          return item as Type;
-        });
-        arraySignal.set(items);
-      } catch (error) {
-        console.error(error);
-      }
+    return runInInjectionContext(this.environmentInjector, () => {
+      return onSnapshot(collection(this.db, coll), (querySnapshot) => {
+        try {
+          const items: Type[] = querySnapshot.docs.map((doc) => {
+            const item = doc.data();
+            item['id'] = doc.id;
+            return item as Type;
+          });
+          arraySignal.set(items);
+        } catch (error) {
+          console.error(error);
+        }
+      });
     });
   }
 
@@ -180,7 +194,10 @@ export class DataService implements OnDestroy {
   /**
    * This method selects or deselects a subtask.
    */
-  async selectOrDeselectSubtask(taskId: string, subtaskId: string): Promise<void> {
+  async selectOrDeselectSubtask(
+    taskId: string,
+    subtaskId: string
+  ): Promise<void> {
     const task = this.tasks().find((task) => task.id === taskId);
     if (task) {
       const subtask = task.subtasks.find((subtask) => subtask.id === subtaskId);

@@ -13,6 +13,8 @@ export class HeaderComponent {
   dataService = inject(DataService);
   authService = inject(AuthService);
 
+  isUserLoggedIn = this.authService.isUserLoggedIn;
+
   firstNameInitial: string = 'A';
   lastNameInitial: string = 'B';
   isDropDownMenuOpen: boolean = false;

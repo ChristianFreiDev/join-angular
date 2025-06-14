@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnDestroy } from '@angular/core';
 import { HeaderComponent } from "../../shared/header/header.component";
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from '../../shared/navbar/navbar.component';
+import { DataService } from '../../core/data/data.service';
 
 @Component({
   selector: 'app-main',
@@ -9,6 +10,10 @@ import { NavbarComponent } from '../../shared/navbar/navbar.component';
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss'
 })
-export class MainComponent {
+export class MainComponent implements OnDestroy {
+  dataService = inject(DataService);
 
+  ngOnDestroy() {
+    this.dataService.unsub();
+  }
 }

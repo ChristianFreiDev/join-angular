@@ -1,7 +1,8 @@
-<a class="navbar-logo-link" routerLink="summary">
+<a class="navbar-logo-link" [routerLink]="isUserLoggedIn() ? 'summary' : '/login'">
   <img class="navbar-logo" src="img/large-join-logo-light.svg" alt="light Join logo" />
 </a>
-<div class="navbar-center-links-container">
+@if (isUserLoggedIn()) {
+  <div class="navbar-center-links-container">
   <a routerLink="summary">
     <span class="material-symbols-rounded">space_dashboard</span>
       <span>Summary</span>
@@ -19,6 +20,7 @@
       <span>Contacts</span>
   </a>
 </div>
+}
 <div class="navbar-privacy-and-legal-links-container">
   <a routerLink="privacy-policy">Privacy Policy</a>
   <a routerLink="legal-notice">Legal notice</a>

@@ -1,4 +1,5 @@
 import {
+  computed,
   EnvironmentInjector,
   inject,
   Injectable,
@@ -12,12 +13,10 @@ import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithEmailAndPassword,
-  signOut,
-  UserCredential,
+  signOut
 } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { DataService } from '../data/data.service';
-import { Contact } from '../data/models/contact.interface';
 import { getUserColor } from '../utils/user-utils';
 
 @Injectable({
@@ -29,6 +28,7 @@ export class AuthService {
   private dataService = inject(DataService);
   private environmentInjector = inject(EnvironmentInjector);
   currentUserUid = signal<string | undefined>(undefined);
+  isUserLoggedIn = computed(() => this.currentUserUid() !== undefined);
 
   constructor() {
     this.auth.setPersistence(browserSessionPersistence);
@@ -99,7 +99,10 @@ export class AuthService {
         this.router.navigateByUrl('main/summary');
       } else {
         this.currentUserUid.set(undefined);
-        // this.router.navigateByUrl('login');
+        const url = this.router.url;
+        if (url !== '/signup') {
+          this.router.navigateByUrl('login');
+        }
       }
     });
   }

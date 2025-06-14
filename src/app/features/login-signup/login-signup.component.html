@@ -3,15 +3,27 @@
 }
 <header>
     <img class="large-join-logo" [ngClass]="{'join-logo-animation': shouldPlayIntroAnimation}" src="/img/large-join-logo.svg" alt="large Join logo">
+    @if (isLogin) {
+        <div class="login-signup-link-container login-signup-link-container-desktop">
+            <span>Not a Join user?</span>
+            <button class="btn btn-dark btn-padding-size8" routerLink="/signup">Sign up</button>
+        </div>
+    }
 </header>
 <router-outlet></router-outlet>
+@if (isLogin) {
+    <div class="login-signup-link-container login-signup-link-container-mobile">
+        <span>Not a Join user?</span>
+        <button class="btn btn-dark btn-padding-size8" routerLink="/signup">Sign up</button>
+    </div>
+}
 <footer>
     <div class="footer-links-container">
         <div class="footer-link-container">
-            <a class="footer-link" routerLink="/privacy-policy">Privacy policy</a>
+            <a class="footer-link" routerLink="/main/privacy-policy">Privacy policy</a>
         </div>
         <div class="footer-link-container">
-            <a class="footer-link" routerLink="/legal-notice">Legal notice</a>
+            <a class="footer-link" routerLink="/main/legal-notice">Legal notice</a>
         </div>
     </div>
 </footer>

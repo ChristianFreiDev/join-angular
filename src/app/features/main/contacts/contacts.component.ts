@@ -18,6 +18,10 @@ export class ContactsComponent {
   contacts: Signal<Contact[]> = this.dataService.contacts;
   selectedContact = this.dataService.selectedContact;
 
+  constructor() {
+    this.dataService.initSubscriptionsIfNecessary();
+  }
+
   /**
    * This method selects or deselects (when passing in "undefined" as a parameter) a contact.
    */

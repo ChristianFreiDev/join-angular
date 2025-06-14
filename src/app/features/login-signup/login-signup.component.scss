@@ -122,10 +122,16 @@
 }
 
 header {
+    @include mixins.flex($jc: flex-end);
     flex-basis: 0;
     flex-grow: 1;
+    padding-top: 67px;
+    padding-right: 122px;
     width: 100%;
     min-height: 235px;
+    @media (max-width: 1200px) {
+        min-height: 152px;
+    }
     @media (max-width: 768px) {
         min-height: 152px;
     }
@@ -192,5 +198,31 @@ form {
     @media (max-width: 480px) {
         @include mixins.flex($ai: center, $dir: column);
         gap: 21px;
+    }
+}
+
+.login-signup-link-container {
+    @include mixins.flex($ai: center);
+    height: fit-content;
+    gap: 35px;
+}
+
+.login-signup-link-container-desktop {
+    @media (max-width: 1200px) {
+        display: none;
+    }
+}
+
+.login-signup-link-container-mobile {
+    padding-top: 77.5px;
+    display: none;
+    @media (max-width: 1200px) {
+        display: flex;
+    }
+    @media (max-width: 368px) {
+        gap: 24px;
+    }
+    @media (max-height: 840px) {
+        padding-top: 24px;
     }
 }

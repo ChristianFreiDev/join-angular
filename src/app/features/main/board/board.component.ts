@@ -19,4 +19,8 @@ export class BoardComponent {
   tasksInProgress = computed(() => this.tasks().filter(task => task.status === 'In progress'));
   tasksAwaitingFeedback = computed(() => this.tasks().filter(task => task.status === 'Await feedback'));
   tasksDone = computed(() => this.tasks().filter(task => task.status === 'Done'));
+
+  constructor() {
+    this.dataService.initSubscriptionsIfNecessary();
+  }
 }
