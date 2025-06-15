@@ -121,6 +121,17 @@ a {
   }
 }
 
+.navbar-login-link-container {
+  display: none;
+  padding-left: 40px;
+  @media (max-width: 1200px) {
+    @include mixins.flex($jc: flex-start, $ai: center);
+  }
+    @media (max-width: 768px) {
+    padding: unset;
+  }
+}
+
 .material-symbols-rounded {
   font-size: 30px;
 }
@@ -134,7 +145,7 @@ a {
     color: white;
     background-color: colors.$menu-hover;
   }
-  .navbar-privacy-and-legal-links-container a:hover {
+  .navbar-privacy-and-legal-links-container a:hover, .navbar-login-link-container a:hover {
     color: colors.$accent;
     font-weight: 700;
   }
