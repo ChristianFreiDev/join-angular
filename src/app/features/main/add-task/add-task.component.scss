@@ -11,6 +11,10 @@ h2 {
     margin-top: 24px;
     margin-bottom: 71px;
     flex-grow: 1;
+    @media (max-width: 1400px) {
+        gap: 16px;
+        @include mixins.flex($dir: column-reverse, $jc: space-between);
+    }
 }
 
 .add-task-buttons-container {

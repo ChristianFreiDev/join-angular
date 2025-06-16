@@ -4,8 +4,8 @@
   <div class="add-task-bottom">
     <div class="footnote"><span class="red-font-color">*</span>This field is required</div>
     <div class="add-task-buttons-container">
-      <button class="btn btn-padding-size6" (click)="resetForm()">Clear <span class="material-symbols-rounded">close</span></button>
-      <button class="btn btn-dark btn-padding-size6" (click)="submitForm()">Create task <span class="material-symbols-rounded">check</span></button>
+      <button class="btn btn-light btn-padding-size9" (click)="resetForm()">Clear <span class="material-symbols-rounded">close</span></button>
+      <button class="btn btn-dark btn-padding-size9" (click)="submitForm()" [disabled]="isFormDisabled">Create task <span class="material-symbols-rounded">check</span></button>
     </div>
   </div>
 </div>

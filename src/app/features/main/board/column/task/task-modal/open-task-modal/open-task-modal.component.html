@@ -1,51 +1,57 @@
 <div class="open-task-modal-header">
-    <div class="open-task-modal-category">{{ data.category }}</div>
-    <button class="btn-close">
-        <span class="material-symbols-rounded" (click)="closeModal()">close</span>
-    </button>
+  <div class="open-task-modal-category">{{ data.category }}</div>
+  <button class="btn-close">
+    <span class="material-symbols-rounded" (click)="closeModal()">close</span>
+  </button>
 </div>
 <div class="open-task-modal-content">
-    <h2 class="open-task-heading">{{ data.title }}</h2>
-    <div class="open-task-description">{{ data.description }}</div>
-    <div class="open-task-due-date-outer-container">
-            <div>Due date:</div>
-            <div class="open-task-due-date">{{ data.dueDate }}</div>
+  <h2 class="open-task-heading">{{ data.title }}</h2>
+  <div class="open-task-description">{{ data.description }}</div>
+  <div class="open-task-due-date-outer-container">
+    <div>Due date:</div>
+    <div class="open-task-due-date">{{ data.dueDate }}</div>
+  </div>
+  <div class="open-task-priority-outer-container">
+    <div>Priority:</div>
+    <div class="open-task-priority">
+      <span>{{ data.priority }}</span>
+      <span
+        class="material-symbols-rounded"
+        [class.urgent-priority-icon]="data.priority == 'Urgent'"
+        [class.medium-priority-icon]="data.priority == 'Medium'"
+        [class.low-priority-icon]="data.priority == 'Low'"
+        >{{ priorityIcon }}</span
+      >
     </div>
-    <div class="open-task-priority-outer-container">
-            <div>Priority:</div>
-            <div class="open-task-priority">
-                <span>{{ data.priority }}</span>
-                <span class="material-symbols-rounded"
-                [class.urgent-priority-icon]="data.priority == 'Urgent'"
-                [class.medium-priority-icon]="data.priority == 'Medium'"
-                [class.low-priority-icon]="data.priority == 'Low'">{{ priorityIcon }}</span>
-            </div>
+  </div>
+  @if (assignees.length > 0) {
+  <div class="open-task-assignees-outer-container">
+    <span>Assigned to:</span>
+    <div class="open-task-assignees">
+      @for (assignee of assignees; track assignee.id) {
+      <app-assignee-preview [assignee]="assignee"></app-assignee-preview>
+      }
     </div>
-    <div class="open-task-assignees-outer-container">
-        <span>Assigned to:</span>
-        <div class="open-task-assignees">
-            @for (assignee of assignees; track assignee.id) {
-                <app-assignee-preview [assignee]="assignee"></app-assignee-preview>
-            }
-        </div>
+  </div>
+  } @if (data.subtasks.length > 0) {
+  <div class="open-task-subtasks-outer-container">
+    <span>Subtasks</span>
+    <div class="open-task-subtasks">
+      @for (subtask of data.subtasks; track $index) {
+      <app-subtask [subtask]="subtask" [taskId]="data.id"></app-subtask>
+      }
     </div>
-    <div class="open-task-subtasks-outer-container">
-        <span>Subtasks</span>
-        <div class="open-task-subtasks">
-            @for (subtask of data.subtasks; track $index) {
-                <app-subtask [subtask]="subtask" [taskId]="data.id"></app-subtask>
-            }
-        </div>
-    </div>
-    <div class="open-task-buttons-container">
-        <button class="btn-transparent" (click)="deleteTask()">
-            <span class="material-symbols-rounded">delete</span>
-            <span>Delete</span>
-        </button>
-        <div class="open-task-button-separator"></div>
-        <button class="btn-transparent" (click)="editTask()">
-            <span class="material-symbols-rounded">edit</span>
-            <span>Edit</span>
-        </button>
-    </div>
+  </div>
+  }
+  <div class="open-task-buttons-container">
+    <button class="btn-transparent" (click)="deleteTask()">
+      <span class="material-symbols-rounded">delete</span>
+      <span>Delete</span>
+    </button>
+    <div class="open-task-button-separator"></div>
+    <button class="btn-transparent" (click)="editTask()">
+      <span class="material-symbols-rounded">edit</span>
+      <span>Edit</span>
+    </button>
+  </div>
 </div>

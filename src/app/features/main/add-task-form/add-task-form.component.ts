@@ -2,12 +2,13 @@ import { CommonModule } from '@angular/common';
 import { Component, computed, inject, Input } from '@angular/core';
 import { Task } from '../../../core/data/models/task.interface';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EditableSubtaskComponent } from './editable-subtask/editable-subtask.component';
 import { AssigneeOptionComponent } from './assignee-option/assignee-option.component';
 import { Contact } from '../../../core/data/models/contact.interface';
 import { DataService } from '../../../core/data/data.service';
 import { getInitials } from '../../../core/utils/user-utils';
+import { ClickOutsideDirective } from '../../../core/directives/click-outside.directive';
 
 @Component({
   selector: 'app-add-task-form',
@@ -16,12 +17,14 @@ import { getInitials } from '../../../core/utils/user-utils';
     FormsModule,
     EditableSubtaskComponent,
     AssigneeOptionComponent,
+    ClickOutsideDirective
   ],
   templateUrl: './add-task-form.component.html',
   styleUrl: './add-task-form.component.scss',
 })
 export class AddTaskFormComponent {
   dataService = inject(DataService);
+  router = inject(Router);
 
   emptyTask: Task = {
     title: '',
@@ -71,10 +74,12 @@ export class AddTaskFormComponent {
   getInitials = getInitials;
 
   /**
-   * This method sets the form data.
+   * This method resets the form data.
    */
   resetForm(): void {
     this.taskData = { ...this.emptyTask };
+    this.taskData.assigneeIds = [];
+    this.taskData.subtasks = [];
   }
 
   /**
@@ -117,6 +122,7 @@ export class AddTaskFormComponent {
    */
   selectContact(id: string): void {
     this.taskData.assigneeIds.push(id);
+    this.dataService.refreshContacts();
   }
 
   /**
@@ -129,16 +135,21 @@ export class AddTaskFormComponent {
     if (index !== -1) {
       this.taskData.assigneeIds.splice(index, 1);
     }
+    this.dataService.refreshContacts();
   }
 
   /**
    * This method submits the form by updating or adding a task depending on whether an existing task is being edited or not.
    */
-  submitForm(): void {
+  async submitForm(): Promise<string | void> {
     if (this.isEditing) {
-      this.dataService.updateTask(this.taskData, this.taskData.id);
+      return await this.dataService.updateTask(this.taskData, this.taskData.id);
     } else {
-      this.dataService.addTask(this.taskData);
+      return await this.dataService.addTask(this.taskData);
     }
+  }
+
+  closeAssignees() {
+    this.isShowingContacts = false;
   }
 }

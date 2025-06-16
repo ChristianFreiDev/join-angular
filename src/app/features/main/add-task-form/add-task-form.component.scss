@@ -5,7 +5,7 @@
 :host {
     @include mixins.flex();
     gap: 48px;
-    @media (max-width: 1200px) {
+    @media (max-width: 1400px) {
         @include mixins.flex($dir: column);
         gap: 16px;
         .add-task-form-separator {
@@ -52,6 +52,14 @@
     width: 100%;
     @include mixins.flex($dir: column);
     gap: 8px;
+}
+
+.add-task-form-assignee-input-container {
+    width: 100%;
+    @include mixins.flex($dir: column);
+    label {
+        margin-bottom: 8px;
+    }
 }
 
 textarea {
@@ -164,7 +172,7 @@ ul {
 }
 
 app-assignee-option:first-child {
-    margin-top: 8px;
+    margin-top: 16px;
 }
 
 .add-task-user-dropdown-input {
@@ -183,6 +191,10 @@ app-assignee-option:first-child {
     width: 100%;
     max-height: 150px;
     overflow-y: auto;
+}
+
+.task-user-dropdown, .input {
+    max-width: 698px;
 }
 
 .assigned {

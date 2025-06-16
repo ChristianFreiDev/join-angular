@@ -52,7 +52,6 @@ export class DataService implements OnDestroy {
   initSubscriptionsIfNecessary() {
     if (this.unsubTasks === undefined) {
       this.unsubTasks = this.subFirebaseCollection<Task>('tasks', this.tasks);
-      console.log('subbing tasks');
     }
     if (this.unsubContacts === undefined) {
       this.unsubContacts = this.subFirebaseCollection<Contact>(
@@ -290,5 +289,12 @@ export class DataService implements OnDestroy {
     return this.contacts().filter((item: Contact) =>
       assigneeIds.includes(item.id)
     );
+  }
+
+  /**
+   * This method refreshes the contacts to manually trigger computed signals when necessary.
+   */
+  refreshContacts() {
+    this.contacts.set([...this.contacts()]);
   }
 }

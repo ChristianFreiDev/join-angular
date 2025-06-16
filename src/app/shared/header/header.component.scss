@@ -61,16 +61,15 @@
 
 .drop-down-menu {
     @include mixins.flex($dir: column);
-    position: absolute;
+    position: fixed;
     top: 96px;
-    right: 12px;
+    right: -200px;
     background-color: colors.$menu;
-    width: 150;
-    height: 158;
     border-top-left-radius: 20px;
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
     padding: 10px;
+    transition: 125ms ease-in-out;
     a {
         color: colors.$input-icon-gray;
         text-decoration: none;
@@ -84,6 +83,10 @@
     @media (max-width: 768px) {
         top: 80px
     }
+}
+
+.drop-down-menu-open {
+    right: 12px;
 }
 
 .header-logo {

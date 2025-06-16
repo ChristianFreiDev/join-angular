@@ -42,7 +42,7 @@
             <button type="button" class="btn btn-light btn-padding-size7" (click)="deleteContact()" [disabled]="isFormDisabled">Delete</button>
             <button class="btn btn-dark btn-padding-size7" [disabled]="isFormDisabled">Save</button>
         } @else {
-            <button class="btn btn-light btn-padding-size7" [disabled]="isFormDisabled">Cancel</button>
+            <button type="button" class="btn btn-light btn-padding-size7" [disabled]="isFormDisabled" (click)="closeModal()">Cancel</button>
             <button class="btn btn-dark btn-padding-size7" [disabled]="isFormDisabled">Create contact</button>
         }
     </div>

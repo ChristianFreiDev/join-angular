@@ -1,33 +1,41 @@
-<a class="back-link" routerLink="/main/contacts"
-    ><span class="material-symbols-rounded">arrow_back</span>
-  /></a>
-  <div class="contacts-left-side">
-    <div class="add-contact-button-container">
-      <button
-        class="btn btn-dark btn-padding-size6 add-contact-button"
-        (click)="addContact()"
-      >
-        Add new contact <span class="material-symbols-rounded">person_add</span>
-      </button>
-    </div>
-    <div class="contact-list">
-      @for (contact of contacts(); track $index) {
-        @if (contacts()[$index - 1] && contact.name[0] !== contacts()[$index - 1].name[0] || !contacts()[$index - 1]) {
-            <div class="contacts-letter">{{ contact.name[0] }}</div>
-            <hr>
-        }
-        <app-contact [contact]="contact" (click)="selectContact(contact)" [class.active]="this.selectedContact() === contact"></app-contact>
-      }
-    </div>
+<div class="contacts-left-side" [class.hide-mobile]="this.selectedContact()">
+  <div class="add-contact-button-container">
+    <button
+      class="btn btn-dark btn-padding-size6 add-contact-button"
+      (click)="addContact()"
+    >
+      Add new contact <span class="material-symbols-rounded">person_add</span>
+    </button>
   </div>
-  <div class="contacts-right-side main-container">
-    <div class="contacts-header">
-      <h2>Contacts</h2>
-      <span class="contacts-header-separator-horizontal">|</span>
-      <span>Better with a team</span>
-      <div class="contacts-header-separator-vertical"></div>
-    </div>
-    @if (this.selectedContact() !== undefined) {
-      <app-contact-profile [contact]="selectedContact!"></app-contact-profile>
+  <div class="contact-list">
+    @for (contact of contacts(); track $index) { @if (contacts()[$index - 1] &&
+    contact.name[0] !== contacts()[$index - 1].name[0] || !contacts()[$index -
+    1]) {
+    <div class="contacts-letter">{{ contact.name[0] }}</div>
+    <hr />
     }
+    <app-contact
+      [contact]="contact"
+      (click)="selectContact(contact)"
+      [class.active]="this.selectedContact() === contact"
+    ></app-contact>
+    }
+  </div>
+</div>
+<div
+  class="contacts-right-side main-container"
+  [class.hide-mobile]="!this.selectedContact()"
+>
+  <a class="back-link" (click)="selectContact(undefined)"
+    ><span class="material-symbols-rounded">arrow_back</span>
+  </a>
+  <div class="contacts-header">
+    <h2>Contacts</h2>
+    <span class="contacts-header-separator-vertical">|</span>
+    <span>Better with a team</span>
+    <div class="contacts-header-separator-horizontal"></div>
+  </div>
+  @if (this.selectedContact() !== undefined) {
+  <app-contact-profile [contact]="selectedContact!"></app-contact-profile>
+  }
 </div>
