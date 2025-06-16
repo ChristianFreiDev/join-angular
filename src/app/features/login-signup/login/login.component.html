@@ -2,33 +2,48 @@
   <h2 class="login-signup-headline">Log in</h2>
   <div class="login-signup-separator"></div>
 </div>
-<form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" ngNativeValidate>
+<form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
   <div class="input-container">
     <input
       [(ngModel)]="formData.email"
+      #email="ngModel"
       name="email"
       class="input input-padding-size6"
       type="email"
-      placeholder="E-mail"
-      minlength="3"
+      placeholder="Email"
+      minlength="6"
+      email
+      [class.invalid-input]="isError"
+      (input)="isError = false"
       required
     />
     <span class="material-symbols-rounded input-icon">mail</span>
   </div>
-  <div class="input-container mt-32">
+  <div class="error">
+    @if ((loginForm.submitted || email.dirty) && email.hasError('required')) { This field is required. }
+    @else if (email.touched && email.hasError('minlength')) { Email must be at least 6 characters. }
+    @else if (email.touched && email.hasError('email')) { Please enter a valid email address. }
+    @else { &#8203; }
+  </div>
+  <div class="input-container mt-10">
     <input
       [(ngModel)]="formData.password"
+      #password="ngModel"
       name="password"
       class="input input-padding-size6"
       type="password"
       minlength="8"
       placeholder="Password"
+      [class.invalid-input]="isError"
+      (input)="isError = false"
       required
     />
     <span class="material-symbols-rounded input-icon">lock</span>
   </div>
   <div class="error">
-    @if (isError) { Check your email and password. Please&nbsp;try&nbsp;again. }
+    @if ((loginForm.submitted || password.dirty) && password.hasError('required')) { This field is required. }
+    @else if (password.touched && password.hasError('minlength')) { Password must be at least 8 characters. }
+    @else if (isError) { Check your email and password. Please&nbsp;try&nbsp;again. }
     @else { &#8203; }
   </div>
   <div class="login-checkbox-outer-container">

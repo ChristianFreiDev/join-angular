@@ -21,8 +21,8 @@
   border: 1px solid colors.$accent;
 }
 
-.input:user-invalid {
-  border: 1px solid colors.$red;
+.input:user-invalid, .invalid-input {
+  border: 1px solid colors.$red !important;
 }
 
 .input:user-valid {

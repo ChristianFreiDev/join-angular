@@ -1,16 +1,18 @@
 <div class="add-task-form-left">
     <div class="add-task-form-input-container">
         <label for="title">Title<span class="red-font-color">*</span></label>
-        <input type="text" id="title" class="input input-padding-size5" [(ngModel)]="taskData.title">
+        <input type="text" id="title" class="input input-padding-size5" [(ngModel)]="taskData.title" #title="ngModel" required>
     </div>
+    @if (title.dirty && title.hasError('required')) { <div class="error">This field is required.</div> }
     <div class="add-task-form-input-container">
         <label for="description">Description</label>
         <textarea name="description" id="description" class="input" [(ngModel)]="taskData.description"></textarea>
     </div>
     <div class="add-task-form-input-container">
         <label for="date">Due date<span class="red-font-color">*</span></label>
-        <input type="date" id="date" class="input input-padding-size4" [(ngModel)]="taskData.dueDate">
+        <input type="date" id="date" class="input input-padding-size4" [(ngModel)]="taskData.dueDate" #dueDate="ngModel" required>
     </div>
+    @if (dueDate.touched && dueDate.hasError('required')) { <div class="error">This field is required.</div> }
 </div>
 <div class="add-task-form-separator"></div>
 <div class="add-task-form-right">
@@ -44,12 +46,13 @@
     </div>
     <div class="add-task-form-input-container">
         <label for="category">Category<span class="red-font-color">*</span></label>
-        <select name="category" id="category" class="input input-padding-size4" [(ngModel)]="taskData.category">
+        <select name="category" id="category" class="input input-padding-size4" [(ngModel)]="taskData.category" #category="ngModel" required>
             <option value="" disabled selected hidden>Select task category</option>
             <option value="User Story">User Story</option>
             <option value="Technical Task">Technical Task</option>
         </select>
     </div>
+    @if (category.touched && category.hasError('required')) { <div class="error">This field is required.</div> }
     <div class="add-task-form-input-container">
         <label for="subtask">Subtasks</label>
         <div class="input-container">

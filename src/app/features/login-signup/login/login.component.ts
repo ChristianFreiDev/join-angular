@@ -37,6 +37,7 @@ export class LoginComponent {
         );
       } catch (error) {
         this.isError = true;
+        this.isFormDisabled = false;
       }
     } else {
       this.isError = true;

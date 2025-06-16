@@ -108,10 +108,15 @@ h3 {
 }
 
 .error {
-  margin-top: 8px;
+  margin-top: 4px;
+  margin-bottom: 4px;
   color: colors.$red;
   font-size: 12px;
   line-height: 14.4px;
+}
+
+.mt-10 {
+  margin-top: 10px;
 }
 
 .mt-16 {

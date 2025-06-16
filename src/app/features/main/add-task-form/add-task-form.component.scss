@@ -201,3 +201,8 @@ app-assignee-option:first-child {
     color: white;
     background-color: colors.$menu;
 }
+
+.error {
+    align-self: flex-start;
+    margin-top: 0;
+}
