@@ -15,6 +15,8 @@ export class EditTaskModalComponent {
 
   private dialogRef = inject(DialogRef);
 
+  isFormDisabled: boolean = false;
+
   /**
    * This method closes the modal.
    */
@@ -23,10 +25,15 @@ export class EditTaskModalComponent {
   }
 
   /**
-   * This method submits the form and closes the modal.
+   * This method submits the form by calling the appropriate method in the child component.
    */
-  submitForm(): void {
-    this.form.submitForm();
-    this.closeModal();
+  async submitForm(): Promise<string | void> {
+    this.isFormDisabled = true;
+    try {
+      await this.form.submitForm();
+      this.closeModal();
+    } catch (error) {
+      this.isFormDisabled = false;
+    }
   }
 }

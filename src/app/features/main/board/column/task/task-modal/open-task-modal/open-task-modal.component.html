@@ -1,10 +1,14 @@
 <div class="open-task-modal-header">
-  <div class="open-task-modal-category">{{ data.category }}</div>
+  <div
+    class="open-task-modal-category"
+    [ngClass]="data.category === 'User Story' ? 'user-story' : 'technical-task'"
+  >
+    {{ data.category }}
+  </div>
   <button class="btn-close">
     <span class="material-symbols-rounded" (click)="closeModal()">close</span>
   </button>
 </div>
-<div class="open-task-modal-content">
   <h2 class="open-task-heading">{{ data.title }}</h2>
   <div class="open-task-description">{{ data.description }}</div>
   <div class="open-task-due-date-outer-container">
@@ -53,5 +57,4 @@
       <span class="material-symbols-rounded">edit</span>
       <span>Edit</span>
     </button>
-  </div>
 </div>

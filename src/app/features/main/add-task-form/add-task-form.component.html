@@ -1,70 +1,181 @@
-<div class="add-task-form-left">
+<form #addTaskForm="ngForm">
+  <div class="add-task-form-left">
     <div class="add-task-form-input-container">
-        <label for="title">Title<span class="red-font-color">*</span></label>
-        <input type="text" id="title" class="input input-padding-size5" [(ngModel)]="taskData.title" #title="ngModel" required>
+      <label for="title">Title<span class="red-font-color">*</span></label>
+      <input
+        type="text"
+        name="title"
+        id="title"
+        class="input input-padding-size5"
+        [(ngModel)]="taskData.title"
+        #title="ngModel"
+        (input)="isError = false"
+        required
+      />
     </div>
-    @if (title.dirty && title.hasError('required')) { <div class="error">This field is required.</div> }
+    @if ((addTaskForm.submitted || title.dirty) && title.hasError('required')) {
+    <div class="error">This field is required.</div>
+    }
     <div class="add-task-form-input-container">
-        <label for="description">Description</label>
-        <textarea name="description" id="description" class="input" [(ngModel)]="taskData.description"></textarea>
+      <label for="description">Description</label>
+      <textarea
+        name="description"
+        id="description"
+        class="input"
+        [(ngModel)]="taskData.description"
+        #description="ngModel"
+      ></textarea>
     </div>
     <div class="add-task-form-input-container">
-        <label for="date">Due date<span class="red-font-color">*</span></label>
-        <input type="date" id="date" class="input input-padding-size4" [(ngModel)]="taskData.dueDate" #dueDate="ngModel" required>
+      <label for="date">Due date<span class="red-font-color">*</span></label>
+      <input
+        type="date"
+        name="date"
+        id="date"
+        class="input input-padding-size4"
+        [(ngModel)]="taskData.dueDate"
+        #dueDate="ngModel"
+        (input)="isError = false"
+        required
+      />
     </div>
-    @if (dueDate.touched && dueDate.hasError('required')) { <div class="error">This field is required.</div> }
-</div>
-<div class="add-task-form-separator"></div>
-<div class="add-task-form-right">
+    @if ((addTaskForm.submitted || dueDate.touched) && dueDate.hasError('required')) {
+    <div class="error">This field is required.</div>
+    }
+  </div>
+  <div class="add-task-form-separator"></div>
+  <div class="add-task-form-right">
     <div class="add-task-form-input-container">
-        <label>Priority</label>
-        <div class="add-task-form-buttons-container">
-            <button class="priority-btn" (click)="clickPriorityButton('Urgent')" [ngClass]="taskData.priority == 'Urgent' ? 'urgent-active' : 'urgent-inactive'">Urgent<span class="material-symbols-rounded priority-btn-icon">double_arrow</span></button>
-            <button class="priority-btn" (click)="clickPriorityButton('Medium')" [ngClass]="taskData.priority == 'Medium' ? 'medium-active' : 'medium-inactive'">Medium<span class="material-symbols-rounded priority-btn-icon">equal</span></button>
-            <button class="priority-btn" (click)="clickPriorityButton('Low')" [ngClass]="taskData.priority == 'Low' ? 'low-active' : 'low-inactive'">Low<span class="material-symbols-rounded priority-btn-icon">double_arrow</span></button>
-        </div>
+      <label>Priority</label>
+      <div class="add-task-form-buttons-container">
+        <button
+          class="priority-btn"
+          (click)="clickPriorityButton('Urgent')"
+          [ngClass]="
+            taskData.priority == 'Urgent' ? 'urgent-active' : 'urgent-inactive'
+          "
+        >
+          Urgent<span class="material-symbols-rounded priority-btn-icon"
+            >double_arrow</span
+          >
+        </button>
+        <button
+          class="priority-btn"
+          (click)="clickPriorityButton('Medium')"
+          [ngClass]="
+            taskData.priority == 'Medium' ? 'medium-active' : 'medium-inactive'
+          "
+        >
+          Medium<span class="material-symbols-rounded priority-btn-icon"
+            >equal</span
+          >
+        </button>
+        <button
+          class="priority-btn"
+          (click)="clickPriorityButton('Low')"
+          [ngClass]="taskData.priority == 'Low' ? 'low-active' : 'low-inactive'"
+        >
+          Low<span class="material-symbols-rounded priority-btn-icon"
+            >double_arrow</span
+          >
+        </button>
+      </div>
     </div>
     <div class="add-task-form-assignee-input-container">
-        <label for="assigned-to">Assigned</label>
-        <input id="assignee-input" #assigneeInput class="input input-padding-size4 add-task-user-dropdown-input" placeholder="Select contacts to assign" (input)="searchContacts(assigneeInput.value)" (focus)="isShowingContacts = true" autocomplete="off">
-        @if (isShowingContacts) {
-            <div class="add-task-user-dropdown-container" appClickOutside (clickOutsideEvent)="closeAssignees()" [elementId]="'assignee-input'">
-                <div class="task-user-dropdown add-task-user-dropdown display-none">
-                @for (assignee of dataService.filteredContacts(); track assignee.id) {
-                    <app-assignee-option [assignee]="assignee" [isAssigned]="isAssigned(assignee)" (selectEvent)="selectContact($event)" (deselectEvent)="deselectContact($event)"></app-assignee-option>
-                }
-                </div>
-            </div>
-        }
-        @if (taskData.assigneeIds.length > 0) {
-            <div class="initial-avatars-large-container">
-                @for (assignee of assignees(); track assignee.id) {
-                    <div class="initial-avatar initial-avatar-large" [ngClass]="assignee.color">{{ getInitials(assignee.name) }}</div>
-                }
-            </div>
-        }
-    </div>
-    <div class="add-task-form-input-container">
-        <label for="category">Category<span class="red-font-color">*</span></label>
-        <select name="category" id="category" class="input input-padding-size4" [(ngModel)]="taskData.category" #category="ngModel" required>
-            <option value="" disabled selected hidden>Select task category</option>
-            <option value="User Story">User Story</option>
-            <option value="Technical Task">Technical Task</option>
-        </select>
-    </div>
-    @if (category.touched && category.hasError('required')) { <div class="error">This field is required.</div> }
-    <div class="add-task-form-input-container">
-        <label for="subtask">Subtasks</label>
-        <div class="input-container">
-            <input type="text" name="subtask" id="subtask" placeholder="Add new subtask" class="input input-padding-size4" [(ngModel)]="newSubtaskTitle">
-            <span class="material-symbols-rounded input-icon" [class.filled]="newSubtaskTitle" (click)="addSubtask()">add</span>
+      <label for="assigned-to">Assigned</label>
+      <input
+        name="assignee-input"
+        id="assignee-input"
+        #assigneeInput
+        class="input input-padding-size4 add-task-user-dropdown-input"
+        placeholder="Select contacts to assign"
+        (input)="searchContacts(assigneeInput.value)"
+        (focus)="isShowingContacts = true"
+        autocomplete="off"
+      />
+      @if (isShowingContacts) {
+      <div
+        class="add-task-user-dropdown-container"
+        appClickOutside
+        (clickOutsideEvent)="closeAssignees()"
+        [elementId]="'assignee-input'"
+      >
+        <div class="task-user-dropdown add-task-user-dropdown display-none">
+          @for (assignee of dataService.filteredContacts(); track assignee.id) {
+          <app-assignee-option
+            [assignee]="assignee"
+            [isAssigned]="isAssigned(assignee)"
+            (selectEvent)="selectContact($event)"
+            (deselectEvent)="deselectContact($event)"
+          ></app-assignee-option>
+          }
         </div>
-        @if (taskData.subtasks.length > 0) {
-            <ul>
-            @for (subtask of taskData.subtasks; track subtask.id) {
-                <li app-editable-subtask [subtaskTitle]="subtask.title" (saveEvent)="subtask.title = $event" (deleteEvent)="deleteSubtask($index)"></li>
-            }
-            </ul>
+      </div>
+      } @if (taskData.assigneeIds.length > 0) {
+      <div class="initial-avatars-large-container">
+        @for (assignee of assignees(); track assignee.id) {
+        <div
+          class="initial-avatar initial-avatar-large"
+          [ngClass]="assignee.color"
+        >
+          {{ getInitials(assignee.name) }}
+        </div>
         }
+      </div>
+      }
     </div>
-</div>
+    <div class="add-task-form-input-container">
+      <label for="category"
+        >Category<span class="red-font-color">*</span></label
+      >
+      <select
+        name="category"
+        id="category"
+        class="input input-padding-size4"
+        [(ngModel)]="taskData.category"
+        #category="ngModel"
+        (input)="isError = false"
+        required
+      >
+        <option value="" disabled selected hidden>Select task category</option>
+        <option value="User Story">User Story</option>
+        <option value="Technical Task">Technical Task</option>
+      </select>
+    </div>
+    @if ((addTaskForm.submitted || category.touched) && category.hasError('required')) {
+    <div class="error">This field is required.</div>
+    }
+    <div class="add-task-form-input-container">
+      <label for="subtask">Subtasks</label>
+      <div class="input-container">
+        <input
+          type="text"
+          name="subtask"
+          id="subtask"
+          placeholder="Add new subtask"
+          class="input input-padding-size4"
+          [(ngModel)]="newSubtaskTitle"
+        />
+        <span
+          class="material-symbols-rounded input-icon"
+          [class.filled]="newSubtaskTitle"
+          (click)="addSubtask()"
+          >add</span
+        >
+      </div>
+      @if (taskData.subtasks.length > 0) {
+      <ul>
+        @for (subtask of taskData.subtasks; track subtask.id) {
+        <li
+          app-editable-subtask
+          [subtaskTitle]="subtask.title"
+          (saveEvent)="subtask.title = $event"
+          (deleteEvent)="deleteSubtask($index)"
+        ></li>
+        }
+      </ul>
+      }
+    </div>
+  </div>
+  @if (isError) { <div class="error">Form could not be submitted. Please try again.</div> }
+</form>

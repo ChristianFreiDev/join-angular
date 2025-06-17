@@ -1,8 +1,28 @@
 @use '../../../../../../../../styles/mixins.scss';
 @use '../../../../../../../../styles/colors.scss';
 
+:host {
+    @include mixins.flex($dir: column);
+    gap: 24px;
+    @media (max-width: 1200px) {
+        gap: 16px;
+    }
+}
+
 .open-task-modal-header {
     @include mixins.flex($jc: space-between, $ai: center);
+}
+
+.open-task-modal-category {
+    color: white;
+    font-size: 23px;
+    font-weight: 400;
+    border-radius: 8px;
+    padding: 4px 24px;
+    @media (max-width: 1200px) {
+        font-size: 16px;
+        padding: 4px 16px;
+    }
 }
 
 .open-task-heading {
@@ -11,11 +31,6 @@
     @media (max-width: 1200px) {
         font-size: 36px;
     }
-}
-
-.open-task-modal-content {
-    @include mixins.flex($ai: flex-start, $dir: column);
-    gap: 24px;
 }
 
 .open-task-due-date-outer-container, .open-task-priority-outer-container {
@@ -32,7 +47,14 @@
 .open-task-buttons-container {
     display: flex;
     align-items: center;
+    align-self: flex-end;
     gap: 8px;
+}
+
+.open-task-button-separator {
+    height: 24px;
+    width: 2px;
+    background-color: colors.$input-light-gray;
 }
 
 .open-task-assignees-outer-container {

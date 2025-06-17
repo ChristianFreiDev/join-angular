@@ -23,7 +23,7 @@ export class AddTaskComponent {
   /**
    * This method submits the form by calling the appropriate method in the child component.
    */
-  async submitForm(): Promise<void> {
+  async submitForm(): Promise<string | void> {
     this.isFormDisabled = true;
     try {
       await this.form.submitForm();

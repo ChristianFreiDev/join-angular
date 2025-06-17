@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, inject, Input } from '@angular/core';
+import { Component, computed, inject, Input, ViewChild } from '@angular/core';
 import { Task } from '../../../core/data/models/task.interface';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EditableSubtaskComponent } from './editable-subtask/editable-subtask.component';
 import { AssigneeOptionComponent } from './assignee-option/assignee-option.component';
@@ -44,6 +44,10 @@ export class AddTaskFormComponent {
   newSubtaskTitle: string = '';
 
   isShowingContacts: boolean = false;
+
+  isError: boolean = false;
+
+  @ViewChild('addTaskForm') ngForm?: NgForm;
 
   assignees = computed(() =>
     this.dataService
@@ -142,10 +146,21 @@ export class AddTaskFormComponent {
    * This method submits the form by updating or adding a task depending on whether an existing task is being edited or not.
    */
   async submitForm(): Promise<string | void> {
-    if (this.isEditing) {
-      return await this.dataService.updateTask(this.taskData, this.taskData.id);
+    this.ngForm?.onSubmit(new Event('submit'));
+    if (this.ngForm && this.ngForm.submitted && this.ngForm.valid) {
+      try {
+        if (this.isEditing) {
+          return await this.dataService.updateTask(this.taskData, this.taskData.id);
+        } else {
+          return await this.dataService.addTask(this.taskData);
+        }
+      } catch (error) {
+        this.isError = true;
+        return Promise.reject('Form could not be submitted. Sending data failed.')
+      }
     } else {
-      return await this.dataService.addTask(this.taskData);
+      this.isError = true;
+      return Promise.reject('Form could not be submitted. Invalid data.')
     }
   }
 

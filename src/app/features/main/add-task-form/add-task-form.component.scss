@@ -2,7 +2,7 @@
 @use '../../../../styles/colors.scss';
 @use '../../../../styles/shadows.scss';
 
-:host {
+form {
     @include mixins.flex();
     gap: 48px;
     @media (max-width: 1400px) {
@@ -17,7 +17,7 @@
     }
 }
 
-:host-context(cdk-dialog-container) {
+:host-context(cdk-dialog-container) form {
     @include mixins.flex($dir: column);
     .add-task-form-separator {
         display: none;
