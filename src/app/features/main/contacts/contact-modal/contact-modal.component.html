@@ -6,46 +6,123 @@
       class="contact-modal-join-logo"
     />
     @if (data.isEditing) {
-        <h2>Edit contact</h2>
+    <h2>Edit contact</h2>
     } @else {
-        <h2>Add contact</h2>
-        <h3>Tasks are better with a team!</h3>
+    <h2>Add contact</h2>
+    <h3>Tasks are better with a team!</h3>
     }
     <hr />
   </div>
 </div>
 <div class="contact-modal-right-outer">
-  <div class="initial-avatar initial-avatar-very-very-large contact-modal-initial-avatar" [ngClass]="contact.color">
+  <div
+    class="initial-avatar initial-avatar-very-very-large contact-modal-initial-avatar"
+    [ngClass]="contact.color"
+  >
     @if (data.isEditing) {
-      {{ initials }}
+    {{ initials }}
     } @else {
-      <span class="material-symbols-rounded contact-modal-icon">person</span>
+    <span class="material-symbols-rounded contact-modal-icon">person</span>
     }
   </div>
-  <form #contactModalForm="ngForm" class="contact-modal-form" (ngSubmit)="saveContact(contactModalForm)">
+  <form
+    #contactModalForm="ngForm"
+    class="contact-modal-form"
+    (ngSubmit)="onSubmit(contactModalForm)"
+  >
     <div class="contact-modal-form-inputs">
       <div class="input-container">
-        <input type="text" class="input input-padding-size7" placeholder="Name" name="name" [(ngModel)]="contact.name" />
+        <input
+          type="text"
+          class="input input-padding-size7"
+          placeholder="Name"
+          name="name"
+          [(ngModel)]="contact.name"
+          #name="ngModel"
+          minlength="3"
+          (input)="isError = false"
+          required
+        />
         <span class="material-symbols-rounded input-icon">person</span>
       </div>
-      <div class="input-container">
-        <input type="text" class="input input-padding-size7" placeholder="Email" name="email" [(ngModel)]="contact.email" />
-        <span class="material-symbols-rounded input-icon">mail</span>
+      <div class="error">
+        @if ((contactModalForm.submitted || name.dirty) &&
+        name.hasError('required')) { This field is required. } @else if
+        (name.touched && name.hasError('minlength')) { Name must be at least 3
+        characters. } @else { &#8203; }
       </div>
       <div class="input-container">
-        <input type="text" class="input input-padding-size7" placeholder="Phone" name="phone" [(ngModel)]="contact.phone" />
+        <input
+          type="email"
+          class="input input-padding-size7"
+          placeholder="Email"
+          name="email"
+          [(ngModel)]="contact.email"
+          #email="ngModel"
+          minlength="6"
+          email
+          (input)="isError = false"
+          required
+        />
+        <span class="material-symbols-rounded input-icon">mail</span>
+      </div>
+      <div class="error">
+        @if ((contactModalForm.submitted || email.dirty) &&
+        email.hasError('required')) { This field is required. } @else if
+        (email.touched && email.hasError('minlength')) { Email must be at least
+        6 characters. } @else if (email.touched && email.hasError('email')) {
+        Please enter a valid email address. } @else { &#8203; }
+      </div>
+      <div class="input-container">
+        <input
+          type="text"
+          class="input input-padding-size7"
+          placeholder="Phone"
+          name="phone"
+          [(ngModel)]="contact.phone"
+        />
         <span class="material-symbols-rounded input-icon">phone</span>
       </div>
     </div>
     <div class="contact-modal-form-buttons">
-        @if (data.isEditing) {
-            <button type="button" class="btn btn-light btn-padding-size7" (click)="deleteContact()" [disabled]="isFormDisabled">Delete</button>
-            <button class="btn btn-dark btn-padding-size7" [disabled]="isFormDisabled">Save</button>
-        } @else {
-            <button type="button" class="btn btn-light btn-padding-size7" [disabled]="isFormDisabled" (click)="closeModal()">Cancel</button>
-            <button class="btn btn-dark btn-padding-size7" [disabled]="isFormDisabled">Create contact</button>
-        }
+      @if (data.isEditing) {
+      <button
+        type="button"
+        class="btn btn-light btn-padding-size7"
+        (click)="deleteContact()"
+        [disabled]="isFormDisabled"
+      >
+        Delete
+      </button>
+      <button
+        class="btn btn-dark btn-padding-size7"
+        [disabled]="isFormDisabled"
+      >
+        Save
+      </button>
+      } @else {
+      <button
+        type="button"
+        class="btn btn-light btn-padding-size7"
+        [disabled]="isFormDisabled"
+        (click)="closeModal()"
+      >
+        Cancel
+      </button>
+      <button
+        class="btn btn-dark btn-padding-size7"
+        [disabled]="isFormDisabled"
+      >
+        Create contact
+      </button>
+      }
+    </div>
+    <div class="error">
+      @if (isError) { Form could not be submitted. Please try again. } @else {
+      &#8203; }
     </div>
   </form>
 </div>
-<button class="material-symbols-rounded btn-close" (click)="closeModal()">close</button>
+<button class="material-symbols-rounded btn-close" (click)="closeModal()">
+  close
+</button>

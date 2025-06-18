@@ -21,7 +21,6 @@ export class ClickOutsideDirective implements AfterViewInit, OnDestroy {
         return !this.isClickInside(event.target as HTMLElement) && !this.isClickInsideElementWithId(event.target as HTMLElement)
       })
     ).subscribe(() => {
-      console.log('click outside')
       this.clickOutsideEvent.emit();
     });
   }
@@ -40,7 +39,6 @@ export class ClickOutsideDirective implements AfterViewInit, OnDestroy {
    * This method determines if the click was inside an addiitonal given element with a certain ID.
    */
   isClickInsideElementWithId(el: HTMLElement): boolean {
-    console.log(el);
     if (this.elementId === undefined) {
       return false;
     } else {

@@ -45,8 +45,7 @@
 }
 
 .open-task-buttons-container {
-    display: flex;
-    align-items: center;
+    @include mixins.flex($ai: center);
     align-self: flex-end;
     gap: 8px;
 }

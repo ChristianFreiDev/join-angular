@@ -18,6 +18,8 @@ export class ContactModalComponent {
 
   isFormDisabled: boolean = false;
 
+  isError: boolean = false;
+
   contact: Contact = {
     name: '',
     id: '',
@@ -30,7 +32,7 @@ export class ContactModalComponent {
     @Inject(DIALOG_DATA) public data: { contact: Contact; isEditing: boolean }
   ) {
     if (this.data.contact) {
-      this.contact = this.data.contact;
+      this.contact = { ...this.data.contact };
     }
   }
 
@@ -42,18 +44,27 @@ export class ContactModalComponent {
   }
 
   /**
-   * This method saves a contact.
+   * This method submits the form data or displays an error message if an error occurs.
    */
-  saveContact(ngForm: NgForm): void {
+  async onSubmit(ngForm: NgForm): Promise<void> {
     this.isFormDisabled = true;
     if (ngForm.submitted && ngForm.valid) {
-      if (this.data.isEditing) {
-        this.dataService.updateContact(this.contact, this.contact.id);
-      } else {
-        this.dataService.addContact(this.contact);
+      try {
+        if (this.data.isEditing) {
+          await this.dataService.updateContact(this.contact, this.contact.id);
+          this.dataService.selectedContact.set(this.contact);
+        } else {
+          this.dataService.addContact(this.contact);
+        }
+        this.closeModal();
+      } catch (error) {
+        this.isError = true;
+        this.isFormDisabled = false;
       }
+    } else {
+      this.isError = true;
+      this.isFormDisabled = false;
     }
-    this.closeModal();
   }
 
   /**

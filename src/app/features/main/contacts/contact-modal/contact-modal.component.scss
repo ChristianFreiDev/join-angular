@@ -78,13 +78,13 @@ hr {
     }
 }
 
-.contact-modal-form-inputs {
-    @include mixins.flex($dir: column);
-    gap: 32px;
-    @media (max-width: 1212px) {
-        gap: 24px;
-    }
-}
+// .contact-modal-form-inputs {
+//     @include mixins.flex($dir: column);
+//     gap: 32px;
+//     @media (max-width: 1212px) {
+//         gap: 24px;
+//     }
+// }
 
 .contact-modal-form-buttons {
     display: flex;
@@ -113,6 +113,13 @@ hr {
                 color: black;
             }
         }
+    }
+}
+
+.input-container:not(:first-child) {
+    margin-top: 10px;
+    @media (max-width: 1212px) {
+        margin-top: 2px;
     }
 }
 

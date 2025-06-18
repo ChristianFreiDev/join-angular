@@ -1,4 +1,4 @@
-import { Component, computed, inject, Input, Signal } from '@angular/core';
+import { Component, computed, inject, input, Input, Signal } from '@angular/core';
 import { getInitials } from '../../../../core/utils/user-utils';
 import { Contact } from '../../../../core/data/models/contact.interface';
 import { CommonModule } from '@angular/common';
@@ -15,7 +15,7 @@ import { DataService } from '../../../../core/data/data.service';
 export class ContactProfileComponent {
   dialog = inject(Dialog);
   dataService = inject(DataService);
-  @Input() contact!: Signal<Contact | undefined>;
+  contact = this.dataService.selectedContact;
 
   initials: Signal<string> = computed(() => {
     const name = this.contact()?.name;

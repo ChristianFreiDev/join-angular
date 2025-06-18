@@ -17,7 +17,7 @@
     <app-contact
       [contact]="contact"
       (click)="selectContact(contact)"
-      [class.active]="this.selectedContact() === contact"
+      [class.active]="this.selectedContact()?.id === contact.id"
     ></app-contact>
     }
   </div>
@@ -36,6 +36,6 @@
     <div class="contacts-header-separator-horizontal"></div>
   </div>
   @if (this.selectedContact() !== undefined) {
-  <app-contact-profile [contact]="selectedContact!"></app-contact-profile>
+  <app-contact-profile></app-contact-profile>
   }
 </div>

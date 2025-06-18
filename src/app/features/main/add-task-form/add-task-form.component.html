@@ -49,6 +49,7 @@
       <label>Priority</label>
       <div class="add-task-form-buttons-container">
         <button
+          type="button"
           class="priority-btn"
           (click)="clickPriorityButton('Urgent')"
           [ngClass]="
@@ -60,6 +61,7 @@
           >
         </button>
         <button
+          type="button"
           class="priority-btn"
           (click)="clickPriorityButton('Medium')"
           [ngClass]="
@@ -71,6 +73,7 @@
           >
         </button>
         <button
+          type="button"
           class="priority-btn"
           (click)="clickPriorityButton('Low')"
           [ngClass]="taskData.priority == 'Low' ? 'low-active' : 'low-inactive'"
@@ -176,6 +179,6 @@
       </ul>
       }
     </div>
+    @if (isError) { <div class="error">Form could not be submitted. Please try again.</div> }
   </div>
-  @if (isError) { <div class="error">Form could not be submitted. Please try again.</div> }
 </form>
