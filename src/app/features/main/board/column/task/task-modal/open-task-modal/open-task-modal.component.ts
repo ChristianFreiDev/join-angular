@@ -1,6 +1,5 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { Task } from '../../../../../../../core/data/models/task.interface';
-import { DialogRef } from '@angular/cdk/dialog';
 import { AssigneePreviewComponent } from './assignee-preview/assignee-preview.component';
 import { CommonModule } from '@angular/common';
 import { SubtaskComponent } from './subtask/subtask.component';
@@ -17,6 +16,7 @@ export class OpenTaskModalComponent {
   private dataService = inject(DataService);
   @Input() data!: Task;
   @Output() editTaskEvent = new EventEmitter<boolean>();
+  @Output() closeDialogEvent = new EventEmitter<void>();
   assignees: Contact[] = [];
   get priorityIcon() {
     if (this.data.priority === 'Medium') {
@@ -25,8 +25,6 @@ export class OpenTaskModalComponent {
       return 'double_arrow'
     }
   }
-
-  private dialogRef = inject(DialogRef);
 
   ngOnInit(): void {
     this.assignees = this.dataService.getAssignees(this.data.assigneeIds);
@@ -38,7 +36,7 @@ export class OpenTaskModalComponent {
   async deleteTask(): Promise<void> {
     try {
       await this.dataService.deleteTask(this.data.id);
-      this.dialogRef?.close();
+      this.closeDialogEvent.emit();
     } catch (error) {
       console.error(error);
     }
@@ -48,7 +46,7 @@ export class OpenTaskModalComponent {
    * This method closes the modal.
    */
   closeModal(): void {
-    this.dialogRef?.close();
+    this.closeDialogEvent.emit();
   }
 
   /**

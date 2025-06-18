@@ -1,14 +1,33 @@
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
-import { Component, Inject, inject } from '@angular/core';
+import { Component, HostBinding, HostListener, Inject, inject } from '@angular/core';
 import { Contact } from '../../../../core/data/models/contact.interface';
 import { FormsModule, NgForm } from '@angular/forms';
 import { getInitials, getUserColor } from '../../../../core/utils/user-utils';
 import { CommonModule } from '@angular/common';
 import { DataService } from '../../../../core/data/data.service';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+  AnimationEvent
+} from '@angular/animations';
 
 @Component({
   selector: 'app-contact-modal',
   imports: [FormsModule, CommonModule],
+  animations: [
+    trigger('animation', [
+      state('hidden', style({
+        transform: 'translateX(200%)'
+      })),
+      state('visible', style({
+        transform: 'translateX(0%)'
+      })),
+      transition('hidden <=> visible', animate('125ms ease-in-out'))
+    ])
+  ],
   templateUrl: './contact-modal.component.html',
   styleUrl: './contact-modal.component.scss',
 })
@@ -28,12 +47,25 @@ export class ContactModalComponent {
     phone: '',
   };
 
+  @HostBinding('@animation') animationState = 'hidden';
+  @HostListener('@animation.done', ['$event']) done(event: AnimationEvent) {
+    if (event.fromState !== 'void' && event.toState === 'hidden') {
+      this.dialogRef.close();
+    }
+  }
+
   constructor(
     @Inject(DIALOG_DATA) public data: { contact: Contact; isEditing: boolean }
   ) {
     if (this.data.contact) {
       this.contact = { ...this.data.contact };
     }
+  }
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.animationState = 'visible';
+    }, 0);
   }
 
   /**
@@ -80,6 +112,6 @@ export class ContactModalComponent {
    * This method closes the dialog.
    */
   closeModal(): void {
-    this.dialogRef.close();
+    this.animationState = 'hidden';
   }
 }

@@ -1,5 +1,5 @@
 @if (!isBeingEdited) {
-    <app-open-task-modal [data]="data" (editTaskEvent)="isBeingEdited = true"></app-open-task-modal>
+    <app-open-task-modal [data]="data" (editTaskEvent)="isBeingEdited = true" (closeDialogEvent)="closeModal()"></app-open-task-modal>
 } @else {
-    <app-edit-task-modal [data]="clonedData"></app-edit-task-modal>
+    <app-edit-task-modal [data]="clonedData" (closeDialogEvent)="closeModal()"></app-edit-task-modal>
 }

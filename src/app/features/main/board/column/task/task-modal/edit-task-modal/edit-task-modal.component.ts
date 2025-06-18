@@ -1,6 +1,5 @@
-import { Component, inject, Input, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { Task } from '../../../../../../../core/data/models/task.interface';
-import { DialogRef } from '@angular/cdk/dialog';
 import { AddTaskFormComponent } from '../../../../../add-task-form/add-task-form.component';
 
 @Component({
@@ -12,8 +11,7 @@ import { AddTaskFormComponent } from '../../../../../add-task-form/add-task-form
 export class EditTaskModalComponent {
   @Input() data!: Task;
   @ViewChild(AddTaskFormComponent) form!: AddTaskFormComponent;
-
-  private dialogRef = inject(DialogRef);
+  @Output() closeDialogEvent = new EventEmitter<void>();
 
   isFormDisabled: boolean = false;
 
@@ -21,7 +19,7 @@ export class EditTaskModalComponent {
    * This method closes the modal.
    */
   closeModal(): void {
-    this.dialogRef?.close();
+    this.closeDialogEvent.emit();
   }
 
   /**
