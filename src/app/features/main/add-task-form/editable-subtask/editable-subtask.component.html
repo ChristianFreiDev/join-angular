@@ -1,8 +1,8 @@
-<div class="editable-subtask-outer-container">
+<div class="editable-subtask-outer-container break-word">
     @if (!isBeingEdited) {
     {{ subtaskTitle }}
     } @else {
-        <input #editableTaskInput class="editable-subtask-input" type="text" [(ngModel)]="subtaskTitle">
+        <input #editableTaskInput class="editable-subtask-input" type="text" [(ngModel)]="subtaskTitle" maxlength="127">
     }
     <div class="editable-subtask-buttons">
         @if (!isBeingEdited) {

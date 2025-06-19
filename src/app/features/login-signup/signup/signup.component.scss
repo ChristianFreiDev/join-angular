@@ -29,6 +29,10 @@
   text-align: center;
 }
 
+.error {
+  margin-bottom: 8px;
+}
+
 @media (hover: hover) {
   .signup-back-link:hover {
     background-color: colors.$button-hover;

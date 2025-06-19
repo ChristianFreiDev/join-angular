@@ -2,21 +2,28 @@
 <img class="header-logo" src="img/large-join-logo.svg" alt="logo" />
 <div class="header-img-container">
   <a routerLink="help"
-    ><span class="material-symbols-rounded header-help-icon">help</span></a>
-  <div (click)="$event.stopPropagation(); showOrHideDropDownMenu()" class="header-user-icon">
+    ><span class="material-symbols-rounded header-help-icon">help</span></a
+  >
+  <div
+    (click)="$event.stopPropagation(); showOrHideDropDownMenu()"
+    class="header-user-icon"
+  >
     <span id="first-name-inital">{{ firstNameInitial }}</span>
     <span id="last-name-initial">{{ lastNameInitial }}</span>
   </div>
 </div>
-<!-- @if(isDropDownMenuOpen) { -->
-  <nav class="drop-down-menu" [class.drop-down-menu-open]="isDropDownMenuOpen" appClickOutside (clickOutsideEvent)="showOrHideDropDownMenu(false)">
-    <a routerLink="help" class="header-nav-help-link" routerLink="help">Help</a>
-    <a (click)="goToUrl('main/legal-notice')">Legal Notice</a>
-    <a (click)="goToUrl('main/privacy-policy')">Privacy Policy</a>
-    @if (isUserLoggedIn()) {
-      <a (click)="logOut()">Log out</a>
-    } @else {
-      <a routerLink="/login">Login</a>
-    }
-  </nav>
-<!-- } -->
+<nav
+  class="drop-down-menu"
+  [class.drop-down-menu-open]="isDropDownMenuOpen"
+  appClickOutside
+  (clickOutsideEvent)="showOrHideDropDownMenu(false)"
+>
+  <a routerLink="help" class="header-nav-help-link" routerLink="help">Help</a>
+  <a (click)="goToUrl('main/legal-notice')">Legal Notice</a>
+  <a (click)="goToUrl('main/privacy-policy')">Privacy Policy</a>
+  @if (isUserLoggedIn()) {
+  <a (click)="logOut()">Log out</a>
+  } @else {
+  <a routerLink="/login">Login</a>
+  }
+</nav>

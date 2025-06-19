@@ -9,6 +9,9 @@
     overflow: hidden;
     background-color: white;
     position: relative;
+    max-height: 100svh;
+    max-height: 100vh;
+    overflow-y: auto;
     @media (max-width: 1212px) {
         @include mixins.flex($dir: column);
         height: 760px;
@@ -25,7 +28,7 @@
     height: 100%;
     padding: 0 46px;
     @media (max-width: 1212px) {
-        padding: unset;
+        padding: 72px 0 60px 0;
     }
 }
 
@@ -78,14 +81,6 @@ hr {
     }
 }
 
-// .contact-modal-form-inputs {
-//     @include mixins.flex($dir: column);
-//     gap: 32px;
-//     @media (max-width: 1212px) {
-//         gap: 24px;
-//     }
-// }
-
 .contact-modal-form-buttons {
     display: flex;
     gap: 25px;
@@ -117,9 +112,9 @@ hr {
 }
 
 .input-container:not(:first-child) {
-    margin-top: 10px;
+    margin-top: 16px;
     @media (max-width: 1212px) {
-        margin-top: 2px;
+        margin-top: 8px;
     }
 }
 

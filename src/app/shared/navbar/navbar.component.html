@@ -3,29 +3,29 @@
 </a>
 @if (isUserLoggedIn()) {
   <div class="navbar-center-links-container">
-  <a routerLink="summary">
+  <a routerLink="summary" routerLinkActive="navbar-link-active">
     <span class="material-symbols-rounded">space_dashboard</span>
       <span>Summary</span>
   </a>
-  <a routerLink="add-task">
+  <a routerLink="add-task" routerLinkActive="navbar-link-active">
       <span class="material-symbols-rounded">edit_square</span>
       <span>Add&nbsp;Task</span>
   </a>
-  <a routerLink="board">
+  <a routerLink="board" routerLinkActive="navbar-link-active">
     <span class="material-symbols-rounded board-symbol">table_rows_narrow</span>
       <span>Board</span>
   </a>
-  <a routerLink="contacts">
+  <a routerLink="contacts" routerLinkActive="navbar-link-active">
       <span class="material-symbols-rounded">perm_contact_calendar</span>
       <span>Contacts</span>
   </a>
 </div>
 } @else {
   <div class="navbar-login-link-container">
-    <a routerLink="/login">Login</a>
+    <a routerLink="/login" routerLinkActive="navbar-link-active">Login</a>
   </div>
 }
 <div class="navbar-privacy-and-legal-links-container">
-  <a routerLink="privacy-policy">Privacy Policy</a>
-  <a routerLink="legal-notice">Legal notice</a>
+  <a routerLink="privacy-policy" routerLinkActive="navbar-link-active">Privacy Policy</a>
+  <a routerLink="legal-notice" routerLinkActive="navbar-link-active">Legal notice</a>
 </div>

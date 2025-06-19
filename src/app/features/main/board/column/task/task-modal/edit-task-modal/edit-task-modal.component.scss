@@ -2,9 +2,14 @@
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-    gap: 24px;
+}
+
+app-add-task-form {
+    margin-top: 24px;
+    margin-bottom: 24px;
     @media (max-width: 1200px) {
-        gap: 16px;
+        margin-top: 16px;
+        margin-bottom: 8px;
     }
 }
 

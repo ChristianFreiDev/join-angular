@@ -19,10 +19,18 @@
 }
 
 .contact-name-and-email-container {
+    width: 100%;
+    overflow: hidden;
     @include mixins.flex($dir: column);
     gap: 5px;
 }
 
 .contact-name {
     font-size: 20px;
+}
+
+.email {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

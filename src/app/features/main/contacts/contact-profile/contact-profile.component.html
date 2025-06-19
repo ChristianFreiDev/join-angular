@@ -1,6 +1,6 @@
 <div class="contact-profile-header">
   <div
-    class="initial-avatar initial-avatar-very-very-large"
+    class="initial-avatar initial-avatar-largest"
     [ngClass]="contact()?.color"
   >
     {{ initials() }}
@@ -27,6 +27,6 @@
     </div>
     <div class="contact-profile-phone-container">
         <span>Phone</span>
-        <span>{{ contact()?.phone }}</span>
+        <span class="phone">{{ contact()?.phone }}</span>
     </div>
 </div>

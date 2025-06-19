@@ -20,21 +20,31 @@
 .contact-profile-header {
     display: flex;
     gap: 54px;
+    @media (max-width: 1200px) {
+        gap: 20px;
+    }
 }
 
 .contact-profile-name {
     font-size: 47px;
     font-weight: 500;
+    @media (max-width: 1200px) {
+        font-size: 36px;
+        font-weight: 700;
+    }
 }
 
 .contact-profile-header-right {
-    @include mixins.flex($dir: column);
+    @include mixins.flex($dir: column, $jc: center);
     gap: 8px;
 }
 
 .contact-profile-buttons-container {
     display: flex;
     gap: 16px;
+    @media (max-width: 1200px) {
+        display: none;
+    }
 }
 
 .contact-profile-information {
@@ -52,4 +62,18 @@
 .contact-profile-email-container, .contact-profile-phone-container {
     @include mixins.flex($dir: column);
     gap: 15px;
+}
+
+.phone {
+    word-break: break-all;
+}
+
+.initial-avatar-largest {
+    @media (max-width: 1200px) {
+        height: 80px;
+        width: 80px;
+        min-width: 80px;;
+        font-size: 27px;
+        font-weight: 400;
+    }
 }

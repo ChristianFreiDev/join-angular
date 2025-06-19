@@ -1,5 +1,9 @@
 <div class="login-signup-form-header">
-  <a class="material-symbols-rounded back-link signup-back-link" routerLink="/login">arrow_back</a>
+  <a
+    class="material-symbols-rounded back-link signup-back-link"
+    routerLink="/login"
+    >arrow_back</a
+  >
   <h2 class="login-signup-headline">Sign up</h2>
   <div class="login-signup-separator"></div>
 </div>
@@ -18,9 +22,9 @@
     <span class="material-symbols-rounded input-icon">person</span>
   </div>
   <div class="error">
-    @if ((signupForm.submitted || name.dirty) && name.hasError('required')) { This field is required. }
-    @else if (name.touched && name.hasError('minlength')) { Name must be at least 3 characters. }
-    @else { &#8203; }
+    @if ((signupForm.submitted || name.dirty) && name.hasError('required')) {
+    This field is required. } @else if (name.touched &&
+    name.hasError('minlength')) { Name must be at least 3 characters. }
   </div>
   <div class="input-container">
     <input
@@ -37,10 +41,11 @@
     <span class="material-symbols-rounded input-icon">mail</span>
   </div>
   <div class="error">
-    @if ((signupForm.submitted || email.dirty) && email.hasError('required')) { This field is required. }
-    @else if (email.touched && email.hasError('minlength')) { Email must be at least 6 characters. }
-    @else if (email.touched && email.hasError('email')) { Please enter a valid email address. }
-    @else { &#8203; }
+    @if ((signupForm.submitted || email.dirty) && email.hasError('required')) {
+    This field is required. } @else if (email.touched &&
+    email.hasError('minlength')) { Email must be at least 6 characters.
+    } @else if (email.touched && email.hasError('email')) { Please enter a valid email
+    address. }
   </div>
   <div class="input-container">
     <input
@@ -57,9 +62,10 @@
     <span class="material-symbols-rounded input-icon">lock</span>
   </div>
   <div class="error">
-    @if ((signupForm.submitted || password.dirty) && password.hasError('required')) { This field is required. }
-    @else if (password.touched && password.hasError('minlength')) { Password must be at least 8 characters. }
-    @else { &#8203; }
+    @if ((signupForm.submitted || password.dirty) &&
+    password.hasError('required')) { This field is required. } @else if
+    (password.touched && password.hasError('minlength')) { Password must be at
+    least 8 characters. }
   </div>
   <div class="input-container">
     <input
@@ -76,20 +82,37 @@
     <span class="material-symbols-rounded input-icon">lock</span>
   </div>
   <div class="error">
-    @if ((signupForm.submitted || passwordForConfirmation.dirty) && passwordForConfirmation.hasError('required')) { This field is required. }
-    @else if (passwordForConfirmation.touched && passwordForConfirmation.hasError('minlength')) { Confirmation password must be at least 8 characters. }
-    @else if (!isPasswordAMatch) { Passwords don't match. }
-    @else if (hasSignInFailed) { Check your email and password. Please&nbsp;try&nbsp;again. }
-    @else { &#8203; }
+    @if ((signupForm.submitted || passwordForConfirmation.dirty) &&
+    passwordForConfirmation.hasError('required')) { This field is required. }
+    @else if (passwordForConfirmation.touched &&
+    passwordForConfirmation.hasError('minlength')) { Confirmation password must
+    be at least 8 characters. } @else if (!isPasswordAMatch) { Passwords don't
+    match. } @else if (hasSignInFailed) { Check your email and password.
+    Please&nbsp;try&nbsp;again. }
   </div>
-    <div class="signup-checkbox-outer-container">
-      <app-checkbox name="checkbox" type="checkbox" [(ngModel)]="formData.checked" [required]="true"></app-checkbox>
-      <div class="privacy-policy-message">
-      I accept the <a routerLink="/main/privacy-policy" class="accent-color-link">privacy policy</a>
-      </div>
+  <div class="signup-checkbox-outer-container">
+    <app-checkbox
+      name="checkbox"
+      type="checkbox"
+      [(ngModel)]="formData.checked"
+      [required]="true"
+    ></app-checkbox>
+    <div class="privacy-policy-message">
+      I accept the
+      <a routerLink="/main/privacy-policy" class="accent-color-link"
+        >privacy policy</a
+      >
     </div>
-    @if (showCheckboxError) { <div class="error checkbox-error">The checkbox has not been checked.</div> }
+  </div>
+  <div class="error checkbox-error">
+    @if (showCheckboxError) { The checkbox has not been checked. }
+  </div>
   <div class="login-signup-btn-container mt-32">
-    <button class="btn btn-dark main-button btn-padding-size4" [disabled]="isFormDisabled">Sign up</button>
+    <button
+      class="btn btn-dark main-button btn-padding-size4"
+      [disabled]="isFormDisabled"
+    >
+      Sign up
+    </button>
   </div>
 </form>

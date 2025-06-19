@@ -6,15 +6,22 @@
     width: 100%;
 }
 
+.main-container {
+    @media(min-width: 1201px) {
+        padding-right: 40px;
+    }
+}
+
 .contacts-left-side {
     min-height: calc(100vh - 96px);
     overflow-y: auto;
     position: relative;
     background-color: #FFFFFF;
-    min-width: 456px;
+    width: 100%;
+    max-width: 456px;
     box-shadow: 4px 0px 6px 0px #00000014;
     @media(max-width: 1200px) {
-        width: 100%;
+        max-width: unset;
     }
 }
 
@@ -56,8 +63,8 @@
     @media (max-width: 1200px) {
         margin: 24px 14px;
     }
-    @media (max-width: 1200px) {
-        margin: 24px 0px;
+    @media (max-width: 368px) {
+        margin: 18px 0px;
     }
 }
 
@@ -76,6 +83,9 @@
     @media (max-width: 1400px) {
         @include mixins.flex($dir: column);
         gap: 8px;
+    }
+    @media (max-width: 1200px) {
+        font-size: 20px;
     }
 }
 

@@ -127,7 +127,7 @@ a {
   @media (max-width: 1200px) {
     @include mixins.flex($jc: flex-start, $ai: center);
   }
-    @media (max-width: 768px) {
+  @media (max-width: 768px) {
     padding: unset;
   }
 }
@@ -145,14 +145,39 @@ a {
     color: white;
     background-color: colors.$menu-hover;
   }
-  .navbar-privacy-and-legal-links-container a:hover, .navbar-login-link-container a:hover {
+  .navbar-center-links-container .navbar-link-active:hover {
+    color: white;
+    background-color: colors.$menu-active;
+  }
+  .navbar-privacy-and-legal-links-container a:hover,
+  .navbar-login-link-container a:hover {
     color: colors.$accent;
     font-weight: 700;
   }
+  .navbar-privacy-and-legal-links-container .navbar-link-active:hover,
+  .navbar-login-link-container .navbar-link-active:hover {
+    color: colors.$menu-font;
+    font-weight: 400;
+  }
+}
+
+.navbar-link-active {
+  background-color: colors.$menu-active;
+  cursor: default;
+}
+
+.navbar-center-links-container .navbar-link-active {
+  color: white;
+}
+
+.navbar-privacy-and-legal-links-container .navbar-link-active,
+.navbar-login-link-container .navbar-link-active {
+  color: colors.$menu-font;
 }
 
 @media (max-height: 380px) {
-  :host, .navbar-privacy-and-legal-links-container a {
+  :host,
+  .navbar-privacy-and-legal-links-container a {
     font-size: 14px;
   }
   .material-symbols-rounded {

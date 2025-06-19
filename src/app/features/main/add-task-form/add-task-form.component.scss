@@ -15,28 +15,56 @@ form {
             width: unset;
         }
     }
+    @media (max-width: 368px) {
+        gap: 12px;
+    }
 }
 
 :host-context(cdk-dialog-container) form {
     @include mixins.flex($dir: column);
+    gap: 16px;
     .add-task-form-separator {
         display: none;
     }
     .add-task-form-left, .add-task-form-right {
         width: unset;
     }
+    .add-task-form-left {
+        .add-task-form-input-container:not(:first-child) {
+            margin-top: 8px;
+        }
+    }
+    .add-task-form-right {
+        .add-task-form-input-container:not(:first-child) {
+            margin-top: 0;
+        }
+    }
+    @media (max-width: 368px) {
+        gap: 12px;
+    }
 }
 
 .add-task-form-left {
     @include mixins.flex($ai: center, $dir: column);
-    gap: 16px;
+    .add-task-form-input-container {
+        &:not(:first-child) {
+            margin-top: 16px;
+        }
+    }
+    @media (max-width: 368px) {
+        margin-top: 12px;
+    }
 }
 
 .add-task-form-right {
     @include mixins.flex($ai: center, $dir: column);
-    gap: 24px;
-    @media (max-width: 1200px) {
-        gap: 16px
+    .add-task-form-input-container {
+        &:not(:first-child) {
+            margin-top: 8px;
+            @media (max-width: 1400px) {
+                margin-top: 16px;
+            }
+        }
     }
 }
 
@@ -45,7 +73,7 @@ form {
 }
 
 .add-task-form-left, .add-task-form-right {
-    width: 440px;
+    width: 445px;
 }
 
 .add-task-form-input-container {
@@ -55,8 +83,7 @@ form {
 }
 
 .add-task-form-assignee-input-container {
-    width: 100%;
-    @include mixins.flex($dir: column);
+    gap: unset;
     label {
         margin-bottom: 8px;
     }
@@ -148,14 +175,23 @@ textarea {
 }
 
 .input {
-    padding-right: 48px;
     @media (max-width: 1200px) {
         font-size: 16px;
     }
 }
 
+.subtask-input {
+    padding-right: 48px;
+}
+
 ul {
     margin: 0 16px;
+    max-width: 658px;
+}
+
+select {
+    appearance: none;
+    cursor: pointer;
 }
 
 .input-icon {
@@ -204,5 +240,8 @@ app-assignee-option:first-child {
 
 .error {
     align-self: flex-start;
-    margin-top: 0;
+}
+
+.no-error {
+    margin-bottom: 16px;
 }

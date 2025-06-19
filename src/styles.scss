@@ -108,15 +108,11 @@ h3 {
 }
 
 .error {
-  margin-top: 4px;
-  margin-bottom: 4px;
+  align-self: flex-start;
+  padding-top: 4px;
+  height: 16px;
   color: colors.$red;
   font-size: 12px;
-  line-height: 14.4px;
-}
-
-.mt-10 {
-  margin-top: 10px;
 }
 
 .mt-16 {
@@ -159,7 +155,7 @@ h3 {
 
 .initial-avatars-large-container {
     margin-top: 8px;
-    max-width: 440px;
+    max-width: 445px;
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
@@ -176,7 +172,7 @@ h3 {
     font-weight: 500;
 }
 
-.initial-avatar-very-very-large {
+.initial-avatar-largest {
     height: 120px;
     width: 120px;
     border: 3px solid #FFFFFF;
@@ -188,6 +184,7 @@ h3 {
 .email {
     font-size: 16px;
     color: colors.$link;
+    word-break: break-all;
 }
 
 .urgent-priority-icon {
@@ -202,6 +199,14 @@ h3 {
 .low-priority-icon {
     color: colors.$low;
     transform: rotate(90deg);
+}
+
+.break-word {
+  word-break: break-word;
+  overflow-wrap: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
 }
 
 ::-webkit-scrollbar {

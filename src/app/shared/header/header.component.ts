@@ -29,6 +29,9 @@ export class HeaderComponent {
     this.authService.logOut();
   }
 
+  /**
+   * This method navigates to a certain URL and closes the dropdown menu.
+   */
   goToUrl(url: string) {
     this.router.navigateByUrl(url);
     this.isDropDownMenuOpen = false;
@@ -39,10 +42,8 @@ export class HeaderComponent {
    */
   showOrHideDropDownMenu(bool?: boolean): void {
     if (bool === undefined) {
-      console.log('toggle');
       this.isDropDownMenuOpen = !this.isDropDownMenuOpen;
     } else if (bool !== this.isDropDownMenuOpen) {
-      console.log(bool);
       this.isDropDownMenuOpen = bool;
     }
   }

@@ -10,12 +10,16 @@
         [(ngModel)]="taskData.title"
         #title="ngModel"
         (input)="isError = false"
+        maxlength="100"
         required
       />
     </div>
-    @if ((addTaskForm.submitted || title.dirty) && title.hasError('required')) {
-    <div class="error">This field is required.</div>
-    }
+    <div class="error">
+      @if ((addTaskForm.submitted || title.dirty) && title.hasError('required'))
+      { This field is required. }
+      @else if (taskData.title.length >= 100)
+      { Max. character limit reached }
+    </div>
     <div class="add-task-form-input-container">
       <label for="description">Description</label>
       <textarea
@@ -24,7 +28,11 @@
         class="input"
         [(ngModel)]="taskData.description"
         #description="ngModel"
+        maxlength="255"
       ></textarea>
+    </div>
+    <div class="error">
+      @if (taskData.description.length >= 255) { Max. character limit reached. }
     </div>
     <div class="add-task-form-input-container">
       <label for="date">Due date<span class="red-font-color">*</span></label>
@@ -39,13 +47,14 @@
         required
       />
     </div>
-    @if ((addTaskForm.submitted || dueDate.touched) && dueDate.hasError('required')) {
-    <div class="error">This field is required.</div>
-    }
+    <div class="error">
+      @if ((addTaskForm.submitted || dueDate.touched) &&
+      dueDate.hasError('required')) { This field is required. }
+    </div>
   </div>
   <div class="add-task-form-separator"></div>
   <div class="add-task-form-right">
-    <div class="add-task-form-input-container">
+    <div class="add-task-form-input-container no-error">
       <label>Priority</label>
       <div class="add-task-form-buttons-container">
         <button
@@ -84,7 +93,9 @@
         </button>
       </div>
     </div>
-    <div class="add-task-form-assignee-input-container">
+    <div
+      class="add-task-form-input-container add-task-form-assignee-input-container no-error"
+    >
       <label for="assigned-to">Assigned</label>
       <input
         name="assignee-input"
@@ -145,9 +156,10 @@
         <option value="Technical Task">Technical Task</option>
       </select>
     </div>
-    @if ((addTaskForm.submitted || category.touched) && category.hasError('required')) {
-    <div class="error">This field is required.</div>
-    }
+    <div class="error">
+      @if ((addTaskForm.submitted || category.touched) &&
+      category.hasError('required')) { This field is required. }
+    </div>
     <div class="add-task-form-input-container">
       <label for="subtask">Subtasks</label>
       <div class="input-container">
@@ -156,8 +168,9 @@
           name="subtask"
           id="subtask"
           placeholder="Add new subtask"
-          class="input input-padding-size4"
+          class="input subtask-input input-padding-size4"
           [(ngModel)]="newSubtaskTitle"
+          maxlength="127"
         />
         <span
           class="material-symbols-rounded input-icon"
@@ -179,6 +192,9 @@
       </ul>
       }
     </div>
-    @if (isError) { <div class="error">Form could not be submitted. Please try again.</div> }
+    <div class="error">
+      @if (newSubtaskTitle.length >= 127) { Max. character limit reached. }
+      @if (isError) { Form could not be submitted. Please try again. }
+    </div>
   </div>
 </form>
