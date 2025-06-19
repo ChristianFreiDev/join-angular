@@ -40,10 +40,6 @@
     }
 }
 
-.cdk-drag-preview {
-    box-shadow: shadows.$box-shadow3;
-}
-
 .cdk-drop-list-dragging, .no-tasks {
     border: 1px dashed colors.$medium-gray;
     border-radius: 10px;

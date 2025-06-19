@@ -4,6 +4,10 @@
 
 
 :host {
+    overflow: visible;
+}
+
+.task {
     @include mixins.flex($dir: column);
     flex-shrink: 0;
     width: 252px;
@@ -13,6 +17,10 @@
     background-color: white;
     box-shadow: shadows.$box-shadow2;
     cursor: pointer;
+}
+
+.rotate {
+    transform: rotate(5deg);
 }
 
 .task-title-and-description-container {

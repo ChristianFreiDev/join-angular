@@ -1,7 +1,7 @@
 import { Component, inject, Input } from '@angular/core';
 import { TaskComponent } from './task/task.component';
 import { Task } from '../../../../core/data/models/task.interface';
-import { CdkDrag, CdkDragDrop, CdkDragPreview, CdkDropList } from '@angular/cdk/drag-drop';
+import { CdkDrag, CdkDragDrop, CdkDragPreview, CdkDropList, } from '@angular/cdk/drag-drop';
 import { DropService } from '../services/drop.service';
 import { DataService } from '../../../../core/data/data.service';
 import { CommonModule } from '@angular/common';
@@ -19,7 +19,6 @@ export class ColumnComponent {
   @Input() status!: string;
   @Input() dropListId!: string;
   @Input() tasks: Task[] = [];
-  rotate = false;
 
   /**
    * This method drops a task.

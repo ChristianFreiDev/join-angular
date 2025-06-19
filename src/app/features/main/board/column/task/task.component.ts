@@ -17,6 +17,7 @@ import { getInitials } from '../../../../../core/utils/user-utils';
 })
 export class TaskComponent {
   @Input() taskData: any;
+  @Input() isRotated: boolean = false;
   assignees!: { color: string; initials: string }[];
   shortTaskDescription: string = '';
   amountOfSubtasks: number = 0;
