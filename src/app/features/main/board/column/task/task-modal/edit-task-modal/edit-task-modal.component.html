@@ -2,4 +2,4 @@
         <span class="material-symbols-rounded" (click)="closeModal()">close</span>
 </button>
 <app-add-task-form [taskData]="data" (closeEvent)="closeModal()" [isEditing]="true"></app-add-task-form>
-<button class="btn btn-dark btn-ok btn-padding-size7" (click)="submitForm()" [disabled]="isFormDisabled">OK <span class="material-symbols-rounded">check</span></button>
+<button class="btn btn-dark btn-ok btn-padding-size7" (click)="submitForm()" [disabled]="isFormDisabledManuallyOrInvalid">OK <span class="material-symbols-rounded">check</span></button>

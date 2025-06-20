@@ -106,3 +106,9 @@ progress::-webkit-progress-value {
     }
 }
 
+.move-arrows {
+    display: none;
+    @media (max-width: 1200px) {
+        display: block;
+    }
+}

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { Task } from '../../../../../../../core/data/models/task.interface';
 import { AddTaskFormComponent } from '../../../../../add-task-form/add-task-form.component';
+import { isFormDisabledManuallyOrInvalidUtil } from '../../../../../../../core/utils/form-utils';
 
 @Component({
   selector: 'app-edit-task-modal',
@@ -14,6 +15,13 @@ export class EditTaskModalComponent {
   @Output() closeDialogEvent = new EventEmitter<void>();
 
   isFormDisabled: boolean = false;
+
+  /**
+   * This getter determines if the form is disabled manually or because it is invalid.
+   */
+  get isFormDisabledManuallyOrInvalid(): boolean {
+    return isFormDisabledManuallyOrInvalidUtil(this.form, this.isFormDisabled);
+  }
 
   /**
    * This method closes the modal.
