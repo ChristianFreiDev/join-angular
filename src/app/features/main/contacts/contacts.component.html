@@ -8,10 +8,10 @@
     </button>
   </div>
   <div class="contact-list">
-    @for (contact of contacts(); track $index) { @if (contacts()[$index - 1] &&
+    @for (contact of contacts(); track contact.id) { @if (contacts()[$index - 1] &&
     contact.name[0] !== contacts()[$index - 1].name[0] || !contacts()[$index -
     1]) {
-    <div class="contacts-letter">{{ contact.name[0] }}</div>
+    <div class="contacts-letter">{{ contact.name[0].toUpperCase() }}</div>
     <hr />
     }
     <app-contact
@@ -39,3 +39,8 @@
   <app-contact-profile></app-contact-profile>
   }
 </div>
+@if (hasContactJustBeenAdded()) {
+  <div class="sliding-message-container contact-added-message-container" (animationend)="onAnimationEnd()">
+    <span class="sliding-message">Contact successfully created</span>
+  </div>
+}

@@ -21,6 +21,7 @@
     max-width: 456px;
     box-shadow: 4px 0px 6px 0px #00000014;
     @media(max-width: 1200px) {
+        overflow-y: unset;
         max-width: unset;
     }
 }
@@ -133,5 +134,47 @@ hr {
     right: 16px;
     @media (max-width: 1200px) {
         display: flex;
+    }
+}
+
+.contact-added-message-container {
+    animation: slideInFromBottom 1050ms ease-in-out forwards;
+    @media (min-width: 1201px) {
+        left: unset;
+        right: unset;
+        bottom: 20%;
+        animation: slideInFromRight 1050ms ease-in-out forwards;
+    }
+}
+
+@keyframes slideInFromRight {
+    0% {
+        right: -163px;
+    }
+
+    12% {
+        right: 163px;
+    }
+
+    88% {
+        right: 163px;
+    }
+
+    100% {
+        right: -163px;
+    }
+}
+
+@keyframes slideInFromBottom {
+    0% {
+        bottom: -74px;
+    }
+
+    12% {
+        bottom: 50%;
+    }
+
+    100% {
+        bottom: 50%;
     }
 }

@@ -86,7 +86,7 @@ export class ContactModalComponent {
           await this.dataService.updateContact(this.contact, this.contact.id);
           this.dataService.selectedContact.set(this.contact);
         } else {
-          this.dataService.addContact(this.contact);
+          await this.dataService.addContact(this.contact);
         }
         this.closeModal();
       } catch (error) {

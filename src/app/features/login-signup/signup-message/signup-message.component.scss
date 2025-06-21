@@ -3,32 +3,16 @@
 @use "../../../../styles/shadows.scss";
 
 :host {
-    position: absolute;
-    left: 0;
-    right: 0;
-    animation: slideUp 1s ease-in-out forwards;
-    @include mixins.flex($jc: center, $ai: center);
+    animation: slideInFromBottom 925ms ease-in-out forwards;
 }
 
-span {
-    @include mixins.flex($jc: center, $ai: center);
-    font-size: 20px;
-    font-weight: 400;
-    color: white;
-    background-color: colors.$menu-active;
-    padding: 0 25px;
-    height: 74px;
-    border-radius: 20px;
-    box-shadow: shadows.$box-shadow5;
-    @media (max-width: 368px) {
-        font-size: 14px;
-    }
-}
-
-@keyframes slideUp {
+@keyframes slideInFromBottom {
     0% {
         bottom: -74px;
-    } 
+    }
+    13% {
+        bottom: 20%;
+    }
     100% {
         bottom: 20%;
     }

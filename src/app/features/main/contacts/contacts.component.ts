@@ -15,11 +15,13 @@ import { ContactModalComponent } from './contact-modal/contact-modal.component';
 export class ContactsComponent {
   dataService = inject(DataService);
   dialog = inject(Dialog);
-  contacts: Signal<Contact[]> = this.dataService.contacts;
+  contacts: Signal<Contact[]> = this.dataService.sortedContacts;
   selectedContact = this.dataService.selectedContact;
+  hasContactJustBeenAdded: Signal<boolean> = this.dataService.hasContactJustBeenAdded;
 
   constructor() {
     this.dataService.initSubscriptionsIfNecessary();
+    console.log(this.contacts());
   }
 
   /**
@@ -38,5 +40,12 @@ export class ContactsComponent {
         isEditing: false,
       },
     });
+  }
+
+  /**
+   * This method resets the signal storing information about the recent creation of a contact.
+   */
+  onAnimationEnd(): void {
+    this.dataService.hasContactJustBeenAdded.set(false);
   }
 }

@@ -9,3 +9,11 @@
     </div>
   </div>
 </div>
+@if (hasTaskBeenAdded) {
+  <div class="sliding-message-container add-task-message-container" (animationend)="goToBoard()">
+    <div class="sliding-message">
+      <span class="add-task-message-text">Task added to board</span>
+      <span class="material-symbols-rounded board-symbol">table_rows_narrow</span>
+    </div>
+  </div>
+}

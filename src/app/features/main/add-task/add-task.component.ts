@@ -13,6 +13,7 @@ export class AddTaskComponent {
   private router = inject(Router);
   @ViewChild(AddTaskFormComponent) form!: AddTaskFormComponent;
   isFormDisabled: boolean = false;
+  hasTaskBeenAdded: boolean = false;
 
   /**
    * This getter determines if the form is disabled manually or because it is invalid.
@@ -35,9 +36,16 @@ export class AddTaskComponent {
     this.isFormDisabled = true;
     try {
       await this.form.submitForm();
-      this.router.navigateByUrl('main/board');
+      this.hasTaskBeenAdded = true;
     } catch (error) {
       this.isFormDisabled = false;
     }
+  }
+  
+  /**
+   * This method navigates to the board when the animation for adding a task has ended.
+   */
+  goToBoard() {
+    this.router.navigateByUrl('main/board');
   }
 }

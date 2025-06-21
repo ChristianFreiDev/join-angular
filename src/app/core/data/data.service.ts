@@ -39,11 +39,15 @@ export class DataService implements OnDestroy {
   taskFilterInputValue = signal<string>('');
   filteredTasks = computed(() => this.filterTasks(this.taskFilterInputValue()));
   contacts = signal<Contact[]>(offlineContacts);
+  sortedContacts = computed(() =>
+    this.contacts().sort((a, b) => this.compareContacts(a, b))
+  );
   contactFilterInputValue = signal<string>('');
   filteredContacts = computed(() =>
     this.filterContacts(this.contactFilterInputValue())
   );
   selectedContact = signal<Contact | undefined>(undefined);
+  hasContactJustBeenAdded = signal<boolean>(false);
 
   constructor() {
     // this.addDummyData();
@@ -180,7 +184,14 @@ export class DataService implements OnDestroy {
    * This method adds a contact to the contacts collection.
    */
   async addContact(contact: Contact): Promise<string | undefined> {
-    return await this.addItem(contact, 'contacts');
+    try {
+      const result = await this.addItem(contact, 'contacts');
+      this.hasContactJustBeenAdded.set(true);
+      return result;
+    } catch (error) {
+      this.hasContactJustBeenAdded.set(false);
+      return Promise.reject('Contact could not be added.');
+    }
   }
 
   /**
@@ -274,12 +285,27 @@ export class DataService implements OnDestroy {
    */
   filterContacts(inputValue: string): Contact[] {
     if (inputValue === '') {
-      return this.contacts();
+      return this.sortedContacts();
     } else {
-      return this.contacts().filter((contact) =>
+      return this.sortedContacts().filter((contact) =>
         contact.name.toLowerCase().includes(inputValue.toLowerCase())
       );
     }
+  }
+
+  /**
+   * This method compares two contacts by name.
+   */
+  compareContacts(contactA: Contact, contactB: Contact) {
+    const nameA = contactA.name.toLowerCase();
+    const nameB = contactB.name.toLowerCase();
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+    return 0;
   }
 
   /**
