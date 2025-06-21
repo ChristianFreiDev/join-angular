@@ -1,6 +1,7 @@
 @use '../../../../styles/mixins.scss';
 @use '../../../../styles/colors.scss';
 @use '../../../../styles/shadows.scss';
+@use '../../../../styles/paddings.scss';
 
 .summary-header {
     @include mixins.flex($ai: center);
@@ -34,6 +35,11 @@
         width: 90px;
         margin-top: 8px;
     }
+}
+
+.summary-outer-container {
+    @include mixins.flex($ai: center);
+    gap: 80px;
 }
 
 .summary-container {
@@ -171,5 +177,60 @@
     font-weight: 700;
     @media(max-width: 768px) {
         font-size: 16px;
+    }
+}
+
+@keyframes fade-out {
+    0% {
+        opacity: 1;
+    }
+    99% {
+        opacity: 0;
+    }
+    100% {
+        display: none;
+    }
+}
+
+.summary-greeting {
+    @media (max-width: 1200px) {
+       display: none;
+    }
+}
+
+.summary-greeting-animation {
+    @media (max-width: 1200px) {
+        animation: fade-out 1500ms ease-in-out forwards;
+        @include mixins.flex($jc: center, $ai: center);
+        background-color: colors.$bg;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+    }
+}
+
+.summary-greeting-text {
+    font-size: 47px;
+    font-weight: 500;
+    @media (max-width: 1439px) {
+        font-size: 36px;
+        font-weight: 400;
+    }
+    @media (max-width: 368px) {
+        font-size: 20px;
+    }
+}
+
+.summary-greeting-name {
+    font-size: 64px;
+    font-weight: 700;
+    color: colors.$accent;
+    @media (max-width: 1439px) {
+        font-size: 47px;
+    }
+    @media (max-width: 368px) {
+        font-size: 27px;
     }
 }

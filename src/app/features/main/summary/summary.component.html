@@ -4,71 +4,76 @@
     <div class="summary-header-separator"></div>
     <h3 class="summary-subtitle">Key Metrics at a Glance</h3>
   </div>
-  <div class="summary-container">
-    <div class="row1">
-      <div class="summary-tile todo" routerLink="/main/board">
-        <div class="summary-tile-symbol-container">
-          <span class="material-symbols-rounded summary-icon">edit</span>
-          <div class="summary-tile-number-and-text-container">
-            <span class="summary-number">{{
-              numberOfTasksTodo()
-            }}</span>
-            <span class="summary-text1">To-do</span>
+  <div class="summary-outer-container">
+    <div class="summary-container">
+      <div class="row1">
+        <div class="summary-tile todo" routerLink="/main/board">
+          <div class="summary-tile-symbol-container">
+            <span class="material-symbols-rounded summary-icon">edit</span>
+            <div class="summary-tile-number-and-text-container">
+              <span class="summary-number">{{ numberOfTasksTodo() }}</span>
+              <span class="summary-text1">To-do</span>
+            </div>
+          </div>
+        </div>
+        <div class="summary-tile done" routerLink="/main/board">
+          <div class="summary-tile-symbol-container">
+            <span class="material-symbols-rounded summary-icon">check</span>
+            <div class="summary-tile-number-and-text-container">
+              <span class="summary-number">{{ numberOfTasksDone() }}</span>
+              <span class="summary-text1">Done</span>
+            </div>
           </div>
         </div>
       </div>
-      <div class="summary-tile done" routerLink="/main/board">
+      <div class="summary-tile row2" routerLink="/main/board">
         <div class="summary-tile-symbol-container">
-          <span class="material-symbols-rounded summary-icon">check</span>
+          <span class="material-symbols-rounded summary-icon urgent-icon"
+            >double_arrow</span
+          >
+          <div class="summary-tile-number-and-text-container">
+            <span class="summary-number">{{ numberOfUrgentTasks() }}</span>
+            <span class="summary-text2">Urgent</span>
+          </div>
+        </div>
+        @if (upcomingDeadline()) {
+        <div class="row2-separator"></div>
+        <div class="summary-date-container">
+          <span class="summary-text3">{{ closestDeadline() }}</span>
+          <span class="summary-text2">Upcoming deadline</span>
+        </div>
+        }
+      </div>
+      <div class="row3">
+        <div class="summary-tile" routerLink="/main/board">
+          <div class="summary-tile-number-and-text-container">
+            <span class="summary-number">{{ dataService.tasks().length }}</span>
+            <span class="summary-text1">Tasks in<br />board</span>
+          </div>
+        </div>
+        <div class="summary-tile" routerLink="/main/board">
+          <div class="summary-tile-number-and-text-container">
+            <span class="summary-number">{{ numberOfTasksInProgress() }}</span>
+            <span class="summary-text1">Tasks in<br />progress</span>
+          </div>
+        </div>
+        <div class="summary-tile" routerLink="/main/board">
           <div class="summary-tile-number-and-text-container">
             <span class="summary-number">{{
-              numberOfTasksDone()
+              numberOfTasksAwaitingFeedback()
             }}</span>
-            <span class="summary-text1">Done</span>
+            <span class="summary-text1">Awaiting<br />feedback</span>
           </div>
         </div>
       </div>
     </div>
-    <div class="summary-tile row2" routerLink="/main/board">
-      <div class="summary-tile-symbol-container">
-        <span class="material-symbols-rounded summary-icon urgent-icon">double_arrow</span>
-        <div class="summary-tile-number-and-text-container">
-          <span class="summary-number">{{
-            numberOfUrgentTasks()
-          }}</span>
-          <span class="summary-text2">Urgent</span>
-        </div>
-      </div>
-      @if (upcomingDeadline()) {
-      <div class="row2-separator"></div>
-      <div class="summary-date-container">
-        <span class="summary-text3">{{ closestDeadline() }}</span>
-        <span class="summary-text2">Upcoming deadline</span>
-      </div>
-      }
-    </div>
-    <div class="row3">
-      <div class="summary-tile" routerLink="/main/board">
-        <div class="summary-tile-number-and-text-container">
-          <span class="summary-number">{{ dataService.tasks().length }}</span>
-          <span class="summary-text1">Tasks in<br />board</span>
-        </div>
-      </div>
-      <div class="summary-tile" routerLink="/main/board">
-        <div class="summary-tile-number-and-text-container">
-          <span class="summary-number">{{
-            numberOfTasksInProgress()
-          }}</span>
-          <span class="summary-text1">Tasks in<br />progress</span>
-        </div>
-      </div>
-      <div class="summary-tile" routerLink="/main/board">
-        <div class="summary-tile-number-and-text-container">
-          <span class="summary-number">{{
-            numberOfTasksAwaitingFeedback()
-          }}</span>
-          <span class="summary-text1">Awaiting<br />feedback</span>
-        </div>
+    <div class="summary-greeting" (animationend)="onAnimationEnd()" [class.summary-greeting-animation]="!hasGreetingAnimationPlayed()">
+      <div class="summary-greeting-text-and-name-container">
+        <span class="summary-greeting-text">{{ greeting }}</span
+        >@if (userName()) {<span class="summary-greeting-text">,</span><br /><span
+          class="summary-greeting-name break-word"
+          >{{ userName() }}</span
+        >}
       </div>
     </div>
   </div>

@@ -1,8 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/auth/auth.service';
 import { DataService } from '../../core/data/data.service';
 import { ClickOutsideDirective } from '../../core/directives/click-outside.directive';
+import { getInitials } from '../../core/utils/user-utils';
 
 @Component({
   selector: 'app-header',
@@ -17,8 +18,15 @@ export class HeaderComponent {
 
   isUserLoggedIn = this.authService.isUserLoggedIn;
 
-  firstNameInitial: string = 'A';
-  lastNameInitial: string = 'B';
+  initials = computed<string>(() => {
+    const userName = this.authService.currentUserName();
+    if (userName) {
+      return getInitials(userName);
+    } else {
+      return 'G';
+    }
+  })
+  
   isDropDownMenuOpen: boolean = false;
 
   /**

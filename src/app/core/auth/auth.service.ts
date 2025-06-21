@@ -28,7 +28,20 @@ export class AuthService {
   private dataService = inject(DataService);
   private environmentInjector = inject(EnvironmentInjector);
   currentUserUid = signal<string | undefined>(undefined);
+  currentUserName = computed<string | undefined>(() => {
+    if (this.currentUserUid()) {
+      const user = this.dataService.contacts().find(contact => contact.id === this.currentUserUid());
+      if (user) {
+        return user.name;
+      } else {
+        return undefined;
+      }
+    } else {
+      return undefined;
+    }
+  })
   isUserLoggedIn = computed(() => this.currentUserUid() !== undefined);
+  hasGreetingAnimationPlayed = signal<boolean>(false);
 
   constructor() {
     this.auth.setPersistence(browserSessionPersistence);
@@ -95,6 +108,7 @@ export class AuthService {
   async monitorAuthState(): Promise<void> {
     onAuthStateChanged(this.auth, (user) => {
       if (user) {
+        this.hasGreetingAnimationPlayed.set(false);
         this.currentUserUid.set(user.uid);
         this.router.navigateByUrl('main/summary');
       } else {

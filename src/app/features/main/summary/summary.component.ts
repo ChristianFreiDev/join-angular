@@ -2,6 +2,7 @@ import { Component, computed, inject, Signal } from '@angular/core';
 import { DataService } from '../../../core/data/data.service';
 import { RouterLink } from '@angular/router';
 import { Task } from '../../../core/data/models/task.interface';
+import { AuthService } from '../../../core/auth/auth.service';
 
 @Component({
   selector: 'app-summary',
@@ -11,6 +12,10 @@ import { Task } from '../../../core/data/models/task.interface';
 })
 export class SummaryComponent {
   dataService = inject(DataService);
+  authService = inject(AuthService);
+
+  userName: Signal<string | undefined> = this.authService.currentUserName;
+  hasGreetingAnimationPlayed: Signal<boolean> = this.authService.hasGreetingAnimationPlayed;
 
   numberOfTasksTodo: Signal<number> = computed(() =>
     this.getNumberOfTasksWithStatus('To do')
@@ -56,6 +61,27 @@ export class SummaryComponent {
 
   constructor() {
     this.dataService.initSubscriptionsIfNecessary();
+  }
+
+  /**
+   * This getter returns the appropriate greeting depending on the current time.
+   */
+  get greeting() {
+    const time = new Date().getHours();
+    if (time < 12) {
+      return 'Good Morning';
+    } else if (time < 18) {
+      return 'Good Afternoon';
+    } else {
+      return 'Good Evening';
+    }
+  }
+
+  /**
+   * This method stores the information that the greeting animation has been played.
+   */
+  onAnimationEnd() {
+    this.authService.hasGreetingAnimationPlayed.set(true);
   }
 
   /**

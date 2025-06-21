@@ -8,8 +8,7 @@
     (click)="$event.stopPropagation(); showOrHideDropDownMenu()"
     class="header-user-icon"
   >
-    <span id="first-name-inital">{{ firstNameInitial }}</span>
-    <span id="last-name-initial">{{ lastNameInitial }}</span>
+    <span id="first-name-inital">{{ initials() }}</span>
   </div>
 </div>
 <nav
