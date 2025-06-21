@@ -8,6 +8,8 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/auth/auth.service';
 import { CheckboxComponent } from '../../../shared/checkbox/checkbox.component';
+import { Dialog } from '@angular/cdk/dialog';
+import { SignupMessageComponent } from '../signup-message/signup-message.component';
 
 @Component({
   selector: 'app-signup',
@@ -21,6 +23,7 @@ import { CheckboxComponent } from '../../../shared/checkbox/checkbox.component';
 export class SignupComponent {
   authService = inject(AuthService);
   router = inject(Router);
+  dialog = inject(Dialog);
 
   formData = {
     name: '',
@@ -76,6 +79,7 @@ export class SignupComponent {
           this.formData.email,
           this.formData.password
         );
+        this.dialog.open(SignupMessageComponent);
       } catch (error) {
         this.hasSignInFailed = true;
         this.isFormDisabled = false;
