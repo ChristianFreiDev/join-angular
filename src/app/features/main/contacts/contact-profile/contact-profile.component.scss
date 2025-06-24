@@ -1,5 +1,6 @@
 @use '../../../../../styles/mixins.scss';
 @use '../../../../../styles/colors.scss';
+@use '../../../../../styles/shadows.scss';
 
 :host {
     @include mixins.flex($dir: column);
@@ -80,4 +81,48 @@
         font-size: 27px;
         font-weight: 400;
     }
+}
+
+.contact-options-btn {
+    display: none;
+    position: fixed;
+    right: 16px;
+    bottom: 112px;
+    height: 56px;
+    width: 56px;
+    border-radius: 50%;
+    padding: 0;
+    @media (max-width: 1200px) {
+        display: flex;
+    }
+}
+
+.contact-profile-more-menu {
+    @include mixins.flex($jc: center, $dir: column);
+    position: fixed;
+    right: -132px;
+    bottom: 96px;
+    padding: 10px;
+    border-radius: 20px 20px 0 20px;
+    background-color: colors.$bg;
+    box-shadow: shadows.$box-shadow7;
+    transition: right 125ms ease-in-out;
+    button {
+        @include mixins.flex($ai: center);
+        gap: 8px;
+        background-color: transparent;
+        border: unset;
+        padding: 7.5px 8px;
+        font-size: 16px;
+        cursor: pointer;
+        @media (hover: hover) {
+            &:hover {
+                color: colors.$accent;
+            }
+        }
+    }
+}
+
+.contact-profile-more-menu-active {
+    right: 8px;
 }

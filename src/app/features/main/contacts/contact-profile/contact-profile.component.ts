@@ -1,14 +1,14 @@
-import { Component, computed, inject, input, Input, Signal } from '@angular/core';
+import { Component, computed, inject, Signal } from '@angular/core';
 import { getInitials } from '../../../../core/utils/user-utils';
-import { Contact } from '../../../../core/data/models/contact.interface';
 import { CommonModule } from '@angular/common';
 import { Dialog } from '@angular/cdk/dialog';
 import { ContactModalComponent } from '../contact-modal/contact-modal.component';
 import { DataService } from '../../../../core/data/data.service';
+import { ClickOutsideDirective } from '../../../../core/directives/click-outside.directive';
 
 @Component({
   selector: 'app-contact-profile',
-  imports: [CommonModule],
+  imports: [CommonModule, ClickOutsideDirective],
   templateUrl: './contact-profile.component.html',
   styleUrl: './contact-profile.component.scss',
 })
@@ -16,6 +16,7 @@ export class ContactProfileComponent {
   dialog = inject(Dialog);
   dataService = inject(DataService);
   contact = this.dataService.selectedContact;
+  isMoreMenuActive: boolean = false;
 
   initials: Signal<string> = computed(() => {
     const name = this.contact()?.name;
@@ -27,6 +28,17 @@ export class ContactProfileComponent {
   });
 
   /**
+   * This method toggles the more menu.
+   */
+  showOrHideDropDownMenu(bool?: boolean): void {
+    if (bool === undefined) {
+      this.isMoreMenuActive = !this.isMoreMenuActive;
+    } else if (bool !== this.isMoreMenuActive) {
+      this.isMoreMenuActive = bool;
+    }
+  }
+
+  /**
    * This method opens a dialog for editing a contact.
    */
   editContact(): void {
@@ -36,15 +48,21 @@ export class ContactProfileComponent {
         isEditing: true,
       },
     });
+    this.isMoreMenuActive = false;
   }
 
   /**
    * This method removes a contact.
    */
-  deleteContact(): void {
+  async deleteContact(): Promise<void> {
+    this.isMoreMenuActive = false;
     const contact = this.contact();
     if (contact) {
-      this.dataService.deleteContact(contact.id);
+      try {
+        await this.dataService.deleteContact(contact.id);
+      } catch (error) {
+        Promise.reject('Contact could not be deleted.');
+      }
     }
   }
 }

@@ -38,6 +38,7 @@ yarn-error.log
 testem.log
 /typings
 /public/fonts
+.vs/*
 
 # System files
 .DS_Store

@@ -40,7 +40,14 @@
     height: 101px;
     @include mixins.flex($jc: center, $ai: center);
     @media (max-width: 1200px) {
-        display: none;
+        // display: none;
+        height: unset;
+        width: unset;
+        position: fixed;
+        left: unset;
+        top: unset;
+        right: 16px;
+        bottom: 112px;
     }
 }
 
@@ -51,6 +58,16 @@
     border-radius: 10px;
     font-size: 21px;
     font-weight: 700;
+    padding: 15.5px 64.5px;
+    @media (max-width: 1200px) {
+        height: 56px;
+        width: 56px;
+        border-radius: 50%;
+        padding: 0;
+        .add-contact-button-text {
+            display: none;
+        }
+    }
 }
 
 .contact-list {
@@ -130,8 +147,12 @@ hr {
 }
 
 .back-link {
+    color: colors.$accent;
     display: none;
     right: 16px;
+    .material-symbols-rounded {
+        font-size: 32px;
+    }
     @media (max-width: 1200px) {
         display: flex;
     }

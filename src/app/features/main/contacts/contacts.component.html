@@ -1,10 +1,10 @@
 <div class="contacts-left-side" [class.hide-mobile]="this.selectedContact()">
   <div class="add-contact-button-container">
     <button
-      class="btn btn-dark btn-padding-size6 add-contact-button"
+      class="btn btn-dark add-contact-button"
       (click)="addContact()"
     >
-      Add new contact <span class="material-symbols-rounded">person_add</span>
+      <span class="add-contact-button-text">Add new contact </span><span class="material-symbols-rounded">person_add</span>
     </button>
   </div>
   <div class="contact-list">
