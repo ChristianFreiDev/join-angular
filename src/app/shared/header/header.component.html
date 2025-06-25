@@ -8,7 +8,11 @@
     (click)="$event.stopPropagation(); showOrHideDropDownMenu()"
     class="header-user-icon"
   >
-    <span id="first-name-inital">{{ initials() }}</span>
+    @if (userName()) {
+      <span>{{ initials() }}</span>
+    } @else {
+      <span class="material-symbols-rounded">person</span>
+    }
   </div>
 </div>
 <nav

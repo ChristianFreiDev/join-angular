@@ -14,7 +14,7 @@
       minlength="6"
       email
       [class.invalid-input]="isError"
-      (input)="isError = false"
+      (input)="resetErrors()"
       required
     />
     <span class="material-symbols-rounded input-icon">mail</span>
@@ -36,13 +36,13 @@
       minlength="8"
       placeholder="Password"
       [class.invalid-input]="isError"
-      (input)="isError = false"
+      (input)="resetErrors()"
       required
     />
     <span class="material-symbols-rounded input-icon">lock</span>
   </div>
   <div class="error">
-    @if ((loginForm.submitted || password.dirty) &&
+    @if (isGuestError) { Logging in as guest failed. Please&nbsp;try&nbsp;again. } @else if ((loginForm.submitted || password.dirty) &&
     password.hasError('required')) { This field is required. } @else if
     (password.touched && password.hasError('minlength')) { Password must be at
     least 8 characters. } @else if (isError) { Check your email and password.
@@ -64,8 +64,10 @@
       Log in
     </button>
     <button
+      type="button"
       class="btn btn-light main-button btn-padding-size4 btn-highlight"
       [disabled]="isFormDisabled"
+      (click)="logInAsGuest()"
     >
       Guest Login
     </button>

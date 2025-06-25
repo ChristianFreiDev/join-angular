@@ -1,10 +1,11 @@
-import { Component, inject, Signal } from '@angular/core';
+import { Component, computed, inject, Signal } from '@angular/core';
 import { DataService } from '../../../core/data/data.service';
 import { Contact } from '../../../core/data/models/contact.interface';
 import { ContactComponent } from './contact/contact.component';
 import { ContactProfileComponent } from './contact-profile/contact-profile.component';
 import { Dialog } from '@angular/cdk/dialog';
 import { ContactModalComponent } from './contact-modal/contact-modal.component';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-contacts',
@@ -15,13 +16,12 @@ import { ContactModalComponent } from './contact-modal/contact-modal.component';
 export class ContactsComponent {
   dataService = inject(DataService);
   dialog = inject(Dialog);
-  contacts: Signal<Contact[]> = this.dataService.sortedContacts;
+  contacts: Signal<Contact[]> = computed(() => this.dataService.sortedContacts().filter(contact => contact.email !== environment.guestUserCredentials.email));
   selectedContact = this.dataService.selectedContact;
   hasContactJustBeenAdded: Signal<boolean> = this.dataService.hasContactJustBeenAdded;
 
   constructor() {
     this.dataService.initSubscriptionsIfNecessary();
-    console.log(this.contacts());
   }
 
   /**

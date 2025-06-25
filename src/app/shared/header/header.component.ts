@@ -16,14 +16,15 @@ export class HeaderComponent {
   authService = inject(AuthService);
   router = inject(Router);
 
+  userName = this.authService.currentUserName;
   isUserLoggedIn = this.authService.isUserLoggedIn;
 
   initials = computed<string>(() => {
-    const userName = this.authService.currentUserName();
+    const userName = this.userName();
     if (userName) {
       return getInitials(userName);
     } else {
-      return 'G';
+      return '';
     }
   })
   
