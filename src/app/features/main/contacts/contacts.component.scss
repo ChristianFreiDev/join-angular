@@ -40,7 +40,7 @@
     height: 101px;
     @include mixins.flex($jc: center, $ai: center);
     @media (max-width: 1200px) {
-        // display: none;
+        background-color: transparent;
         height: unset;
         width: unset;
         position: fixed;
