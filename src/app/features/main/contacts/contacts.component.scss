@@ -21,7 +21,6 @@
     max-width: 456px;
     box-shadow: 4px 0px 6px 0px #00000014;
     @media(max-width: 1200px) {
-        overflow-y: unset;
         max-width: unset;
     }
 }
@@ -80,6 +79,7 @@
     padding: 0 24px 32px;
     @media (max-width: 1200px) {
         margin: 24px 14px;
+        padding-bottom: 72px;
     }
     @media (max-width: 368px) {
         margin: 18px 0px;
