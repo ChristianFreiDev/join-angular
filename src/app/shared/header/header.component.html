@@ -1,5 +1,7 @@
 <h1>Kanban Project Management Tool</h1>
-<img class="header-logo" src="img/large-join-logo.svg" alt="logo" />
+<a class="header-logo-link" [routerLink]="isUserLoggedIn() ? 'summary' : '/login'">
+  <img class="header-logo" src="img/large-join-logo.svg" alt="logo" />
+</a>
 <div class="header-img-container">
   <a routerLink="help"
     ><span class="material-symbols-rounded header-help-icon">help</span></a

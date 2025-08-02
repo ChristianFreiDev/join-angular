@@ -91,18 +91,18 @@
 
 .header-logo {
     width: 32px;
+}
+
+.header-logo-link {
     display: none;
+    @media (max-width: 768px) {
+        display: block;
+    }
 }
 
 .header-nav-help-link {
     @media (min-width: 769px) {
         display: none;
-    }
-}
-
-.header-logo {
-    @media (max-width: 768px) {
-        display: block;
     }
 }
 

@@ -101,6 +101,7 @@ progress::-webkit-progress-value {
 
 .initial-avatars {
     display: flex;
+    flex-wrap: wrap;
     .initial-avatar:not(:first-child) {
         margin-left: -8px;
     }
