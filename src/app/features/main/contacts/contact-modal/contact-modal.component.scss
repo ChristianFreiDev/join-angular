@@ -13,7 +13,7 @@
     max-height: 100vh;
     overflow-y: auto;
     @media (max-width: 1212px) {
-        @include mixins.flex($dir: column);
+        // @include mixins.flex($dir: column);
         height: 760px;
         max-width: 396px;
     }
@@ -22,10 +22,19 @@
     }
 }
 
+.edit-contact-modal-content {
+    display: flex;
+    min-height: 100%;
+    height: fit-content;
+    @media (max-width: 1212px) {
+        width: 100%;
+        @include mixins.flex($dir: column);
+    }
+}
+
 .edit-contact-modal-left-outer {
     @include mixins.flex($jc: center, $ai: center, $dir: column);
     background-color: colors.$menu;
-    height: 100%;
     padding: 0 46px;
     @media (max-width: 1212px) {
         padding: 72px 0 60px 0;
@@ -65,11 +74,13 @@ hr {
 
 .contact-modal-right-outer {
     @include mixins.flex($jc: flex-end, $ai: center);
-    flex-grow: 1;
-    padding: 137px 48px 135px 97px;
+    padding: 137px 48px 0px 97px;
     @media (max-width: 1212px) {
         @include mixins.flex($dir: column, $ai: center);
         padding: 0 16px 62px 16px;
+        @media (max-height: 760px) {
+            padding: 0 16px 0 16px;
+        }
     }
 }
 
