@@ -2,7 +2,10 @@
 @use '../../../styles/colors.scss';
 
 :host {
+    position: relative;
     @include mixins.flex($jc: space-between, $ai: center, $dir: column);
+    height: 100vh;
+    overflow-y: auto;
 }
 
 .animation-overlay {
@@ -62,7 +65,7 @@
     left: 77px;
     width: 100px;
     height: 122px;
-    @media (max-width: 768px) {
+    @media (max-width: 1200px) {
         top: 37px;
         left: 38px;
         width: 64px;
@@ -72,7 +75,7 @@
 
 .join-logo-animation {
     animation: move-to-top-left 1000ms ease-in-out forwards;
-    @media (max-width: 768px) {
+    @media (max-width: 1200px) {
         animation: move-to-top-left-mobile 1000ms ease-in-out forwards;
     }
 }

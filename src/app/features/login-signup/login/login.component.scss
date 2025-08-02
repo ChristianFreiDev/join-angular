@@ -1,6 +1,11 @@
 @use '../login-signup.component.scss';
 @use '../../../../styles/mixins.scss';
 
+:host {
+    height: unset;
+    overflow-y: unset;
+}
+
 .login-checkbox-outer-container {
     cursor: pointer;
     margin: 12px 0 12px 36px;

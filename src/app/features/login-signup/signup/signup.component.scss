@@ -2,6 +2,11 @@
 @use "../../../../styles/mixins.scss";
 @use "../../../../styles/colors.scss";
 
+:host {
+    height: unset;
+    overflow-y: unset;
+}
+
 .signup-checkbox-outer-container {
   margin-top: 16px;
   align-self: start;
