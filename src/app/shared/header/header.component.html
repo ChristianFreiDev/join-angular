@@ -23,7 +23,7 @@
   appClickOutside
   (clickOutsideEvent)="showOrHideDropDownMenu(false)"
 >
-  <a routerLink="help" class="header-nav-help-link" routerLink="help">Help</a>
+  <a (click)="goToUrl('main/help')" class="header-nav-help-link">Help</a>
   <a (click)="goToUrl('main/legal-notice')">Legal Notice</a>
   <a (click)="goToUrl('main/privacy-policy')">Privacy Policy</a>
   @if (isUserLoggedIn()) {
