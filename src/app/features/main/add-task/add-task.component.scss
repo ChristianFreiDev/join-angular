@@ -4,6 +4,12 @@
 
 h2 {
     margin-bottom: 48px;
+    @media (max-width: 1200px) {
+        margin-bottom: 40px;
+    }
+    @media (max-width: 375px) {
+        margin-bottom: 8px;
+    }
 }
 
 .add-task-bottom {
@@ -15,6 +21,9 @@ h2 {
     @media (max-width: 1400px) {
         gap: 16px;
         @include mixins.flex($dir: column-reverse, $jc: space-between);
+    }
+    @media (max-width: 1200px) {
+        margin-bottom: unset;
     }
 }
 

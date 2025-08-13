@@ -81,7 +81,11 @@
         margin: 24px 14px;
         padding-bottom: 72px;
     }
-    @media (max-width: 368px) {
+    @media (max-width: 427px) {
+        margin: 18px 0px;
+        padding: 0 16px 72px;
+    }
+    @media (max-width: 375px) {
         margin: 18px 0px;
     }
 }
@@ -164,6 +168,7 @@ hr {
         left: unset;
         right: unset;
         bottom: 20%;
+        animation: none;
         animation: slideInFromRight 1050ms ease-in-out forwards;
     }
 }

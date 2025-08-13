@@ -38,7 +38,7 @@ export class DataService implements OnDestroy {
   tasks = signal<Task[]>([]);
   taskFilterInputValue = signal<string>('');
   filteredTasks = computed(() => this.filterTasks(this.taskFilterInputValue()));
-  contacts = signal<Contact[]>(offlineContacts);
+  contacts = signal<Contact[]>([]);
   sortedContacts = computed(() =>
     this.contacts().sort((a, b) => this.compareContacts(a, b))
   );
@@ -49,9 +49,7 @@ export class DataService implements OnDestroy {
   selectedContact = signal<Contact | undefined>(undefined);
   hasContactJustBeenAdded = signal<boolean>(false);
 
-  constructor() {
-    // this.addDummyData();
-  }
+  constructor() {}
 
   initSubscriptionsIfNecessary() {
     if (this.unsubTasks === undefined) {
@@ -73,6 +71,9 @@ export class DataService implements OnDestroy {
    * This method adds dummy data to the database.
    */
   addDummyData(): void {
+    console.log('Adding dummy data');
+    this.tasks.set(offlineTasks);
+    this.contacts.set(offlineContacts);
     this.tasks().forEach((task) => {
       this.addTask(task);
     });

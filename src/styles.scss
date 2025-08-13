@@ -56,6 +56,9 @@ a {
     padding-left: paddings.$content-left-mobile;
     padding-right: paddings.$content-left-mobile;
   }
+  @media (max-width: 375px) {
+    padding-top: paddings.$content-top-small-mobile;
+  }
 }
 
 h1 {
@@ -231,7 +234,7 @@ h3 {
     height: 74px;
     border-radius: 20px;
     box-shadow: shadows.$box-shadow5;
-    @media (max-width: 368px) {
+    @media (max-width: 375px) {
         font-size: 14px;
     }
 }
