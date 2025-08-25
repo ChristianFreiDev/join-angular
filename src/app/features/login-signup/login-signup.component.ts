@@ -31,4 +31,12 @@ export class LoginSignupComponent {
   get shouldPlayIntroAnimation() {
     return !this.hasIntroAnimationPlayed && this.isLogin;
   }
+
+    /**
+   * This method removes the overlay from the DOM after the animation has ended.
+   */
+  onIntroAnimationEnd(el: HTMLDivElement) {
+    this.hasIntroAnimationPlayed = true;
+    el.style.display = 'none';
+  }
 }

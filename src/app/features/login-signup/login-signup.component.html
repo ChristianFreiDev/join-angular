@@ -1,5 +1,5 @@
 @if (isLogin && shouldPlayIntroAnimation) {
-    <div class="animation-overlay" (animationend)="hasIntroAnimationPlayed = true"></div>
+    <div #animationOverlay class="animation-overlay" (animationend)="onIntroAnimationEnd(animationOverlay)"></div>
 }
 <header>
     <img class="large-join-logo" [ngClass]="{'join-logo-animation': shouldPlayIntroAnimation}" src="/img/large-join-logo.svg" alt="large Join logo">

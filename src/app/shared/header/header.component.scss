@@ -44,8 +44,15 @@
     border-radius: 28px;
     font-size: 20px;
     color: colors.$accent;
+    background-color: transparent;
     font-weight: bold;
     cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
     @media (max-width: 768px) {
         font-size: 13px;
     }
@@ -74,6 +81,12 @@
         color: colors.$input-icon-gray;
         text-decoration: none;
         padding: 13.5px 19px;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
         @media (hover: hover) {
             &:hover {
                 background-color: colors.$menu-hover;

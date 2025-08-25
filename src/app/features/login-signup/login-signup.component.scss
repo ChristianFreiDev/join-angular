@@ -5,6 +5,7 @@
     position: relative;
     @include mixins.flex($jc: space-between, $ai: center, $dir: column);
     height: 100vh;
+    height: 100svh;
     overflow-y: auto;
 }
 
@@ -30,13 +31,8 @@
         opacity: 1;
     }
 
-    99% {
-        opacity: 0;
-    }
-    
     100% {
         opacity: 0;
-        display: none;
     }
 }
 
@@ -49,13 +45,8 @@
         opacity: 1;
     }
 
-    99% {
-        opacity: 0;
-    }
-    
     100% {
         opacity: 0;
-        display: none;
     }
 }
 
@@ -69,6 +60,12 @@
     @media (max-width: 1200px) {
         top: 37px;
         left: 38px;
+        width: 64px;
+        height: 78px;
+    }
+    @media (max-height: 779px) {
+        top: 20px;
+        left: 32px;
         width: 64px;
         height: 78px;
     }
@@ -139,6 +136,9 @@ header {
     }
     @media (max-width: 768px) {
         min-height: 152px;
+    }
+    @media (max-height: 779px) {
+        min-height: 118px;
     }
 }
 

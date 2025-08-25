@@ -9,8 +9,8 @@
     box-shadow: shadows.$box-shadow4;
     padding: 40px;
     width: 525px;
-    max-height: 100svh;
     max-height: 100vh;
+    max-height: 100svh;
     overflow-y: auto;
     @media (max-width: 1200px) {
         padding: 32px 24px;

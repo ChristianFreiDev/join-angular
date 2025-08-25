@@ -26,9 +26,9 @@
   class="contacts-right-side main-container"
   [class.hide-mobile]="!this.selectedContact()"
 >
-  <a class="back-link" (click)="selectContact(undefined)"
+  <button class="back-link" (click)="selectContact(undefined)"
     ><span class="material-symbols-rounded">arrow_back</span>
-  </a>
+</button>
   <div class="contacts-header">
     <h2>Contacts</h2>
     <span class="contacts-header-separator-vertical">|</span>

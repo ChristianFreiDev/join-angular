@@ -90,13 +90,14 @@ h3 {
   margin: auto;
   display: flex;
   min-height: 100vh;
+  min-height: 100svh;
   width: 100%;
 }
 
 .login-signup {
   @include mixins.flex($jc: center, $ai: center, $dir: column);
-  min-height: 100svh;
   min-height: 100vh;
+  min-height: 100svh;
   width: 100%;
   overflow: hidden;
 }
@@ -110,6 +111,9 @@ h3 {
   @media (max-width: 768px) {
       width: calc(100% - 32px);
       padding: 32px 16px;
+  }
+  @media (max-height: 744px) {
+    padding: 16px 16px;
   }
 }
 
@@ -241,6 +245,11 @@ h3 {
 
 .board-symbol {
   transform: rotate(90deg);
+}
+
+.back-link {
+  background-color: transparent;
+  border: unset;
 }
 
 ::-webkit-scrollbar {

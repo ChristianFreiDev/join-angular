@@ -6,7 +6,7 @@
   <a routerLink="help"
     ><span class="material-symbols-rounded header-help-icon">help</span></a
   >
-  <div
+  <button
     (click)="$event.stopPropagation(); showOrHideDropDownMenu()"
     class="header-user-icon"
   >
@@ -15,7 +15,7 @@
     } @else {
       <span class="material-symbols-rounded">person</span>
     }
-  </div>
+  </button>
 </div>
 <nav
   class="drop-down-menu"

@@ -80,8 +80,9 @@ export class SummaryComponent {
   /**
    * This method stores the information that the greeting animation has been played.
    */
-  onAnimationEnd() {
+  onAnimationEnd(el: HTMLDivElement) {
     this.authService.hasGreetingAnimationPlayed.set(true);
+    el.style.display = 'none';
   }
 
   /**

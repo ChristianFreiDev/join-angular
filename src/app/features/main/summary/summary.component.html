@@ -67,7 +67,7 @@
         </div>
       </div>
     </div>
-    <div class="summary-greeting" (animationend)="onAnimationEnd()" [class.summary-greeting-animation]="!hasGreetingAnimationPlayed()">
+    <div #summaryGreeting class="summary-greeting" (animationend)="onAnimationEnd(summaryGreeting)" [class.summary-greeting-animation]="!hasGreetingAnimationPlayed()">
       <div class="summary-greeting-text-and-name-container">
         <span class="summary-greeting-text">{{ greeting }}</span
         >@if (userName()) {<span class="summary-greeting-text">,</span><br /><span
