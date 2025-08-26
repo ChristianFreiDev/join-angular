@@ -8,7 +8,14 @@
     >
       {{ taskData.category }}
     </div>
-    <div class="move-arrows">⇵</div>
+    <div class="move-arrows" (click)="$event.stopPropagation(); openOrCloseMoveTaskMenu(true)">⇵
+      @if (isMoveTaskMenuOpen) {
+        <app-move-task-menu
+        [taskData]="taskData"
+        appClickOutside
+        (clickOutsideEvent)="openOrCloseMoveTaskMenu(false)"></app-move-task-menu>
+      }
+    </div>
   </div>
   <div class="task-title-and-description-container break-word">
     <div class="task-title">{{ taskData.title }}</div>

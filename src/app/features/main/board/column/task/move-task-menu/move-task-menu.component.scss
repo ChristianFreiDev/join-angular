@@ -1,0 +1,39 @@
+@use '../../../../../../../styles/colors.scss';
+@use '../../../../../../../styles/mixins.scss';
+@use '../../../../../../../styles/shadows.scss';
+
+:host {
+    @include mixins.flex($dir: column);
+    color: white;
+    background-color: colors.$menu-hover;
+    position: absolute;
+    right: 0;
+    width: 156px;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    padding-top: 6px;
+    padding-right: 8px;
+    padding-bottom: 16px;
+    padding-left: 8px;
+    gap: 16px;
+    z-index: 6;
+}
+
+.move-task-menu-heading {
+    padding-left: 9px;
+    padding-top: 7px;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.move-task-menu-statuses {
+    font-weight: 500;
+    font-size: 14px;
+    @include mixins.flex($dir: column);
+    gap: 4px;
+}
+
+.move-task-menu-status {
+    padding: 4px 5.5px;
+}

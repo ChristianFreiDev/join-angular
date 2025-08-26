@@ -1,0 +1,6 @@
+<span class="move-task-menu-heading">Move to</span>
+<div class="move-task-menu-statuses">
+    @for (status of statuses; track $index) {
+        <span class="move-task-menu-status" (click)="moveTask(status)">{{ status }}</span>
+    }
+</div>

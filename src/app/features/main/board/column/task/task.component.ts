@@ -5,19 +5,22 @@ import { TaskModalComponent } from './task-modal/task-modal.component';
 import { Subtask } from '../../../../../core/data/models/subtask.interface';
 import { DataService } from '../../../../../core/data/data.service';
 import { getInitials } from '../../../../../core/utils/user-utils';
+import { MoveTaskMenuComponent } from './move-task-menu/move-task-menu.component';
+import { ClickOutsideDirective } from '../../../../../core/directives/click-outside.directive';
 
 @Component({
   selector: 'app-task',
   host: {
     '(click)': 'openDialog($event)',
   },
-  imports: [CommonModule],
+  imports: [CommonModule, MoveTaskMenuComponent, ClickOutsideDirective],
   templateUrl: './task.component.html',
   styleUrl: './task.component.scss',
 })
 export class TaskComponent {
   @Input() taskData: any;
   @Input() isRotated: boolean = false;
+  isMoveTaskMenuOpen: boolean = false;
   assignees!: { color: string; initials: string }[];
   shortTaskDescription: string = '';
   amountOfSubtasks: number = 0;
@@ -78,5 +81,12 @@ export class TaskComponent {
     this.dialog.open(TaskModalComponent, {
       data: this.taskData,
     });
+  }
+
+  /**
+   * This method opens the menu for moving tasks.
+   */
+  openOrCloseMoveTaskMenu(bool: boolean): void {
+    this.isMoveTaskMenuOpen = bool;
   }
 }

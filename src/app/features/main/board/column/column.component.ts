@@ -14,6 +14,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './column.component.scss'
 })
 export class ColumnComponent {
+  isMobile: boolean = false;
   dropService = inject(DropService);
   dataService = inject(DataService);
   @Input() status!: string;
@@ -25,5 +26,14 @@ export class ColumnComponent {
    */
   drop(event: CdkDragDrop<Task[]>): void {
     this.dropService.drop(event);
+  }
+
+  onWindowResize(): void  {
+    let width = window.innerWidth;
+    if (width < 1200) {
+      this.isMobile = true;
+    } else {
+      this.isMobile = false;
+    }
   }
 }
