@@ -12,7 +12,7 @@
     font-weight: 500;
     color: colors.$accent;
     background-color: colors.$bg;
-    z-index: 5;
+    z-index: 1001;
     @media (max-width: 1200px) and (max-height: 540px) and (orientation: landscape) {
         @include mixins.flex($jc: center, $ai: center, $dir: column);
         gap: 8px;

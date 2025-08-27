@@ -21,6 +21,10 @@ export class ColumnComponent {
   @Input() dropListId!: string;
   @Input() tasks: Task[] = [];
 
+  ngOnInit() {
+    this.onWindowResize();
+  }
+
   /**
    * This method drops a task.
    */
@@ -28,6 +32,9 @@ export class ColumnComponent {
     this.dropService.drop(event);
   }
 
+  /**
+   * This method determines if the screen is relatively small.
+   */
   onWindowResize(): void  {
     let width = window.innerWidth;
     if (width < 1200) {
