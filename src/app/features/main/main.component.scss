@@ -1,6 +1,7 @@
 :host {
     height: 100vh;
     height: 100svh;
+    height: var(--vh100);
     display: grid;
     grid-template-columns: 232px auto;
     grid-template-rows: 96px auto;

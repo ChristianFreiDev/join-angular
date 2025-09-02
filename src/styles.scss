@@ -6,6 +6,11 @@
 @use "styles/paddings.scss";
 @use "styles/shadows.scss";
 
+:root {
+  --vh100: 100vh;
+  --vh100: 100svh;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -14,8 +19,6 @@
   line-height: 120%;
   letter-spacing: 0%;
 }
-
-// .cdk-overlay-pane { overflow-y: auto; }
 
 .cdk-drag-animating {
   transition: transform 125ms;
@@ -91,6 +94,7 @@ h3 {
   display: flex;
   min-height: 100vh;
   min-height: 100svh;
+  min-height: var(--vh100);
   width: 100%;
 }
 
@@ -98,6 +102,7 @@ h3 {
   @include mixins.flex($jc: center, $ai: center, $dir: column);
   min-height: 100vh;
   min-height: 100svh;
+  min-height: var(--vh100);
   width: 100%;
   overflow: hidden;
 }

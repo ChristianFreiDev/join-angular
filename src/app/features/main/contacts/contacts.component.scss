@@ -15,6 +15,7 @@
 .contacts-left-side {
     min-height: calc(100vh - 96px);
     min-height: calc(100svh - 96px);
+    min-height: calc(var(--vh100) - 96px);
     overflow-y: auto;
     position: relative;
     background-color: #FFFFFF;

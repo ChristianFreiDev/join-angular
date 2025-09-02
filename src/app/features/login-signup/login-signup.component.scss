@@ -6,6 +6,7 @@
     @include mixins.flex($jc: space-between, $ai: center, $dir: column);
     height: 100vh;
     height: 100svh;
+    height: var(--vh100);
     overflow-y: auto;
 }
 
