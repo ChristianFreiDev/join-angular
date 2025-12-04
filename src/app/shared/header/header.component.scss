@@ -22,6 +22,7 @@
         padding-left: paddings.$content-left-small-tablet;
     }
     @media (max-width: 768px) {
+        height: 80px;
         padding-left: paddings.$content-left-mobile;
     }
 }

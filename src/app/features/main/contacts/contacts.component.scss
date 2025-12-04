@@ -29,6 +29,20 @@
 
 .contacts-right-side {
     width: 100%;
+    overflow-y: auto;
+    height: calc(100vh - 96px);
+    height: calc(100svh - 96px);
+    height: calc(var(--vh100) - 96px);
+    @media(max-width: 1200px) {
+        height: calc(100vh - 176px);
+        height: calc(100svh - 176px);
+        height: calc(var(--vh100) - 176px);
+    }
+    @media(max-width: 1200px) {
+        height: calc(100vh - 160px);
+        height: calc(100svh - 160px);
+        height: calc(var(--vh100) - 160px);
+    }
 }
 
 .add-contact-button-container {
