@@ -1,4 +1,4 @@
-# JoinAngular
+# Join (Angular version)
 
 ## Description
 
