@@ -1,64 +1,14 @@
 # JoinAngular
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.6.
+## Description
 
-## Development server
+This task management app was originally developed using Vanilla JavaScript as a team project together with Nicolas Voges and Timo Renken.
+I then remade most of it using Angular, resulting in this repository.
 
-To start a local development server, run:
+Log in as a guest or create an account with a password for testing purposes.
 
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-
+You can create tasks, edit them, and move them to a different column (or row, depending on the device). There's also an overview of all the tasks and a list of contacts where you can add or remove contacts.
 
 ## Credits
 
-This project uses Google Material Symbols (<a href="https://github.com/google/material-design-icons/blob/master/LICENSE">Apache License</a>) and Inter (<a href="https://openfontlicense.org/open-font-license-official-text/">Open Font License</a>).
+This project uses Angular (<a href="https://github.com/angular/angular?tab=MIT-1-ov-file#readme">MIT License</a>), Google Material Symbols (<a href="https://github.com/google/material-design-icons/blob/master/LICENSE">Apache License</a>) and Inter (<a href="https://openfontlicense.org/open-font-license-official-text/">Open Font License</a>).
